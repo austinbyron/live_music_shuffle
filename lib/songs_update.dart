@@ -223,7 +223,7 @@ class _musicPlayerState extends State<MusicPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    bool hasSkipped = false;
+    //bool hasSkipped = false;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -251,6 +251,7 @@ class _musicPlayerState extends State<MusicPlayer> {
                 }
                 
                 return SeekBar(
+                  player: _player,
                   duration: duration,
                   position: position,
                   onChangeEnd: (newPosition) {
@@ -261,64 +262,7 @@ class _musicPlayerState extends State<MusicPlayer> {
             );
           }
         ),
-        SizedBox(width: 10, height: 10),
-        StreamBuilder<FullAudioPlaybackState> (
-          stream: _player.fullPlaybackStateStream,
-          builder: (context, snapshot) {
-            final fullState = snapshot.data;
-            var state = fullState?.state;
-            final buffering = fullState?.buffering;
-            
-            
-            
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (state == AudioPlaybackState.connecting || buffering == true)
-                  Container(
-                    margin: EdgeInsets.all(8.0),
-                    width: 64.0,
-                    height: 64.0,
-                    child: CircularProgressIndicator(),
-                  )
-                else if (state == AudioPlaybackState.playing) 
-                  IconButton(
-                    icon: Icon(Icons.pause),
-                    iconSize: 64.0,
-                    onPressed: _player.pause,
-                  )
-                else 
-                  IconButton(
-                    icon: Icon(Icons.play_arrow),
-                    iconSize: 64.0,
-                    onPressed: _player.play,
-                  ),
-                IconButton(
-                  icon: Icon(Icons.stop),
-                  iconSize: 64.0,
-                  onPressed: state == AudioPlaybackState.stopped ||
-                              state == AudioPlaybackState.none
-                              ? null
-                              : _player.stop,
-                            
-                ),
-                IconButton(
-                  icon: Icon(Icons.skip_next),
-                  iconSize: 64.0,
-                  onPressed: () {
-                    setState(() {
-                      //initState();
-                      state = AudioPlaybackState.playing;
-                      hasSkipped = true;
-                    });
-                    newSong();
-                    
-                  }
-                ),
-              ],
-            );
-          },
-        ),
+        
         
         Text("\nVolume"),
         StreamBuilder<double>(
@@ -376,11 +320,12 @@ class SeekBar extends StatefulWidget {
   final Duration position;
   final ValueChanged<Duration> onChanged;
   final ValueChanged<Duration> onChangeEnd;
-
+  final AudioPlayer player;
 
   SeekBar({
     @required this.duration,
     @required this.position,
+    @required this.player,
     this.onChanged,
     this.onChangeEnd,
   });
@@ -394,6 +339,17 @@ class _seekBarState extends State<SeekBar> {
 
   get _durationText => widget.duration?.toString()?.split('.')?.first ?? '';
   get _positionText => widget.position?.toString()?.split('.')?.first ?? '';
+
+  String newSong() {
+    var temporaryURL = _getUrl();
+    widget.player.setUrl(temporaryURL);
+    while (widget.player.buffering == true) {
+      //do nothing
+    }
+    
+    widget.player.play();
+    return songInfo[tempInt];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -427,6 +383,9 @@ class _seekBarState extends State<SeekBar> {
           value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
           onChanged: (value) {
             setState(() {
+              if (value > widget.duration.inMilliseconds.toDouble()) {
+                value = widget.duration.inMilliseconds.toDouble();
+              }
               _dragValue;
             });
             if (widget.onChanged != null) {
@@ -435,6 +394,11 @@ class _seekBarState extends State<SeekBar> {
           },
           onChangeEnd: (value) {
             _dragValue = null;
+            setState(() {
+              if (value > widget.duration.inMilliseconds.toDouble()) {
+                value = widget.duration.inMilliseconds.toDouble();
+              }
+            });
             if (widget.onChangeEnd != null) {
               widget.onChangeEnd(Duration(milliseconds: value.round()));
             }
@@ -444,6 +408,65 @@ class _seekBarState extends State<SeekBar> {
               widget.position != null ? '${_positionText ??''} / ${_durationText ?? ''}'
                                 : widget.duration != null ? _durationText : '',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+        ),
+        SizedBox(width: 10, height: 10),
+        StreamBuilder<FullAudioPlaybackState> (
+          stream: widget.player.fullPlaybackStateStream,
+          builder: (context, snapshot) {
+            final fullState = snapshot.data;
+            var state = fullState?.state;
+            final buffering = fullState?.buffering;
+            
+            
+            
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (state == AudioPlaybackState.connecting || buffering == true)
+                  Container(
+                    margin: EdgeInsets.all(8.0),
+                    width: 64.0,
+                    height: 64.0,
+                    child: CircularProgressIndicator(),
+                  )
+                else if (state == AudioPlaybackState.playing) 
+                  IconButton(
+                    icon: Icon(Icons.pause),
+                    iconSize: 64.0,
+                    onPressed: widget.player.pause,
+                  )
+                else 
+                  IconButton(
+                    icon: Icon(Icons.play_arrow),
+                    iconSize: 64.0,
+                    onPressed: widget.player.play,
+                  ),
+                IconButton(
+                  icon: Icon(Icons.stop),
+                  iconSize: 64.0,
+                  onPressed: state == AudioPlaybackState.stopped ||
+                              state == AudioPlaybackState.none
+                              ? null
+                              : widget.player.stop,
+                            
+                ),
+                IconButton(
+                  icon: Icon(Icons.skip_next),
+                  iconSize: 64.0,
+                  onPressed: () {
+                    setState(() {
+                      //initState();
+                      state = AudioPlaybackState.playing;
+                      //max = widget.player.durationFuture;
+                      
+                    });
+                    newSong();
+                    
+                  }
+                ),
+              ],
+            );
+          },
         ),
       ],
     ),
