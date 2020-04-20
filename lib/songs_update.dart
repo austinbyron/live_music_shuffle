@@ -386,7 +386,7 @@ class _seekBarState extends State<SeekBar> {
               if (value > widget.duration.inMilliseconds.toDouble()) {
                 value = widget.duration.inMilliseconds.toDouble();
               }
-              _dragValue;
+              _dragValue = value;
             });
             if (widget.onChanged != null) {
               widget.onChanged(Duration(milliseconds: value.round()));
