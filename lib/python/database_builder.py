@@ -14578,7 +14578,16 @@ def main():
 
                 f.write("\"name\": \"%s\", \n" % i['name'])
                 if i.get('creator'):
-                    f.write("\"creator\": \"%s\", \n" % i['creator'])
+                    if isinstance(i['creator'], unicode):
+                        strg = i['creator'].encode('utf-8')
+                        strg = strg.replace("\"", "")
+                        strg = strg.replace("\\", "")
+                        f.write("\"creator\": \"%s\", \n" % strg)
+                    else:
+                        strg = i['creator']
+                        strg = strg.replace("\"", "")
+                        strg = strg.replace("\\", "")
+                        f.write("\"creator\": \"%s\", \n" % strg)
                 if i.get('title'):
                     if isinstance(i['title'], unicode):
                         strg = i['title'].encode('utf-8')
@@ -14607,8 +14616,14 @@ def main():
                 if i.get('length'):
                     f.write("\"length\": \"%s\", \n" % i['length'])
                 f.write("\"format\": \"%s\" \n" % i['format'])
-                f.write("},")
-        f.write("],\n")
+                if i == item.item_metadata['files'][-1]:
+                    f.write("}")
+                else:
+                    f.write("},")
+        if x == shows[-1]:
+            f.write("]\n")
+        else:
+            f.write("],\n")
 
         
     f.write("}")
