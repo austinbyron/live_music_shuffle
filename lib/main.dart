@@ -6,7 +6,7 @@ import 'package:html/dom.dart' as dom;
 
 import 'package:web_scraper/web_scraper.dart';
 
-import 'songs_update.dart';
+import 'songs_update_backroundplay.dart';
 import 'song_url.dart';
 import 'song_decode.dart';
 
@@ -20,7 +20,7 @@ import 'package:web_scraper/web_scraper.dart';
 
 import 'dart:async';
 import 'dart:io';
-
+import 'package:audio_service/audio_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: AudioServiceWidget(child: MyHomePage()),
       
         
       

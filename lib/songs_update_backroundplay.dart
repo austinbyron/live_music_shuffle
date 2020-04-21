@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
+import 'package:music_player/songs.dart';
 
 import 'package:web_scraper/web_scraper.dart';
 import 'package:audio_service/audio_service.dart';
@@ -88,6 +89,55 @@ String _getUrl() {
   return "https://archive.org/download/${songList[temp]}";
 }
 
+void myBackgroundTaskEntrypoint(musicPlayerState _musicPlayer) {
+
+  AudioServiceBackground.run(() => myBackgroundTask(musicPlayerState: _musicPlayer));
+
+}
+
+class myBackgroundTask extends BackgroundAudioTask {
+  final musicPlayerState;
+  myBackgroundTask({@required this.musicPlayerState});
+  //_musicPlayerState _musicPlayer;
+  final _completer = Completer();
+  @override
+  Future<void> onStart() async {
+    
+    AudioServiceBackground.setState(
+      controls: [pauseControl, stopControl], 
+      basicState: BasicPlaybackState.playing);
+
+    await musicPlayerState._player.setUrl(_getUrl());
+    musicPlayerState._player.play();
+    await _completer.future;
+    AudioServiceBackground.setState(
+      controls: [], basicState: BasicPlaybackState.playing);
+  }
+
+  @override
+  void onStop() {
+    musicPlayerState._player.stop();
+    _completer.complete();
+  }
+
+  @override
+  void onPlay() {
+    AudioServiceBackground.setState(
+      controls: [pauseControl, stopControl], 
+      basicState: BasicPlaybackState.playing);
+    musicPlayerState._player.play();
+  
+  }
+
+  @override
+  void onPause() {
+    AudioServiceBackground.setState(
+      controls: [playControl, stopControl], 
+      basicState: BasicPlaybackState.playing);
+    musicPlayerState._player.play();
+  }
+}
+
 class SongUI extends StatefulWidget {
 
   const SongUI();
@@ -106,11 +156,12 @@ class _songUI extends State<SongUI> {
   @override
   Widget build(BuildContext context) {
     
+    //AudioService.start(backgroundTaskEntrypoint: myBackgroundTaskEntrypoint);
     //_retrieveLocalSongInfo();
     //setState(() {
       //_retrieveLocalSongInfo();
     //});
-    String _tempUrl = _getUrl();
+    //String _tempUrl = _getUrl();
     //musicPlayerList.add(MusicPlayer(url: _tempUrl));
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -140,7 +191,7 @@ class _songUI extends State<SongUI> {
                   child: Column(
                      //mainAxisAlignment: MainAxisAlignment.center,
                      children: [
-                       AudioServiceWidget(child: MusicPlayer(url: _tempUrl)),
+                       MusicPlayer(),
                        //Text(
                          //songInfo[tempInt],
                          //textAlign: TextAlign.center,
@@ -172,23 +223,23 @@ enum PlayerState { stopped, playing, paused }
 enum PlayingRouteState { speakers, earpiece }
 
 class MusicPlayer extends StatefulWidget {
-  String url;
+  //String url;
   //final PlayerMode mode;
 
   MusicPlayer(
-    {Key key, @required this.url})
+    {Key key})
     : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     //url = _getUrl();
-    return _musicPlayerState(url);
+    return musicPlayerState();
   }
   
 }
 
-class _musicPlayerState extends State<MusicPlayer> {
-  String url;
+class musicPlayerState extends State<MusicPlayer> {
+  //String url;
   //PlayerMode mode;
   final _volumeSubject = BehaviorSubject.seeded(1.0);
   final _speedSubject = BehaviorSubject.seeded(1.0);
@@ -202,7 +253,7 @@ class _musicPlayerState extends State<MusicPlayer> {
 
 //var temp123 = "https://archive.org/download/gd95-07-06.sbd.9119.sbeok.shnf/gd95-07-06d2t03.mp3";
   
-  _musicPlayerState(this.url);
+  musicPlayerState();
 
   @override
   void initState() {
@@ -223,7 +274,7 @@ class _musicPlayerState extends State<MusicPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    bool hasSkipped = false;
+    //bool hasSkipped = false;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -245,12 +296,13 @@ class _musicPlayerState extends State<MusicPlayer> {
                 if (position > duration) {
                   position = duration;
                   newSong();
-                  
+                  //_player.
                   
                     
                 }
                 
                 return SeekBar(
+                  player: _player,
                   duration: duration,
                   position: position,
                   onChangeEnd: (newPosition) {
@@ -261,64 +313,7 @@ class _musicPlayerState extends State<MusicPlayer> {
             );
           }
         ),
-        SizedBox(width: 10, height: 10),
-        StreamBuilder<FullAudioPlaybackState> (
-          stream: _player.fullPlaybackStateStream,
-          builder: (context, snapshot) {
-            final fullState = snapshot.data;
-            var state = fullState?.state;
-            final buffering = fullState?.buffering;
-            
-            
-            
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (state == AudioPlaybackState.connecting || buffering == true)
-                  Container(
-                    margin: EdgeInsets.all(8.0),
-                    width: 64.0,
-                    height: 64.0,
-                    child: CircularProgressIndicator(),
-                  )
-                else if (state == AudioPlaybackState.playing) 
-                  IconButton(
-                    icon: Icon(Icons.pause),
-                    iconSize: 64.0,
-                    onPressed: _player.pause,
-                  )
-                else 
-                  IconButton(
-                    icon: Icon(Icons.play_arrow),
-                    iconSize: 64.0,
-                    onPressed: _player.play,
-                  ),
-                IconButton(
-                  icon: Icon(Icons.stop),
-                  iconSize: 64.0,
-                  onPressed: state == AudioPlaybackState.stopped ||
-                              state == AudioPlaybackState.none
-                              ? null
-                              : _player.stop,
-                            
-                ),
-                IconButton(
-                  icon: Icon(Icons.skip_next),
-                  iconSize: 64.0,
-                  onPressed: () {
-                    setState(() {
-                      //initState();
-                      state = AudioPlaybackState.playing;
-                      hasSkipped = true;
-                    });
-                    newSong();
-                    
-                  }
-                ),
-              ],
-            );
-          },
-        ),
+        
         
         Text("\nVolume"),
         StreamBuilder<double>(
@@ -360,8 +355,10 @@ class _musicPlayerState extends State<MusicPlayer> {
     while (_player.buffering == true) {
       //do nothing
     }
-    
-    playit();
+    //_player.pause();
+    _player.play();
+    //
+    //AudioServiceBackground.setMediaItem()
     return songInfo[tempInt];
   }
 
@@ -376,11 +373,12 @@ class SeekBar extends StatefulWidget {
   final Duration position;
   final ValueChanged<Duration> onChanged;
   final ValueChanged<Duration> onChangeEnd;
-
+  final AudioPlayer player;
 
   SeekBar({
     @required this.duration,
     @required this.position,
+    @required this.player,
     this.onChanged,
     this.onChangeEnd,
   });
@@ -394,6 +392,17 @@ class _seekBarState extends State<SeekBar> {
 
   get _durationText => widget.duration?.toString()?.split('.')?.first ?? '';
   get _positionText => widget.position?.toString()?.split('.')?.first ?? '';
+
+  String newSong() {
+    var temporaryURL = _getUrl();
+    widget.player.setUrl(temporaryURL);
+    while (widget.player.buffering == true) {
+      //do nothing
+    }
+    
+    widget.player.play();
+    return songInfo[tempInt];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -427,7 +436,10 @@ class _seekBarState extends State<SeekBar> {
           value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
           onChanged: (value) {
             setState(() {
-              _dragValue;
+              if (value > widget.duration.inMilliseconds.toDouble()) {
+                value = widget.duration.inMilliseconds.toDouble();
+              }
+              _dragValue = value;
             });
             if (widget.onChanged != null) {
               widget.onChanged(Duration(milliseconds: value.round()));
@@ -435,6 +447,11 @@ class _seekBarState extends State<SeekBar> {
           },
           onChangeEnd: (value) {
             _dragValue = null;
+            setState(() {
+              if (value > widget.duration.inMilliseconds.toDouble()) {
+                value = widget.duration.inMilliseconds.toDouble();
+              }
+            });
             if (widget.onChangeEnd != null) {
               widget.onChangeEnd(Duration(milliseconds: value.round()));
             }
@@ -445,8 +462,89 @@ class _seekBarState extends State<SeekBar> {
                                 : widget.duration != null ? _durationText : '',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
         ),
+        SizedBox(width: 10, height: 10),
+        StreamBuilder<FullAudioPlaybackState> (
+          stream: widget.player.fullPlaybackStateStream,
+          builder: (context, snapshot) {
+            final fullState = snapshot.data;
+            var state = fullState?.state;
+            final buffering = fullState?.buffering;
+            
+            
+            
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (state == AudioPlaybackState.connecting || buffering == true)
+                  Container(
+                    margin: EdgeInsets.all(8.0),
+                    width: 64.0,
+                    height: 64.0,
+                    child: CircularProgressIndicator(),
+                  )
+                else if (state == AudioPlaybackState.playing) 
+                  IconButton(
+                    icon: Icon(Icons.pause),
+                    iconSize: 64.0,
+                    onPressed: () {
+                      pause();
+                      widget.player.pause();
+                    }
+                  )
+                else 
+                  IconButton(
+                    icon: Icon(Icons.play_arrow),
+                    iconSize: 64.0,
+                    onPressed: () {
+                      play();
+                      widget.player.play();
+                    },
+                  ),
+                IconButton(
+                  icon: Icon(Icons.stop),
+                  iconSize: 64.0,
+                  onPressed: state == AudioPlaybackState.stopped ||
+                              state == AudioPlaybackState.none
+                              ? null
+                              : () {
+                                stop();
+                                widget.player.stop();
+                              },
+                            
+                ),
+                IconButton(
+                  icon: Icon(Icons.skip_next),
+                  iconSize: 64.0,
+                  onPressed: () {
+                    setState(() {
+                      //initState();
+                      state = AudioPlaybackState.playing;
+                      //max = widget.player.durationFuture;
+                      
+                    });
+                    newSong();
+                    
+                  }
+                ),
+              ],
+            );
+          },
+        ),
       ],
     ),
     );
   }
+  play() async {
+    if (await AudioService.running) {
+      AudioService.play();
+    }
+    else {
+      AudioService.start(
+        backgroundTaskEntrypoint: myBackgroundTaskEntrypoint);
+    }
+  }
+
+  pause() => AudioService.pause();
+
+  stop() => AudioService.stop();
 }

@@ -115,9 +115,12 @@ class _songUI extends State<SongUI> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         //backgroundColor: Colors.grey[500],
+        centerTitle: true,
         title: Text(
           "Find some new music",
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.w300
           ),
@@ -245,7 +248,7 @@ class _musicPlayerState extends State<MusicPlayer> {
                 if (position > duration) {
                   position = duration;
                   newSong();
-                  
+                  //_player.
                   
                     
                 }
@@ -301,11 +304,15 @@ class _musicPlayerState extends State<MusicPlayer> {
   String newSong() {
     var temporaryURL = _getUrl();
     _player.setUrl(temporaryURL);
+    //_player.dispose();
+    _player.play();
     while (_player.buffering == true) {
       //do nothing
     }
+    //_player.pause();
+    //_player.play();
     
-    playit();
+    //
     return songInfo[tempInt];
   }
 
@@ -343,11 +350,14 @@ class _seekBarState extends State<SeekBar> {
   String newSong() {
     var temporaryURL = _getUrl();
     widget.player.setUrl(temporaryURL);
+    //widget.player.stop();
+    //widget.player.dispose();
+    widget.player.play();
     while (widget.player.buffering == true) {
       //do nothing
     }
     
-    widget.player.play();
+    //widget.player.play();
     return songInfo[tempInt];
   }
 
