@@ -166,8 +166,11 @@ class _songUI extends State<SongUI> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
         //backgroundColor: Colors.grey[500],
         title: Text(
+
           "Find some new music",
           style: TextStyle(
             fontWeight: FontWeight.w300
