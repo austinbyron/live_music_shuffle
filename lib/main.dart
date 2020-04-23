@@ -97,6 +97,8 @@ var joeRusso = false;
 var kellerWilliams = false;
 var johnMayer = false;
 var tedeschiTrucksBand = false;
+var darkStarOrchestra = false;
+var myMorningJacket = false;
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -749,6 +751,92 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        Container(
+          height: 50,
+          child: Material(
+            color: darkStarOrchestra ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: darkStarOrchestra ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Dark Star Orchestra",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: darkStarOrchestra ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (darkStarOrchestra == false) {
+                  setState(() {
+                    darkStarOrchestra= true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    darkStarOrchestra = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: myMorningJacket ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: myMorningJacket ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "My Morning Jacket",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: myMorningJacket ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (myMorningJacket == false) {
+                  setState(() {
+                    myMorningJacket = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    myMorningJacket = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
       ],
       ),
     );
@@ -1211,6 +1299,73 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff13.length; counter++) {
         if (songStuff13[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (darkStarOrchestra == true) {
+      final json14 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/darkstarorchestra.json');
+    final data14 = JsonDecoder().convert(await json14);
+    if (data14 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data14.keys.forEach((key) {
+      final List<Show> songStuff14 =
+          data14[key].map<Show>((dynamic data14) => Show.fromJson(data14)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff14,
+        
+      );
+      for (var counter = 0; counter < songStuff14.length; counter++) {
+        if (songStuff14[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (myMorningJacket == true) {
+      final json15 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/mymorningjacket.json');
+    final data15 = JsonDecoder().convert(await json15);
+    if (data15 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data15.keys.forEach((key) {
+      final List<Show> songStuff15 =
+          data15[key].map<Show>((dynamic data15) => Show.fromJson(data15)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff15,
+        
+      );
+      for (var counter = 0; counter < songStuff15.length; counter++) {
+        if (songStuff15[counter].format == "VBR MP3") {
           songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
         }

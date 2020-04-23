@@ -70,6 +70,8 @@ flutter:
     - assets/data/kellerwilliams.json
     - assets/data/johnmayer.json
     - assets/data/tedeschitrucksband.json
+    - assets/data/darkstarorchestra.json
+    - assets/data/mymorningjacket.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
