@@ -44,7 +44,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/src/foundation/constants.dart';
 
-void main() {
+Future<void> main() async {
   runApp(MyApp());
 }
 
@@ -67,10 +67,690 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: AudioServiceWidget(child: MyHomePage()),
+      home: AudioServiceWidget(child: CheckBands()),
       
         
       
+    );
+  }
+}
+
+class CheckBands extends StatefulWidget {
+  CheckBands();
+
+  @override
+  _CheckBandsState createState() => _CheckBandsState();
+
+}
+
+var gratefulDead = false;
+var deadAndCo = false;
+var phishBand = false;
+var stringCheeseIncident = false;
+var billyStrings = false;
+var gooseBand = false;
+var umphreysMcGee = false;
+var derekTrucksBand = false;
+var lotusBand = false;
+var soundTribeSector9 = false;
+var joeRusso = false;
+var kellerWilliams = false;
+var johnMayer = false;
+var tedeschiTrucksBand = false;
+
+var countSelected = 0;
+class _CheckBandsState extends State<CheckBands> {
+
+  @override
+  Widget build(BuildContext context) {
+  
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Select bands to shuffle",
+          style: TextStyle(
+            color: Colors.grey[100],
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+        backgroundColor: Colors.blue,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.check_circle_outline,
+          color: Colors.grey[100],
+          
+        ),
+        tooltip: 'Finish selecting bands',
+        onPressed: () {
+          if (countSelected == 0) {
+
+          }
+          else {
+            songList.clear();
+            songInfo.clear();
+            Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                                MyHomePage()));
+          }
+        },
+      ),
+      body: ListView(
+      //padding: const EdgeInsets.all(8.0),
+      children: <Widget>[
+        
+        Container(
+
+          height: 50,
+          child: Material(
+            color: gratefulDead ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  gratefulDead ? Icons.favorite : Icons.favorite_border,
+                  color: gratefulDead ? Colors.red : Colors.black,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Grateful Dead",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: gratefulDead ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (gratefulDead == false) {
+                  setState(() {
+                    gratefulDead = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    gratefulDead = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          //TODO implement phish with api stuff from phish.in
+          child: Material(
+            color: phishBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: phishBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Phish //TODO",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: phishBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (phishBand == false) {
+                  setState(() {
+                    phishBand = true;
+                    countSelected++;
+                  });
+                  print(countSelected);
+                }
+
+                else {
+                  setState(() {
+                    phishBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: deadAndCo ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: deadAndCo ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Dead & Company",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: deadAndCo ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (deadAndCo == false) {
+                  setState(() {
+                    deadAndCo = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    deadAndCo = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: umphreysMcGee ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: umphreysMcGee ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Umphrey's McGee",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: umphreysMcGee ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (umphreysMcGee == false) {
+                  setState(() {
+                    umphreysMcGee = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    umphreysMcGee = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: stringCheeseIncident ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: stringCheeseIncident ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "String Cheese Incident",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: stringCheeseIncident ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (stringCheeseIncident == false) {
+                  setState(() {
+                    stringCheeseIncident = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    stringCheeseIncident = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: billyStrings ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: billyStrings ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Billy Strings",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: billyStrings ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (billyStrings == false) {
+                  setState(() {
+                    billyStrings = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    billyStrings = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: gooseBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: gooseBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Goose",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: gooseBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (gooseBand == false) {
+                  setState(() {
+                    gooseBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    gooseBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        
+        Container(
+          height: 50,
+          child: Material(
+            color: derekTrucksBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: derekTrucksBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Derek Trucks Band",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: derekTrucksBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (derekTrucksBand == false) {
+                  setState(() {
+                    derekTrucksBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    derekTrucksBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: lotusBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: lotusBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Lotus",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: lotusBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (lotusBand == false) {
+                  setState(() {
+                    lotusBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    lotusBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: soundTribeSector9 ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: soundTribeSector9 ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Sound Tribe Sector 9",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: soundTribeSector9 ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (soundTribeSector9 == false) {
+                  setState(() {
+                    soundTribeSector9 = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    soundTribeSector9 = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: joeRusso ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: joeRusso ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Joe Russo's Almost Dead",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: joeRusso ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (joeRusso == false) {
+                  setState(() {
+                    joeRusso = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    joeRusso = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: kellerWilliams ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: kellerWilliams ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Keller Williams",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: kellerWilliams ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (kellerWilliams == false) {
+                  setState(() {
+                    kellerWilliams = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    kellerWilliams = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: johnMayer ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: johnMayer ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "John Mayer",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: johnMayer ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (johnMayer == false) {
+                  setState(() {
+                    johnMayer = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    johnMayer = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: tedeschiTrucksBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: tedeschiTrucksBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Tedeschi Trucks Band",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: tedeschiTrucksBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (tedeschiTrucksBand == false) {
+                  setState(() {
+                    tedeschiTrucksBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    tedeschiTrucksBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+      ],
+      ),
     );
   }
 }
@@ -92,15 +772,18 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
+final count = 5;
+var tracker = 0;
 class _MyHomePageState extends State<MyHomePage> {
 
     Future<void> _retrieveLocalSongInfo() async {
+
     // Consider omitting the types for local variables. For more details on Effective
     // Dart Usage, see https://www.dartlang.org/guides/language/effective-dart/usage
+    if (deadAndCo == true) {
     final json = DefaultAssetBundle
         .of(context)
-        .loadString('assets/data/output1.json');
+        .loadString('assets/data/deadandco.json');
     final data = JsonDecoder().convert(await json);
     if (data is! Map) {
       throw ('Data retrieved from API is not a Map');
@@ -127,10 +810,13 @@ class _MyHomePageState extends State<MyHomePage> {
       
      
     });
-
+    tracker++;
+    print(songList.length);
+    }
+    if (gratefulDead == true) {
     final json2 = DefaultAssetBundle
         .of(context)
-        .loadString('assets/data/soundboards.json');
+        .loadString('assets/data/gratefuldeadsoundboards.json');
     final data2 = JsonDecoder().convert(await json2);
     if (data2 is! Map) {
       throw ('Data retrieved from API is not a Map');
@@ -157,9 +843,386 @@ class _MyHomePageState extends State<MyHomePage> {
       
      
     });
-    
 
     print(songList.length);
+    tracker++;
+    }
+    if (umphreysMcGee == true) {
+    final json3 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/umphreys.json');
+    final data3 = JsonDecoder().convert(await json3);
+    if (data3 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data3.keys.forEach((key) {
+      final List<Show> songStuff3 =
+          data3[key].map<Show>((dynamic data3) => Show.fromJson(data3)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff3,
+        
+      );
+      
+      for (var counter = 0; counter < songStuff3.length; counter++) {
+        if (songStuff3[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+
+    print(songList.length);
+    tracker++;
+    }
+
+    if (billyStrings == true) {
+    final json4 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/billystrings.json');
+    final data4 = JsonDecoder().convert(await json4);
+    if (data4 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data4.keys.forEach((key) {
+      final List<Show> songStuff4 =
+          data4[key].map<Show>((dynamic data4) => Show.fromJson(data4)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff4,
+        
+      );
+      for (var counter = 0; counter < songStuff4.length; counter++) {
+        if (songStuff4[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+
+    print(songList.length);
+    tracker++;
+    }
+
+    if (gooseBand == true) {
+    final json5 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/goose.json');
+    final data5 = JsonDecoder().convert(await json5);
+    if (data5 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data5.keys.forEach((key) {
+      final List<Show> songStuff5 =
+          data5[key].map<Show>((dynamic data5) => Show.fromJson(data5)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff5,
+        
+      );
+      for (var counter = 0; counter < songStuff5.length; counter++) {
+        if (songStuff5[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+
+    print(songList.length);
+    tracker++;
+    }
+
+    if (stringCheeseIncident == true) {
+    final json6 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/sci.json');
+    final data6 = JsonDecoder().convert(await json6);
+    if (data6 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data6.keys.forEach((key) {
+      final List<Show> songStuff6 =
+          data6[key].map<Show>((dynamic data6) => Show.fromJson(data6)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff6,
+        
+      );
+      for (var counter = 0; counter < songStuff6.length; counter++) {
+        if (songStuff6[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+
+    print(songList.length);
+    tracker++;
+    }
+
+    //todo add derek trucks band and lotus
+    if (derekTrucksBand == true) {
+      final json7 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/derektrucksband.json');
+    final data7 = JsonDecoder().convert(await json7);
+    if (data7 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data7.keys.forEach((key) {
+      final List<Show> songStuff7 =
+          data7[key].map<Show>((dynamic data7) => Show.fromJson(data7)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff7,
+        
+      );
+      for (var counter = 0; counter < songStuff7.length; counter++) {
+        if (songStuff7[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (lotusBand == true) {
+      final json8 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/lotus.json');
+    final data8 = JsonDecoder().convert(await json8);
+    if (data8 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data8.keys.forEach((key) {
+      final List<Show> songStuff8 =
+          data8[key].map<Show>((dynamic data8) => Show.fromJson(data8)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff8,
+        
+      );
+      for (var counter = 0; counter < songStuff8.length; counter++) {
+        if (songStuff8[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (soundTribeSector9 == true) {
+      final json9 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/sts9.json');
+    final data9 = JsonDecoder().convert(await json9);
+    if (data9 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data9.keys.forEach((key) {
+      final List<Show> songStuff9 =
+          data9[key].map<Show>((dynamic data9) => Show.fromJson(data9)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff9,
+        
+      );
+      for (var counter = 0; counter < songStuff9.length; counter++) {
+        if (songStuff9[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (joeRusso == true) {
+          final json10 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/joerusso.json');
+    final data10 = JsonDecoder().convert(await json10);
+    if (data10 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data10.keys.forEach((key) {
+      final List<Show> songStuff10 =
+          data10[key].map<Show>((dynamic data10) => Show.fromJson(data10)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff10,
+        
+      );
+      for (var counter = 0; counter < songStuff10.length; counter++) {
+        if (songStuff10[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (kellerWilliams == true) {
+      final json11 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/kellerwilliams.json');
+    final data11 = JsonDecoder().convert(await json11);
+    if (data11 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data11.keys.forEach((key) {
+      final List<Show> songStuff11 =
+          data11[key].map<Show>((dynamic data11) => Show.fromJson(data11)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff11,
+        
+      );
+      for (var counter = 0; counter < songStuff11.length; counter++) {
+        if (songStuff11[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (johnMayer == true) {
+        final json12 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/johnmayer.json');
+    final data12 = JsonDecoder().convert(await json12);
+    if (data12 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data12.keys.forEach((key) {
+      final List<Show> songStuff12 =
+          data12[key].map<Show>((dynamic data12) => Show.fromJson(data12)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff12,
+        
+      );
+      for (var counter = 0; counter < songStuff12.length; counter++) {
+        if (songStuff12[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (tedeschiTrucksBand == true) {
+      final json13 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/tedeschitrucksband.json');
+    final data13 = JsonDecoder().convert(await json13);
+    if (data13 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data13.keys.forEach((key) {
+      final List<Show> songStuff13 =
+          data13[key].map<Show>((dynamic data13) => Show.fromJson(data13)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff13,
+        
+      );
+      for (var counter = 0; counter < songStuff13.length; counter++) {
+        if (songStuff13[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
   }
  
   @override
@@ -195,9 +1258,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 
               ),
-              onTap: () {
+              onTap: () async {
                 if (songList[0] == null) {
                   _retrieveLocalSongInfo();
+                }
+                if (tracker != count) {
+
                 }
                 Navigator.push(context, MaterialPageRoute(builder: (context) => 
                                 SongUI()));

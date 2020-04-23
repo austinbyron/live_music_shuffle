@@ -1,4 +1,5 @@
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:http/http.dart' as http;
@@ -31,8 +32,8 @@ import 'song_url.dart';
 import 'dart:math';
 import 'dart:async';
 import 'dart:io';
-
-
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
@@ -84,11 +85,13 @@ final lengthOfList = songList.length;
 String _getUrl() {
     //_retrieveLocalSongInfo();
   var rng = new Random();
-  var temp = rng.nextInt(lengthOfList); //size of songList
+  var temp = rng.nextInt(songList.length); //size of songList
   tempInt = temp;
+  number = temp;
+  print(temp);
   return "https://archive.org/download/${songList[temp]}";
 }
-
+var number;
 void myBackgroundTaskEntrypoint(musicPlayerState _musicPlayer) {
 
   AudioServiceBackground.run(() => myBackgroundTask(musicPlayerState: _musicPlayer));
@@ -146,6 +149,10 @@ class SongUI extends StatefulWidget {
   _songUI createState() => _songUI();
 }
 
+void stopToGoBack() {
+  
+}
+
 class _songUI extends State<SongUI> {
 
   //AudioCache audioCache = AudioCache();
@@ -166,12 +173,27 @@ class _songUI extends State<SongUI> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
+        titleSpacing: 0.0,
+        //automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), 
+          onPressed: () {
+
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+            
+          }
+        ),
+        centerTitle: false,
         //backgroundColor: Colors.grey[500],
         title: Text(
-
-          "Find some new music",
+          
+          "Go back and select new bands",
+          textAlign: TextAlign.start,
           style: TextStyle(
             fontWeight: FontWeight.w300
           ),
@@ -347,7 +369,28 @@ class musicPlayerState extends State<MusicPlayer> {
           ),
         ),
         SizedBox(width: 10, height: 10),
-        Text("\nPowered by Archive.org\nInspired by Relisten.net"),
+        RichText(
+          text: new TextSpan(
+            text: "\nPowered by Archive.org",
+            style: TextStyle(color: Colors.black),
+            //recognizer: new TapGestureRecognizer()
+              //..onTap = () {
+                //launch('https://archive.org/details/${songList[tempInt]}');
+              //},
+          ),
+        ),
+        RichText(
+          text: new TextSpan(
+            text: "Inspired by Relisten.net",
+            style: TextStyle(color: Colors.black),
+            //recognizer: new TapGestureRecognizer()
+              //..onTap = () {
+                //launch('relisten.net');
+              //},
+          ),
+        ),
+        
+        
       ],
     );
   }
@@ -418,9 +461,12 @@ class _seekBarState extends State<SeekBar> {
             height: MediaQuery.of(context).size.height *7/24,
             width: MediaQuery.of(context).size.width * 7/8,
             child: Center(
-              child: Text(
-                "\n${songInfo[tempInt] ??''}",
+              child: AutoSizeText(
+                "${songInfo[tempInt] ??''}",
                 textAlign: TextAlign.center,
+                maxLines: 5,
+                minFontSize: 17,
+                maxFontSize: 24,
                 style: TextStyle(
                   fontSize: 24.0, 
                   fontWeight: FontWeight.w300
