@@ -80,11 +80,11 @@ MediaControl stopControl = MediaControl(
   action: MediaAction.stop,
 );
 
-
+final lengthOfList = songList.length;
 String _getUrl() {
     //_retrieveLocalSongInfo();
   var rng = new Random();
-  var temp = rng.nextInt(125600); //size of songList
+  var temp = rng.nextInt(lengthOfList); //size of songList
   tempInt = temp;
   return "https://archive.org/download/${songList[temp]}";
 }

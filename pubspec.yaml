@@ -57,6 +57,7 @@ flutter:
     - assets/data/testmanifestwas.json
     - assets/data/manifestWorkAnotherStepFixing.json
     - assets/data/soundboards.json
+    - assets/data/output1.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

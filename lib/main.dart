@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Dart Usage, see https://www.dartlang.org/guides/language/effective-dart/usage
     final json = DefaultAssetBundle
         .of(context)
-        .loadString('assets/data/soundboards.json');
+        .loadString('assets/data/output1.json');
     final data = JsonDecoder().convert(await json);
     if (data is! Map) {
       throw ('Data retrieved from API is not a Map');
@@ -123,8 +123,41 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         
       }
+
+      
      
     });
+
+    final json2 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/soundboards.json');
+    final data2 = JsonDecoder().convert(await json2);
+    if (data2 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data2.keys.forEach((key) {
+      final List<Show> songStuff2 =
+          data2[key].map<Show>((dynamic data2) => Show.fromJson(data2)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff2,
+        
+      );
+      for (var counter = 0; counter < songStuff2.length; counter++) {
+        if (songStuff2[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    
 
     print(songList.length);
   }
