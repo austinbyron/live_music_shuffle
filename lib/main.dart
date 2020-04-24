@@ -126,17 +126,10 @@ class _CheckBandsState extends State<CheckBands> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Icons.restore
+              countSelected == 0 ? Icons.add_circle_outline : Icons.restore,
             ), 
             onPressed: () {
-              if (gratefulDead == true || deadAndCo == true || phishBand == true
-                    || stringCheeseIncident == true || billyStrings == true || gooseBand == true
-                    || umphreysMcGee == true || derekTrucksBand == true || lotusBand == true
-                    || soundTribeSector9 == true || joeRusso == true || kellerWilliams == true
-                    || johnMayer == true || tedeschiTrucksBand == true || darkStarOrchestra == true
-                    || myMorningJacket == true || moeBand == true || littleFeat == true
-                    || twiddleBand == true || weenBand == true || spaffordBand == true
-                    || pigeonsPlayingPingPong == true || souliveBand == true) {
+              if (countSelected > 0) {
                 
                 setState(() {
                 
@@ -192,7 +185,7 @@ class _CheckBandsState extends State<CheckBands> {
                   spaffordBand = true;
                   pigeonsPlayingPingPong = true;
                   souliveBand = true;
-                  countSelected = 22;
+                  countSelected = 23;
                 });
               }
               
