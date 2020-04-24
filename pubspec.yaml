@@ -79,6 +79,8 @@ flutter:
     - assets/data/spafford.json
     - assets/data/pigeonsplayingpingpong.json
     - assets/data/soulive.json
+    - assets/data/greenskybluegrass.json
+    - assets/data/phish.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

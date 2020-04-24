@@ -47,6 +47,7 @@ typedef void OnError(Exception exception);
 
 List<String> songList = List<String>();
 List<String> songInfo = List<String>();
+List<String> poweredBy = List<String>();
 
 List<MusicPlayer> musicPlayerList = List<MusicPlayer>();
 List<String> favList = List<String>();
@@ -89,7 +90,7 @@ String _getUrl() {
   tempInt = temp;
   number = temp;
   //print(temp);
-  return "https://archive.org/download/${songList[temp]}";
+  return songList[temp];
 }
 var number;
 void myBackgroundTaskEntrypoint(musicPlayerState _musicPlayer) {
@@ -371,7 +372,10 @@ class musicPlayerState extends State<MusicPlayer> {
         SizedBox(width: 10, height: 10),
         RichText(
           text: new TextSpan(
-            text: "\nPowered by Archive.org",
+
+            //TODO FIX POWERED BY MESSAGE
+
+            text: "\nPowered by Archive.org and Phish.in",
             style: TextStyle(color: Colors.black),
             //recognizer: new TapGestureRecognizer()
               //..onTap = () {

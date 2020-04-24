@@ -107,6 +107,27 @@ var spaffordBand = false;
 var pigeonsPlayingPingPong = false;
 var souliveBand = false;
 
+//add the following bands to appbar button, list, and json stuff
+var greenskyBluegrass = false;
+
+//
+var philLeshAndFriends = false;
+var perpetualGroove = false;
+var discoBiscuits = false;
+var crackerBand = false;
+var yonderMountainStringBand = false;
+var bluesTraveler = false;
+var johnButlerTrio = false;
+var joeRussoHooteroll = false;
+var smashingPumpkins = false;
+var ratDog = false;
+var theDead = false;
+var vulfpeckBand = false;
+var theOtherOnes = false;
+var jeffAustinBand = false;
+var robertHunter = false;
+var psychedelicBreakfast = false;
+
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
 
@@ -156,6 +177,7 @@ class _CheckBandsState extends State<CheckBands> {
                   spaffordBand = false;
                   pigeonsPlayingPingPong = false;
                   souliveBand = false;
+                  greenskyBluegrass = false;
                   countSelected = 0;
                 });
               }
@@ -185,7 +207,8 @@ class _CheckBandsState extends State<CheckBands> {
                   spaffordBand = true;
                   pigeonsPlayingPingPong = true;
                   souliveBand = true;
-                  countSelected = 23;
+                  greenskyBluegrass = true;
+                  countSelected = 24;
                 });
               }
               
@@ -207,6 +230,7 @@ class _CheckBandsState extends State<CheckBands> {
           else {
             songList.clear();
             songInfo.clear();
+            poweredBy.clear();
             Navigator.push(context, MaterialPageRoute(builder: (context) => 
                                 MyHomePage()));
           }
@@ -281,7 +305,7 @@ class _CheckBandsState extends State<CheckBands> {
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Phish //TODO",
+                  "Phish",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
@@ -1242,6 +1266,53 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+                Container(
+
+          height: 50,
+          child: Material(
+            color: greenskyBluegrass ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: greenskyBluegrass ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Greensky Bluegrass",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: greenskyBluegrass ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (greenskyBluegrass == false) {
+                  setState(() {
+                    greenskyBluegrass = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    greenskyBluegrass = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
       ],
       ),
     );
@@ -1294,8 +1365,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff.length; counter++) {
         if (songStuff[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1327,8 +1399,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff2.length; counter++) {
         if (songStuff2[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1340,6 +1413,43 @@ class _MyHomePageState extends State<MyHomePage> {
     print(songList.length);
     tracker++;
     }
+
+    if (phishBand == true) {
+      final jsonph = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/phish.json');
+    final dataph = JsonDecoder().convert(await jsonph);
+    if (dataph is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    dataph.keys.forEach((key) {
+      final List<Show> songStuffph =
+          dataph[key].map<Show>((dynamic dataph) => Show.fromJson(dataph)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuffph,
+        
+      );
+      for (var counter = 0; counter < songStuffph.length; counter++) {
+        if (songStuffph[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Phish.in");
+        }
+        
+      }
+
+      
+     
+    });
+
+    print(songList.length);
+    tracker++;
+    }
+
     if (umphreysMcGee == true) {
     final json3 = DefaultAssetBundle
         .of(context)
@@ -1362,8 +1472,9 @@ class _MyHomePageState extends State<MyHomePage> {
       
       for (var counter = 0; counter < songStuff3.length; counter++) {
         if (songStuff3[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1397,8 +1508,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff4.length; counter++) {
         if (songStuff4[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1432,8 +1544,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff5.length; counter++) {
         if (songStuff5[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1467,8 +1580,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff6.length; counter++) {
         if (songStuff6[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1503,8 +1617,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff7.length; counter++) {
         if (songStuff7[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1537,8 +1652,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff8.length; counter++) {
         if (songStuff8[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1570,8 +1686,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff9.length; counter++) {
         if (songStuff9[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1603,8 +1720,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff10.length; counter++) {
         if (songStuff10[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1637,8 +1755,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff11.length; counter++) {
         if (songStuff11[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1670,8 +1789,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff12.length; counter++) {
         if (songStuff12[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1704,8 +1824,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff13.length; counter++) {
         if (songStuff13[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1737,8 +1858,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff14.length; counter++) {
         if (songStuff14[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1771,8 +1893,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff15.length; counter++) {
         if (songStuff15[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1805,8 +1928,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff16.length; counter++) {
         if (songStuff16[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1839,8 +1963,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff17.length; counter++) {
         if (songStuff17[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1872,8 +1997,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff18.length; counter++) {
         if (songStuff18[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1906,8 +2032,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff19.length; counter++) {
         if (songStuff19[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1940,8 +2067,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff20.length; counter++) {
         if (songStuff20[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -1974,8 +2102,9 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff21.length; counter++) {
         if (songStuff21[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }
@@ -2008,8 +2137,44 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff22.length; counter++) {
         if (songStuff22[counter].format == "VBR MP3") {
-          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (greenskyBluegrass == true) {
+          final json23 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/greenskybluegrass.json');
+    final data23 = JsonDecoder().convert(await json23);
+    if (data23 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data23.keys.forEach((key) {
+      final List<Show> songStuff23 =
+          data23[key].map<Show>((dynamic data23) => Show.fromJson(data23)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff23,
+        
+      );
+      for (var counter = 0; counter < songStuff23.length; counter++) {
+        if (songStuff23[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
         }
         
       }

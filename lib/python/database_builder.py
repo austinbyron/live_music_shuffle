@@ -15,6 +15,7 @@ def main():
     #g = raw_input("Enter collection to search: ")
     #s = get_session()
     #s.mount_http_adapter()
+    name = ""
     exiter = False
     while (exiter == False):
         print("1: Grateful Dead Soundboards")
@@ -32,6 +33,30 @@ def main():
         print("13: Tedeschi Trucks Band")
         print("14: Dark Star Orchestra")
         print("15: My Morning Jacket")
+        print("16: moe.")
+        print("17: Little Feat")
+        print("18: Twiddle")
+        print("19: Ween")
+        print("20: Spafford")
+        print("21: Pigeons Playing Ping Pong")
+        print("22: Soulive")
+        print("23: Greensky Bluegrass")
+        print("24: Phil Lesh and Friends")
+        print("25: Perpetual Groove")
+        print("26: Disco Biscuits")
+        print("27: Cracker")
+        print("28: Yonder Mountain String Band")
+        print("29: Blues Traveler")
+        print("30: John Butler Trio")
+        print("31: Joe Russo Presents: Hooteroll?")
+        print("32: Smashing Pumpkins")
+        print("33: Ratdog")
+        print("34: The Dead")
+        print("35: Vulfpeck")
+        print("36: The Other Ones")
+        print("37: Jeff Austin Band")
+        print("38: Robert Hunter")
+        print("39: Psychedelic Breakfast")
         #groups to add:
         #moe., little feat, twiddle, ween, spafford
         #pigeons playing ping pong, greensky bluegrass
@@ -43,91 +68,274 @@ def main():
         print("0 to exit")
         g = input("Enter collection to search:\n ")
         if g == 1:
+            name = "gratefuldead"
             search_results = search_items('collection:GratefulDead and stream_only')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 2:
+            name = "deadandco"
             search_results = search_items('collection:DeadAndCompany')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 3:
+            name = "umphreysmcgee"
             search_results = search_items('collection:UmphreysMcgee')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 4:
+            name = "billystrings"
             search_results = search_items('collection:BillyStrings')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 5:
+            name = "gooseband"
             search_results = search_items('collection:GooseBand')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 6:
+            name = "stringcheeseincident"
             search_results = search_items('collection:StringCheeseIncident')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 7:
+            name = "derektrucksband"
             search_results = search_items('collection:DerekTrucksBand')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 8:
+            name = "lotusband"
             search_results = search_items('collection:Lotus')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 9:
+            name = "soundtribesector9"
             search_results = search_items('collection:SoundTribeSector9')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 10:
+            name = "joerusso"
             search_results = search_items('collection:JoeRussosAlmostDead')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 11:
+            name = "kellerwilliams"
             search_results = search_items('collection:KellerWilliams')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 12:
+            name = "johnmayer"
             search_results = search_items('collection:JohnMayerMusic')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 13:
+            name = "tedeschitrucksband"
             search_results = search_items('collection:TedeschiTrucksBand')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 14:
+            name = "darkstarorchestra"
             search_results = search_items('collection:DarkStarOrchestra')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
                 shows.append(result['identifier'])
         elif g == 15:
+            name = "mymorningjacket"
             search_results = search_items('collection:MyMorningJacket')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 16:
+            name = "moe"
+            search_results = search_items('collection:moe')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 17:
+            name = "littlefeat"
+            search_results = search_items('collection:LittleFeat')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 18:
+            name = "twiddle"
+            search_results = search_items('collection:Twiddle')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 19:
+            name = "ween"
+            search_results = search_items('collection:Ween')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 20:
+            name = "spafford"
+            search_results = search_items('collection:Spafford')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 21:
+            name = "pigeonsplayingpingpong"
+            search_results = search_items('collection:PigeonsPlayingPingPong')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 22:
+            name = "soulive"
+            search_results = search_items('collection:Soulive')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 23:
+            name = "greenskybluegrass"
+            search_results = search_items('collection:GreenskyBluegrass')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 24:
+            name = "philleshandfriends"
+            search_results = search_items('collection:PhilLeshandFriends')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 25:
+            name = "perpetualgroove"
+            search_results = search_items('collection:PerpetualGroove')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 26:
+            name = "discobiscuits"
+            search_results = search_items('collection:DiscoBiscuits')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 27:
+            name = "cracker"
+            search_results = search_items('collection:Cracker')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 28:
+            name = "yondermountainstringband"
+            search_results = search_items('collection:YonderMountainStringBand')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 29:
+            name = "bluestraveler"
+            search_results = search_items('collection:BluesTraveler')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 30:
+            name = "johnbutlertrio"
+            search_results = search_items('collection:JohnButlerTrio')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 31:
+            name = "joerussohooteroll"
+            search_results = search_items('collection:JoeRussoPresentsHooterollPlus')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 32:
+            name = "smashingpumpkins"
+            search_results = search_items('collection:SmashingPumpkins')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 33:
+            name = "ratdog"
+            search_results = search_items('collection:Ratdog')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 34:
+            name = "thedead"
+            search_results = search_items('collection:TheDead')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 35:
+            name = "vulfpeck"
+            search_results = search_items('collection:Vulfpeck')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 36:
+            name = "theotherones"
+            search_results = search_items('collection:TheOtherOnes')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 37:
+            name = "jeffaustinband"
+            search_results = search_items('collection:JeffAustinBand')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 38:
+            name = "roberthunter"
+            search_results = search_items('collection:RobertHunter')
+            print(search_results.num_found)
+            for result in search_results:
+                queryResults.write(result['identifier'] + '\n')
+                shows.append(result['identifier'])
+        elif g == 39:
+            name = "psychedelicbreakfast"
+            search_results = search_items('collection:PsychedelicBreakfast')
             print(search_results.num_found)
             for result in search_results:
                 queryResults.write(result['identifier'] + '\n')
@@ -226,9 +434,11 @@ def main():
 
     
     fin = open("temp.txt", "r+")
-    fout = open("darkstarorchestra.json", "w+")
+    filename = "%s.json" % name
+    fout = open(filename, "w+")
 
     for line in fin:
+
         fout.write(line.replace('},]', '}]'))
     fin.close()
     fout.close()
