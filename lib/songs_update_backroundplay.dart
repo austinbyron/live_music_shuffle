@@ -88,7 +88,7 @@ String _getUrl() {
   var temp = rng.nextInt(songList.length); //size of songList
   tempInt = temp;
   number = temp;
-  print(temp);
+  //print(temp);
   return "https://archive.org/download/${songList[temp]}";
 }
 var number;
@@ -150,7 +150,7 @@ class SongUI extends StatefulWidget {
 }
 
 void stopToGoBack() {
-  
+
 }
 
 class _songUI extends State<SongUI> {

@@ -72,6 +72,13 @@ flutter:
     - assets/data/tedeschitrucksband.json
     - assets/data/darkstarorchestra.json
     - assets/data/mymorningjacket.json
+    - assets/data/moe.json
+    - assets/data/littlefeat.json
+    - assets/data/twiddle.json
+    - assets/data/ween.json
+    - assets/data/spafford.json
+    - assets/data/pigeonsplayingpingpong.json
+    - assets/data/soulive.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

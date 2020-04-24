@@ -99,6 +99,13 @@ var johnMayer = false;
 var tedeschiTrucksBand = false;
 var darkStarOrchestra = false;
 var myMorningJacket = false;
+var moeBand = false;
+var littleFeat = false;
+var twiddleBand = false;
+var weenBand = false;
+var spaffordBand = false;
+var pigeonsPlayingPingPong = false;
+var souliveBand = false;
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -116,6 +123,82 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
         backgroundColor: Colors.blue,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.restore
+            ), 
+            onPressed: () {
+              if (gratefulDead == true || deadAndCo == true || phishBand == true
+                    || stringCheeseIncident == true || billyStrings == true || gooseBand == true
+                    || umphreysMcGee == true || derekTrucksBand == true || lotusBand == true
+                    || soundTribeSector9 == true || joeRusso == true || kellerWilliams == true
+                    || johnMayer == true || tedeschiTrucksBand == true || darkStarOrchestra == true
+                    || myMorningJacket == true || moeBand == true || littleFeat == true
+                    || twiddleBand == true || weenBand == true || spaffordBand == true
+                    || pigeonsPlayingPingPong == true || souliveBand == true) {
+                
+                setState(() {
+                
+                  gratefulDead = false;
+                  deadAndCo = false;
+                  phishBand = false;
+                  stringCheeseIncident = false;
+                  billyStrings = false;
+                  gooseBand = false;
+                  umphreysMcGee = false;
+                  derekTrucksBand = false;
+                  lotusBand = false;
+                  soundTribeSector9 = false;
+                  joeRusso = false;
+                  kellerWilliams = false;
+                  johnMayer = false;
+                  tedeschiTrucksBand = false;
+                  darkStarOrchestra = false;
+                  myMorningJacket = false;
+                  moeBand = false;
+                  littleFeat = false;
+                  twiddleBand = false;
+                  weenBand = false;
+                  spaffordBand = false;
+                  pigeonsPlayingPingPong = false;
+                  souliveBand = false;
+                  countSelected = 0;
+                });
+              }
+              else {
+                setState(() {
+                
+                  gratefulDead = true;
+                  deadAndCo = true;
+                  phishBand = true;
+                  stringCheeseIncident = true;
+                  billyStrings = true;
+                  gooseBand = true;
+                  umphreysMcGee = true;
+                  derekTrucksBand = true;
+                  lotusBand = true;
+                  soundTribeSector9 = true;
+                  joeRusso = true;
+                  kellerWilliams = true;
+                  johnMayer = true;
+                  tedeschiTrucksBand = true;
+                  darkStarOrchestra = true;
+                  myMorningJacket = true;
+                  moeBand = true;
+                  littleFeat = true;
+                  twiddleBand = true;
+                  weenBand = true;
+                  spaffordBand = true;
+                  pigeonsPlayingPingPong = true;
+                  souliveBand = true;
+                  countSelected = 22;
+                });
+              }
+              
+            }
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -837,6 +920,335 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: moeBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: moeBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "moe.",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: moeBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (moeBand == false) {
+                  setState(() {
+                    moeBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    moeBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: littleFeat ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: littleFeat ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Little Feat",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: littleFeat ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (littleFeat == false) {
+                  setState(() {
+                    littleFeat = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    littleFeat = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: twiddleBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: twiddleBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Twiddle",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: twiddleBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (twiddleBand == false) {
+                  setState(() {
+                    twiddleBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    twiddleBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: weenBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: weenBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Ween",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: weenBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (weenBand == false) {
+                  setState(() {
+                    weenBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    weenBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: spaffordBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: spaffordBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Spafford",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: spaffordBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (spaffordBand == false) {
+                  setState(() {
+                    spaffordBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    spaffordBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: pigeonsPlayingPingPong ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: pigeonsPlayingPingPong ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Pigeons Playing Ping Pong",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: pigeonsPlayingPingPong ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (pigeonsPlayingPingPong == false) {
+                  setState(() {
+                    pigeonsPlayingPingPong = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    pigeonsPlayingPingPong = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: souliveBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: souliveBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Soulive",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: souliveBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (souliveBand == false) {
+                  setState(() {
+                    souliveBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    souliveBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
       ],
       ),
     );
@@ -1366,6 +1778,243 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff15.length; counter++) {
         if (songStuff15[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (moeBand == true) {
+
+      final json16 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/moe.json');
+    final data16 = JsonDecoder().convert(await json16);
+    if (data16 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data16.keys.forEach((key) {
+      final List<Show> songStuff16 =
+          data16[key].map<Show>((dynamic data16) => Show.fromJson(data16)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff16,
+        
+      );
+      for (var counter = 0; counter < songStuff16.length; counter++) {
+        if (songStuff16[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (littleFeat == true) {
+        final json17 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/littlefeat.json');
+    final data17 = JsonDecoder().convert(await json17);
+    if (data17 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data17.keys.forEach((key) {
+      final List<Show> songStuff17 =
+          data17[key].map<Show>((dynamic data17) => Show.fromJson(data17)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff17,
+        
+      );
+      for (var counter = 0; counter < songStuff17.length; counter++) {
+        if (songStuff17[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (twiddleBand == true) {
+      final json18 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/twiddle.json');
+    final data18 = JsonDecoder().convert(await json18);
+    if (data18 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data18.keys.forEach((key) {
+      final List<Show> songStuff18 =
+          data18[key].map<Show>((dynamic data18) => Show.fromJson(data18)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff18,
+        
+      );
+      for (var counter = 0; counter < songStuff18.length; counter++) {
+        if (songStuff18[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (weenBand == true) {
+      final json19 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/ween.json');
+    final data19 = JsonDecoder().convert(await json19);
+    if (data19 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data19.keys.forEach((key) {
+      final List<Show> songStuff19 =
+          data19[key].map<Show>((dynamic data19) => Show.fromJson(data19)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff19,
+        
+      );
+      for (var counter = 0; counter < songStuff19.length; counter++) {
+        if (songStuff19[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (spaffordBand == true) {
+      final json20 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/spafford.json');
+    final data20 = JsonDecoder().convert(await json20);
+    if (data20 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data20.keys.forEach((key) {
+      final List<Show> songStuff20 =
+          data20[key].map<Show>((dynamic data20) => Show.fromJson(data20)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff20,
+        
+      );
+      for (var counter = 0; counter < songStuff20.length; counter++) {
+        if (songStuff20[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (pigeonsPlayingPingPong == true) {
+      final json21 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/pigeonsplayingpingpong.json');
+    final data21 = JsonDecoder().convert(await json21);
+    if (data21 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data21.keys.forEach((key) {
+      final List<Show> songStuff21 =
+          data21[key].map<Show>((dynamic data21) => Show.fromJson(data21)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff21,
+        
+      );
+      for (var counter = 0; counter < songStuff21.length; counter++) {
+        if (songStuff21[counter].format == "VBR MP3") {
+          songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (souliveBand == true) {
+        final json22 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/soulive.json');
+    final data22 = JsonDecoder().convert(await json22);
+    if (data22 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data22.keys.forEach((key) {
+      final List<Show> songStuff22 =
+          data22[key].map<Show>((dynamic data22) => Show.fromJson(data22)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff22,
+        
+      );
+      for (var counter = 0; counter < songStuff22.length; counter++) {
+        if (songStuff22[counter].format == "VBR MP3") {
           songList.add("${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
         }
