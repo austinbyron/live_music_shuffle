@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.5.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -81,6 +81,9 @@ flutter:
     - assets/data/soulive.json
     - assets/data/greenskybluegrass.json
     - assets/data/phish.json
+    - assets/data/philleshandfriends.json
+    - assets/data/perpetualgroove.json
+    - assets/data/discobiscuits.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -113,6 +113,8 @@ var greenskyBluegrass = false;
 //
 var philLeshAndFriends = false;
 var perpetualGroove = false;
+
+//
 var discoBiscuits = false;
 var crackerBand = false;
 var yonderMountainStringBand = false;
@@ -178,6 +180,9 @@ class _CheckBandsState extends State<CheckBands> {
                   pigeonsPlayingPingPong = false;
                   souliveBand = false;
                   greenskyBluegrass = false;
+                  philLeshAndFriends = false;
+                  perpetualGroove = false;
+                  discoBiscuits = false;
                   countSelected = 0;
                 });
               }
@@ -208,7 +213,10 @@ class _CheckBandsState extends State<CheckBands> {
                   pigeonsPlayingPingPong = true;
                   souliveBand = true;
                   greenskyBluegrass = true;
-                  countSelected = 24;
+                  philLeshAndFriends = true;
+                  perpetualGroove = true;
+                  discoBiscuits = true;
+                  countSelected = 27;
                 });
               }
               
@@ -300,8 +308,8 @@ class _CheckBandsState extends State<CheckBands> {
                 children: [
                 SizedBox(height: 10, width: 10),
                 Icon(
-                  Icons.favorite,
-                  color: phishBand ? Colors.red : Colors.white,
+                  phishBand ? Icons.favorite : Icons.favorite_border,
+                  color: phishBand ? Colors.red : Colors.black,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
@@ -1266,7 +1274,7 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-                Container(
+        Container(
 
           height: 50,
           child: Material(
@@ -1305,6 +1313,147 @@ class _CheckBandsState extends State<CheckBands> {
                 else {
                   setState(() {
                     greenskyBluegrass = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: philLeshAndFriends ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: philLeshAndFriends ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Phil Lesh and Friends",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: philLeshAndFriends ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (philLeshAndFriends == false) {
+                  setState(() {
+                    philLeshAndFriends = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    philLeshAndFriends = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: perpetualGroove ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: perpetualGroove ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Perpetual Groove",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: perpetualGroove ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (perpetualGroove == false) {
+                  setState(() {
+                    perpetualGroove = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    perpetualGroove = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: discoBiscuits ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: discoBiscuits ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Disco Biscuits",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: discoBiscuits ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (discoBiscuits == false) {
+                  setState(() {
+                    discoBiscuits = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    discoBiscuits = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -2172,6 +2321,109 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff23.length; counter++) {
         if (songStuff23[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (philLeshAndFriends == true) {
+      final json24 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/philleshandfriends.json');
+    final data24 = JsonDecoder().convert(await json24);
+    if (data24 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data24.keys.forEach((key) {
+      final List<Show> songStuff24 =
+          data24[key].map<Show>((dynamic data24) => Show.fromJson(data24)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff24,
+        
+      );
+      for (var counter = 0; counter < songStuff24.length; counter++) {
+        if (songStuff24[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (perpetualGroove == true) {
+        final json25 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/perpetualgroove.json');
+    final data25 = JsonDecoder().convert(await json25);
+    if (data25 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data25.keys.forEach((key) {
+      final List<Show> songStuff25 =
+          data25[key].map<Show>((dynamic data25) => Show.fromJson(data25)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff25,
+        
+      );
+      for (var counter = 0; counter < songStuff25.length; counter++) {
+        if (songStuff25[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (discoBiscuits == true) {
+      final json26 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/discobiscuits.json');
+    final data26 = JsonDecoder().convert(await json26);
+    if (data26 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data26.keys.forEach((key) {
+      final List<Show> songStuff26 =
+          data26[key].map<Show>((dynamic data26) => Show.fromJson(data26)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff26,
+        
+      );
+      for (var counter = 0; counter < songStuff26.length; counter++) {
+        if (songStuff26[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
