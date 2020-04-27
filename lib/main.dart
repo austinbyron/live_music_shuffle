@@ -115,8 +115,8 @@ var philLeshAndFriends = false;
 var perpetualGroove = false;
 
 //
-var discoBiscuits = false;
-var crackerBand = false;
+var discoBiscuits = false; // done
+var crackerBand = false; //done
 var yonderMountainStringBand = false;
 var bluesTraveler = false;
 var johnButlerTrio = false;
@@ -183,6 +183,7 @@ class _CheckBandsState extends State<CheckBands> {
                   philLeshAndFriends = false;
                   perpetualGroove = false;
                   discoBiscuits = false;
+                  crackerBand = false;
                   countSelected = 0;
                 });
               }
@@ -216,7 +217,8 @@ class _CheckBandsState extends State<CheckBands> {
                   philLeshAndFriends = true;
                   perpetualGroove = true;
                   discoBiscuits = true;
-                  countSelected = 27;
+                  crackerBand = true;
+                  countSelected = 28;
                 });
               }
               
@@ -1462,6 +1464,53 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        Container(
+
+          height: 50,
+          child: Material(
+            color: crackerBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: crackerBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Cracker",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: crackerBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (crackerBand== false) {
+                  setState(() {
+                    crackerBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    crackerBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
       ],
       ),
     );
@@ -2424,6 +2473,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff26.length; counter++) {
         if (songStuff26[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (crackerBand == true) {
+        final json27 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/cracker.json');
+    final data27 = JsonDecoder().convert(await json27);
+    if (data27 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data27.keys.forEach((key) {
+      final List<Show> songStuff27 =
+          data27[key].map<Show>((dynamic data27) => Show.fromJson(data27)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff27,
+        
+      );
+      for (var counter = 0; counter < songStuff27.length; counter++) {
+        if (songStuff27[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
