@@ -85,6 +85,7 @@ flutter:
     - assets/data/perpetualgroove.json
     - assets/data/discobiscuits.json
     - assets/data/cracker.json
+    - assets/data/yondermountainstringband.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

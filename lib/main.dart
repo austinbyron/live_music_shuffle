@@ -129,6 +129,11 @@ var theOtherOnes = false;
 var jeffAustinBand = false;
 var robertHunter = false;
 var psychedelicBreakfast = false;
+var furthurBand = false;
+var gratefulShred = false;
+var garciaPeoples = false;
+var hotButteredRum = false;
+var jeffersonStarship = false;
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -184,6 +189,7 @@ class _CheckBandsState extends State<CheckBands> {
                   perpetualGroove = false;
                   discoBiscuits = false;
                   crackerBand = false;
+                  yonderMountainStringBand = false;
                   countSelected = 0;
                 });
               }
@@ -218,7 +224,8 @@ class _CheckBandsState extends State<CheckBands> {
                   perpetualGroove = true;
                   discoBiscuits = true;
                   crackerBand = true;
-                  countSelected = 28;
+                  yonderMountainStringBand = true;
+                  countSelected = 29;
                 });
               }
               
@@ -347,135 +354,6 @@ class _CheckBandsState extends State<CheckBands> {
         Container(
           height: 50,
           child: Material(
-            color: deadAndCo ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: deadAndCo ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Dead & Company",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: deadAndCo ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (deadAndCo == false) {
-                  setState(() {
-                    deadAndCo = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    deadAndCo = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: umphreysMcGee ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: umphreysMcGee ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Umphrey's McGee",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: umphreysMcGee ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (umphreysMcGee == false) {
-                  setState(() {
-                    umphreysMcGee = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    umphreysMcGee = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: stringCheeseIncident ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: stringCheeseIncident ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "String Cheese Incident",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: stringCheeseIncident ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (stringCheeseIncident == false) {
-                  setState(() {
-                    stringCheeseIncident = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    stringCheeseIncident = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
             color: billyStrings ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
@@ -516,346 +394,50 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        //blues traveler goes here
+
         Container(
+
           height: 50,
           child: Material(
-            color: gooseBand ? Colors.blue[300] : Colors.white,
+            color: crackerBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 10, width: 10),
+                SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: gooseBand ? Colors.red : Colors.white,
+                  color: crackerBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Goose",
+                  "Cracker",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: gooseBand ? Colors.white : Colors.black,
+                    color: crackerBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (gooseBand == false) {
+                if (crackerBand== false) {
                   setState(() {
-                    gooseBand = true;
+                    crackerBand = true;
                     countSelected++;
+                    
                   });
+                  print(countSelected);
                 }
                 else {
                   setState(() {
-                    gooseBand = false;
+                    crackerBand = false;
                     countSelected--;
                   });
-                }
-              },
-            ),
-          ),
-        ),
-        
-        Container(
-          height: 50,
-          child: Material(
-            color: derekTrucksBand ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: derekTrucksBand ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Derek Trucks Band",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: derekTrucksBand ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (derekTrucksBand == false) {
-                  setState(() {
-                    derekTrucksBand = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    derekTrucksBand = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: lotusBand ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: lotusBand ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Lotus",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: lotusBand ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (lotusBand == false) {
-                  setState(() {
-                    lotusBand = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    lotusBand = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: soundTribeSector9 ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: soundTribeSector9 ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Sound Tribe Sector 9",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: soundTribeSector9 ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (soundTribeSector9 == false) {
-                  setState(() {
-                    soundTribeSector9 = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    soundTribeSector9 = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: joeRusso ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: joeRusso ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Joe Russo's Almost Dead",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: joeRusso ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (joeRusso == false) {
-                  setState(() {
-                    joeRusso = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    joeRusso = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: kellerWilliams ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: kellerWilliams ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Keller Williams",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: kellerWilliams ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (kellerWilliams == false) {
-                  setState(() {
-                    kellerWilliams = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    kellerWilliams = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: johnMayer ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: johnMayer ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "John Mayer",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: johnMayer ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (johnMayer == false) {
-                  setState(() {
-                    johnMayer = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    johnMayer = false;
-                    countSelected--;
-                  });
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          child: Material(
-            color: tedeschiTrucksBand ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10, width: 10),
-                Icon(
-                  Icons.favorite,
-                  color: tedeschiTrucksBand ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Tedeschi Trucks Band",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: tedeschiTrucksBand ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (tedeschiTrucksBand == false) {
-                  setState(() {
-                    tedeschiTrucksBand = true;
-                    countSelected++;
-                  });
-                }
-                else {
-                  setState(() {
-                    tedeschiTrucksBand = false;
-                    countSelected--;
-                  });
+                  print(countSelected);
                 }
               },
             ),
@@ -904,10 +486,55 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        //the dead goes here
+
         Container(
           height: 50,
           child: Material(
-            color: myMorningJacket ? Colors.blue[300] : Colors.white,
+            color: deadAndCo ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: deadAndCo ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Dead & Company",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: deadAndCo ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (deadAndCo == false) {
+                  setState(() {
+                    deadAndCo = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    deadAndCo = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: derekTrucksBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -917,29 +544,29 @@ class _CheckBandsState extends State<CheckBands> {
                   SizedBox(height: 10, width: 10),
                 Icon(
                   Icons.favorite,
-                  color: myMorningJacket ? Colors.red : Colors.white,
+                  color: derekTrucksBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "My Morning Jacket",
+                  "Derek Trucks Band",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: myMorningJacket ? Colors.white : Colors.black,
+                    color: derekTrucksBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (myMorningJacket == false) {
+                if (derekTrucksBand == false) {
                   setState(() {
-                    myMorningJacket = true;
+                    derekTrucksBand = true;
                     countSelected++;
                   });
                 }
                 else {
                   setState(() {
-                    myMorningJacket = false;
+                    derekTrucksBand = false;
                     countSelected--;
                   });
                 }
@@ -951,7 +578,7 @@ class _CheckBandsState extends State<CheckBands> {
 
           height: 50,
           child: Material(
-            color: moeBand ? Colors.blue[300] : Colors.white,
+            color: discoBiscuits ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -961,23 +588,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: moeBand ? Colors.red : Colors.white,
+                  color: discoBiscuits ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "moe.",
+                  "Disco Biscuits",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: moeBand ? Colors.white : Colors.black,
+                    color: discoBiscuits ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (moeBand == false) {
+                if (discoBiscuits == false) {
                   setState(() {
-                    moeBand = true;
+                    discoBiscuits = true;
                     countSelected++;
                     
                   });
@@ -985,10 +612,247 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    moeBand = false;
+                    discoBiscuits = false;
                     countSelected--;
                   });
                   print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+
+        //furthur 
+
+        //garcia peoples
+
+        Container(
+          height: 50,
+          child: Material(
+            color: gooseBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: gooseBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Goose",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: gooseBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (gooseBand == false) {
+                  setState(() {
+                    gooseBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    gooseBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+
+        //grateful shred
+
+        Container(
+
+          height: 50,
+          child: Material(
+            color: greenskyBluegrass ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: greenskyBluegrass ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Greensky Bluegrass",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: greenskyBluegrass ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (greenskyBluegrass == false) {
+                  setState(() {
+                    greenskyBluegrass = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    greenskyBluegrass = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+        //hot buttered rum
+
+        //jeff austin band
+
+        //jefferson starship
+
+
+        Container(
+          height: 50,
+          child: Material(
+            color: joeRusso ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: joeRusso ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Joe Russo's Almost Dead",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: joeRusso ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (joeRusso == false) {
+                  setState(() {
+                    joeRusso = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    joeRusso = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        //joe russo hooteroll
+        Container(
+          height: 50,
+          child: Material(
+            color: johnMayer ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: johnMayer ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "John Mayer",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: johnMayer ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (johnMayer == false) {
+                  setState(() {
+                    johnMayer = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    johnMayer = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        //john butler trio
+
+        Container(
+          height: 50,
+          child: Material(
+            color: kellerWilliams ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: kellerWilliams ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Keller Williams",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: kellerWilliams ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (kellerWilliams == false) {
+                  setState(() {
+                    kellerWilliams = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    kellerWilliams = false;
+                    countSelected--;
+                  });
                 }
               },
             ),
@@ -1042,10 +906,54 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
         Container(
+          height: 50,
+          child: Material(
+            color: lotusBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: lotusBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Lotus",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: lotusBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (lotusBand == false) {
+                  setState(() {
+                    lotusBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    lotusBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+
+        Container(
 
           height: 50,
           child: Material(
-            color: twiddleBand ? Colors.blue[300] : Colors.white,
+            color: moeBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1055,23 +963,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: twiddleBand ? Colors.red : Colors.white,
+                  color: moeBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Twiddle",
+                  "moe.",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: twiddleBand ? Colors.white : Colors.black,
+                    color: moeBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (twiddleBand == false) {
+                if (moeBand == false) {
                   setState(() {
-                    twiddleBand = true;
+                    moeBand = true;
                     countSelected++;
                     
                   });
@@ -1079,7 +987,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    twiddleBand = false;
+                    moeBand = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -1089,10 +997,55 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
         Container(
+          height: 50,
+          child: Material(
+            color: myMorningJacket ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: myMorningJacket ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "My Morning Jacket",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: myMorningJacket ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (myMorningJacket == false) {
+                  setState(() {
+                    myMorningJacket = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    myMorningJacket = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        //the other ones
+
+        Container(
 
           height: 50,
           child: Material(
-            color: weenBand ? Colors.blue[300] : Colors.white,
+            color: perpetualGroove ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1102,23 +1055,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: weenBand ? Colors.red : Colors.white,
+                  color: perpetualGroove ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Ween",
+                  "Perpetual Groove",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: weenBand ? Colors.white : Colors.black,
+                    color: perpetualGroove ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (weenBand == false) {
+                if (perpetualGroove == false) {
                   setState(() {
-                    weenBand = true;
+                    perpetualGroove = true;
                     countSelected++;
                     
                   });
@@ -1126,7 +1079,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    weenBand = false;
+                    perpetualGroove = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -1135,11 +1088,12 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+
         Container(
 
           height: 50,
           child: Material(
-            color: spaffordBand ? Colors.blue[300] : Colors.white,
+            color: philLeshAndFriends ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1149,23 +1103,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: spaffordBand ? Colors.red : Colors.white,
+                  color: philLeshAndFriends ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Spafford",
+                  "Phil Lesh and Friends",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: spaffordBand ? Colors.white : Colors.black,
+                    color: philLeshAndFriends ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (spaffordBand == false) {
+                if (philLeshAndFriends == false) {
                   setState(() {
-                    spaffordBand = true;
+                    philLeshAndFriends = true;
                     countSelected++;
                     
                   });
@@ -1173,7 +1127,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    spaffordBand = false;
+                    philLeshAndFriends = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -1229,6 +1183,14 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        //psychedelic breakfast
+
+        //ratdog
+
+        //robert hunter
+
+        //smashing pumpkins
+
         Container(
 
           height: 50,
@@ -1276,11 +1238,56 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        
+        Container(
+          height: 50,
+          child: Material(
+            color: soundTribeSector9 ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: soundTribeSector9 ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Sound Tribe Sector 9",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: soundTribeSector9 ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (soundTribeSector9 == false) {
+                  setState(() {
+                    soundTribeSector9 = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    soundTribeSector9 = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        
         Container(
 
           height: 50,
           child: Material(
-            color: greenskyBluegrass ? Colors.blue[300] : Colors.white,
+            color: spaffordBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1290,23 +1297,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: greenskyBluegrass ? Colors.red : Colors.white,
+                  color: spaffordBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Greensky Bluegrass",
+                  "Spafford",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: greenskyBluegrass ? Colors.white : Colors.black,
+                    color: spaffordBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (greenskyBluegrass == false) {
+                if (spaffordBand == false) {
                   setState(() {
-                    greenskyBluegrass = true;
+                    spaffordBand = true;
                     countSelected++;
                     
                   });
@@ -1314,7 +1321,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    greenskyBluegrass = false;
+                    spaffordBand = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -1323,11 +1330,99 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        
+        Container(
+          height: 50,
+          child: Material(
+            color: stringCheeseIncident ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: stringCheeseIncident ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "String Cheese Incident",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: stringCheeseIncident ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (stringCheeseIncident == false) {
+                  setState(() {
+                    stringCheeseIncident = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    stringCheeseIncident = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: tedeschiTrucksBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: tedeschiTrucksBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Tedeschi Trucks Band",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: tedeschiTrucksBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (tedeschiTrucksBand == false) {
+                  setState(() {
+                    tedeschiTrucksBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    tedeschiTrucksBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        
         Container(
 
           height: 50,
           child: Material(
-            color: philLeshAndFriends ? Colors.blue[300] : Colors.white,
+            color: twiddleBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1337,23 +1432,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: philLeshAndFriends ? Colors.red : Colors.white,
+                  color: twiddleBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Phil Lesh and Friends",
+                  "Twiddle",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: philLeshAndFriends ? Colors.white : Colors.black,
+                    color: twiddleBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (philLeshAndFriends == false) {
+                if (twiddleBand == false) {
                   setState(() {
-                    philLeshAndFriends = true;
+                    twiddleBand = true;
                     countSelected++;
                     
                   });
@@ -1361,7 +1456,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    philLeshAndFriends = false;
+                    twiddleBand = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -1370,11 +1465,58 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        
+        Container(
+          height: 50,
+          child: Material(
+            color: umphreysMcGee ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: umphreysMcGee ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Umphrey's McGee",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: umphreysMcGee ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (umphreysMcGee == false) {
+                  setState(() {
+                    umphreysMcGee = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    umphreysMcGee = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        
+        //vulfpeck          
+        
         Container(
 
           height: 50,
           child: Material(
-            color: perpetualGroove ? Colors.blue[300] : Colors.white,
+            color: weenBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1384,23 +1526,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: perpetualGroove ? Colors.red : Colors.white,
+                  color: weenBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Perpetual Groove",
+                  "Ween",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: perpetualGroove ? Colors.white : Colors.black,
+                    color: weenBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (perpetualGroove == false) {
+                if (weenBand == false) {
                   setState(() {
-                    perpetualGroove = true;
+                    weenBand = true;
                     countSelected++;
                     
                   });
@@ -1408,7 +1550,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    perpetualGroove = false;
+                    weenBand = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -1417,11 +1559,12 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
+        
         Container(
 
           height: 50,
           child: Material(
-            color: discoBiscuits ? Colors.blue[300] : Colors.white,
+            color: yonderMountainStringBand ? Colors.blue[300] : Colors.white,
             child: InkWell(
               splashColor: Colors.blue[200],
               child: Row(
@@ -1431,23 +1574,23 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),  
                 Icon(
                   Icons.favorite,
-                  color: discoBiscuits ? Colors.red : Colors.white,
+                  color: yonderMountainStringBand ? Colors.red : Colors.white,
                 ),
                 SizedBox(height: 10, width: 10),
                 Text(
-                  "Disco Biscuits",
+                  "Yonder Mountain String Band",
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w300,
-                    color: discoBiscuits ? Colors.white : Colors.black,
+                    color: yonderMountainStringBand ? Colors.white : Colors.black,
                   ),
                 ),
                 ],
               ),
               onTap: () {
-                if (discoBiscuits == false) {
+                if (yonderMountainStringBand == false) {
                   setState(() {
-                    discoBiscuits = true;
+                    yonderMountainStringBand = true;
                     countSelected++;
                     
                   });
@@ -1455,54 +1598,7 @@ class _CheckBandsState extends State<CheckBands> {
                 }
                 else {
                   setState(() {
-                    discoBiscuits = false;
-                    countSelected--;
-                  });
-                  print(countSelected);
-                }
-              },
-            ),
-          ),
-        ),
-        Container(
-
-          height: 50,
-          child: Material(
-            color: crackerBand ? Colors.blue[300] : Colors.white,
-            child: InkWell(
-              splashColor: Colors.blue[200],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                SizedBox(height: 10, width: 10),  
-                Icon(
-                  Icons.favorite,
-                  color: crackerBand ? Colors.red : Colors.white,
-                ),
-                SizedBox(height: 10, width: 10),
-                Text(
-                  "Cracker",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
-                    color: crackerBand ? Colors.white : Colors.black,
-                  ),
-                ),
-                ],
-              ),
-              onTap: () {
-                if (crackerBand== false) {
-                  setState(() {
-                    crackerBand = true;
-                    countSelected++;
-                    
-                  });
-                  print(countSelected);
-                }
-                else {
-                  setState(() {
-                    crackerBand = false;
+                    yonderMountainStringBand = false;
                     countSelected--;
                   });
                   print(countSelected);
@@ -2507,6 +2603,41 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff27.length; counter++) {
         if (songStuff27[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (yonderMountainStringBand == true) {
+          final json28 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/yondermountainstringband.json');
+    final data28 = JsonDecoder().convert(await json28);
+    if (data28 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data28.keys.forEach((key) {
+      final List<Show> songStuff28 =
+          data28[key].map<Show>((dynamic data28) => Show.fromJson(data28)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff28,
+        
+      );
+      for (var counter = 0; counter < songStuff28.length; counter++) {
+        if (songStuff28[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
