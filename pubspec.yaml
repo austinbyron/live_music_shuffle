@@ -86,6 +86,9 @@ flutter:
     - assets/data/discobiscuits.json
     - assets/data/cracker.json
     - assets/data/yondermountainstringband.json
+    - assets/data/bluestraveler.json
+    - assets/data/johnbutlertrio.json
+    - assets/data/joerussohooteroll.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

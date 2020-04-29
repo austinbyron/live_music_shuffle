@@ -9,7 +9,7 @@ import 'package:web_scraper/web_scraper.dart';
 import 'songs_update_backroundplay.dart';
 import 'song_url.dart';
 import 'song_decode.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:http/http.dart' as http;
@@ -117,9 +117,9 @@ var perpetualGroove = false;
 //
 var discoBiscuits = false; // done
 var crackerBand = false; //done
-var yonderMountainStringBand = false;
-var bluesTraveler = false;
-var johnButlerTrio = false;
+var yonderMountainStringBand = false; //
+var bluesTraveler = false; //
+var johnButlerTrio = false; //
 var joeRussoHooteroll = false;
 var smashingPumpkins = false;
 var ratDog = false;
@@ -190,6 +190,9 @@ class _CheckBandsState extends State<CheckBands> {
                   discoBiscuits = false;
                   crackerBand = false;
                   yonderMountainStringBand = false;
+                  bluesTraveler = false;
+                  johnButlerTrio = false;
+                  joeRussoHooteroll = false;
                   countSelected = 0;
                 });
               }
@@ -225,7 +228,10 @@ class _CheckBandsState extends State<CheckBands> {
                   discoBiscuits = true;
                   crackerBand = true;
                   yonderMountainStringBand = true;
-                  countSelected = 29;
+                  bluesTraveler = true;
+                  johnButlerTrio = true;
+                  joeRussoHooteroll = true;
+                  countSelected = 32;
                 });
               }
               
@@ -394,7 +400,49 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //blues traveler goes here
+        Container(
+          height: 50,
+          child: Material(
+            color: bluesTraveler? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: bluesTraveler ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Blues Traveler",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: bluesTraveler ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (bluesTraveler == false) {
+                  setState(() {
+                    bluesTraveler = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    bluesTraveler = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
 
@@ -769,7 +817,96 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //joe russo hooteroll
+        Container(
+          height: 50,
+          child: Material(
+            color: joeRussoHooteroll ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: joeRussoHooteroll ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                AutoSizeText(
+                  "Joe Russo's Presents: Hooteroll? + Plus",
+                  minFontSize: 20.0,
+                  maxFontSize: 22,
+                  maxLines: 1,
+                  style: TextStyle(
+                    //fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: joeRussoHooteroll ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (joeRussoHooteroll== false) {
+                  setState(() {
+                    joeRussoHooteroll = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    joeRussoHooteroll = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+
+        Container(
+          height: 50,
+          child: Material(
+            color: johnButlerTrio ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: johnButlerTrio ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "John Butler Trio",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: johnButlerTrio ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (johnButlerTrio == false) {
+                  setState(() {
+                    johnButlerTrio = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    johnButlerTrio = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
         Container(
           height: 50,
           child: Material(
@@ -813,7 +950,6 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //john butler trio
 
         Container(
           height: 50,
@@ -2638,6 +2774,108 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff28.length; counter++) {
         if (songStuff28[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (bluesTraveler == true) {
+            final json29 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/bluestraveler.json');
+    final data29 = JsonDecoder().convert(await json29);
+    if (data29 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data29.keys.forEach((key) {
+      final List<Show> songStuff29 =
+          data29[key].map<Show>((dynamic data29) => Show.fromJson(data29)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff29,
+        
+      );
+      for (var counter = 0; counter < songStuff29.length; counter++) {
+        if (songStuff29[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (johnButlerTrio == true) {
+              final json30 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/johnbutlertrio.json');
+    final data30 = JsonDecoder().convert(await json30);
+    if (data30 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data30.keys.forEach((key) {
+      final List<Show> songStuff30 =
+          data30[key].map<Show>((dynamic data30) => Show.fromJson(data30)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff30,
+        
+      );
+      for (var counter = 0; counter < songStuff30.length; counter++) {
+        if (songStuff30[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (joeRussoHooteroll == true) {
+                final json31 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/joerussohooteroll.json');
+    final data31 = JsonDecoder().convert(await json31);
+    if (data31 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data31.keys.forEach((key) {
+      final List<Show> songStuff31 =
+          data31[key].map<Show>((dynamic data31) => Show.fromJson(data31)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff31,
+        
+      );
+      for (var counter = 0; counter < songStuff31.length; counter++) {
+        if (songStuff31[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
