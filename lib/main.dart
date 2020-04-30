@@ -193,6 +193,7 @@ class _CheckBandsState extends State<CheckBands> {
                   bluesTraveler = false;
                   johnButlerTrio = false;
                   joeRussoHooteroll = false;
+                  smashingPumpkins = false;
                   countSelected = 0;
                 });
               }
@@ -231,7 +232,8 @@ class _CheckBandsState extends State<CheckBands> {
                   bluesTraveler = true;
                   johnButlerTrio = true;
                   joeRussoHooteroll = true;
-                  countSelected = 32;
+                  smashingPumpkins = true;
+                  countSelected = 33;
                 });
               }
               
@@ -1326,7 +1328,53 @@ class _CheckBandsState extends State<CheckBands> {
         //robert hunter
 
         //smashing pumpkins
+        Container(
 
+          height: 50,
+          child: Material(
+            color: smashingPumpkins ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: smashingPumpkins ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Smashing Pumpkins",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: smashingPumpkins ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (smashingPumpkins == false) {
+                  setState(() {
+                    smashingPumpkins = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    smashingPumpkins = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
         Container(
 
           height: 50,
@@ -2876,6 +2924,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff31.length; counter++) {
         if (songStuff31[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (smashingPumpkins == true) {
+                final json32 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/smashingpumpkins.json');
+    final data32 = JsonDecoder().convert(await json32);
+    if (data32 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data32.keys.forEach((key) {
+      final List<Show> songStuff32 =
+          data32[key].map<Show>((dynamic data32) => Show.fromJson(data32)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff32,
+        
+      );
+      for (var counter = 0; counter < songStuff32.length; counter++) {
+        if (songStuff32[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
