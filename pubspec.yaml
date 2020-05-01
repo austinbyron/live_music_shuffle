@@ -90,6 +90,7 @@ flutter:
     - assets/data/johnbutlertrio.json
     - assets/data/joerussohooteroll.json
     - assets/data/smashingpumpkins.json
+    - assets/data/ratdog.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

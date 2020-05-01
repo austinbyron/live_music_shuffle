@@ -194,6 +194,7 @@ class _CheckBandsState extends State<CheckBands> {
                   johnButlerTrio = false;
                   joeRussoHooteroll = false;
                   smashingPumpkins = false;
+                  ratDog = false;
                   countSelected = 0;
                 });
               }
@@ -233,7 +234,8 @@ class _CheckBandsState extends State<CheckBands> {
                   johnButlerTrio = true;
                   joeRussoHooteroll = true;
                   smashingPumpkins = true;
-                  countSelected = 33;
+                  ratDog = true;
+                  countSelected = 34;
                 });
               }
               
@@ -1323,7 +1325,53 @@ class _CheckBandsState extends State<CheckBands> {
         ),
         //psychedelic breakfast
 
-        //ratdog
+        Container(
+
+          height: 50,
+          child: Material(
+            color: ratDog ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: ratDog ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Ratdog",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: ratDog ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (ratDog == false) {
+                  setState(() {
+                    ratDog = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    ratDog = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
 
         //robert hunter
 
@@ -2958,6 +3006,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff32.length; counter++) {
         if (songStuff32[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (ratDog== true) {
+                final json33 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/ratdog.json');
+    final data33 = JsonDecoder().convert(await json33);
+    if (data33 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data33.keys.forEach((key) {
+      final List<Show> songStuff33 =
+          data33[key].map<Show>((dynamic data33) => Show.fromJson(data33)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff33,
+        
+      );
+      for (var counter = 0; counter < songStuff33.length; counter++) {
+        if (songStuff33[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
