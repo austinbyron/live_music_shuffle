@@ -134,6 +134,7 @@ var gratefulShred = false;
 var garciaPeoples = false;
 var hotButteredRum = false;
 var jeffersonStarship = false;
+var gracePotter = false;
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -195,6 +196,7 @@ class _CheckBandsState extends State<CheckBands> {
                   joeRussoHooteroll = false;
                   smashingPumpkins = false;
                   ratDog = false;
+                  theDead = false;
                   countSelected = 0;
                 });
               }
@@ -235,7 +237,8 @@ class _CheckBandsState extends State<CheckBands> {
                   joeRussoHooteroll = true;
                   smashingPumpkins = true;
                   ratDog = true;
-                  countSelected = 34;
+                  theDead = true;
+                  countSelected = 35;
                 });
               }
               
@@ -538,7 +541,49 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //the dead goes here
+        Container(
+          height: 50,
+          child: Material(
+            color: theDead ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: theDead ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "The Dead",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: theDead ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (theDead == false) {
+                  setState(() {
+                    theDead = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    theDead = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
           height: 50,
@@ -3019,7 +3064,7 @@ class _MyHomePageState extends State<MyHomePage> {
     tracker++;
     print(songList.length);
     }
-    if (ratDog== true) {
+    if (ratDog == true) {
                 final json33 = DefaultAssetBundle
         .of(context)
         .loadString('assets/data/ratdog.json');
@@ -3040,6 +3085,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff33.length; counter++) {
         if (songStuff33[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (theDead == true) {
+                final json34 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/thedead.json');
+    final data34 = JsonDecoder().convert(await json34);
+    if (data34 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data34.keys.forEach((key) {
+      final List<Show> songStuff34 =
+          data34[key].map<Show>((dynamic data34) => Show.fromJson(data34)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff34,
+        
+      );
+      for (var counter = 0; counter < songStuff34.length; counter++) {
+        if (songStuff34[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");

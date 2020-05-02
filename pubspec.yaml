@@ -91,6 +91,7 @@ flutter:
     - assets/data/joerussohooteroll.json
     - assets/data/smashingpumpkins.json
     - assets/data/ratdog.json
+    - assets/data/thedead.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
