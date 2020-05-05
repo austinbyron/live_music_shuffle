@@ -120,13 +120,13 @@ var crackerBand = false; //done
 var yonderMountainStringBand = false; //
 var bluesTraveler = false; //
 var johnButlerTrio = false; //
-var joeRussoHooteroll = false;
-var smashingPumpkins = false;
-var ratDog = false;
-var theDead = false;
-var vulfpeckBand = false;
-var theOtherOnes = false;
-var jeffAustinBand = false;
+var joeRussoHooteroll = false; //
+var smashingPumpkins = false; //
+var ratDog = false; // 
+var theDead = false; //
+var vulfpeckBand = false; //
+var theOtherOnes = false; //
+var jeffAustinBand = false; //
 var robertHunter = false;
 var psychedelicBreakfast = false;
 var furthurBand = false;
@@ -135,6 +135,7 @@ var garciaPeoples = false;
 var hotButteredRum = false;
 var jeffersonStarship = false;
 var gracePotter = false;
+var travelinMcCourys = false;
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -197,6 +198,9 @@ class _CheckBandsState extends State<CheckBands> {
                   smashingPumpkins = false;
                   ratDog = false;
                   theDead = false;
+                  vulfpeckBand = false;
+                  theOtherOnes = false;
+                  jeffAustinBand = false;
                   countSelected = 0;
                 });
               }
@@ -238,7 +242,10 @@ class _CheckBandsState extends State<CheckBands> {
                   smashingPumpkins = true;
                   ratDog = true;
                   theDead = true;
-                  countSelected = 35;
+                  vulfpeckBand = true;
+                  theOtherOnes = true;
+                  jeffAustinBand = true;
+                  countSelected = 38;
                 });
               }
               
@@ -818,7 +825,49 @@ class _CheckBandsState extends State<CheckBands> {
         ),
         //hot buttered rum
 
-        //jeff austin band
+        Container(
+          height: 50,
+          child: Material(
+            color: jeffAustinBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: jeffAustinBand ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Jeff Austin Band",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: jeffAustinBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (jeffAustinBand == false) {
+                  setState(() {
+                    jeffAustinBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    jeffAustinBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
         //jefferson starship
 
@@ -1224,7 +1273,49 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //the other ones
+        Container(
+          height: 50,
+          child: Material(
+            color: theOtherOnes ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: theOtherOnes ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "The Other Ones",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: theOtherOnes ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (theOtherOnes == false) {
+                  setState(() {
+                    theOtherOnes = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    theOtherOnes = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
 
@@ -1787,7 +1878,49 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
         
-        //vulfpeck          
+        Container(
+          height: 50,
+          child: Material(
+            color: vulfpeckBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: vulfpeckBand? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Vulfpeck",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: vulfpeckBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (vulfpeckBand== false) {
+                  setState(() {
+                    vulfpeckBand = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    vulfpeckBand = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),          
         
         Container(
 
@@ -3119,6 +3252,108 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff34.length; counter++) {
         if (songStuff34[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (vulfpeckBand == true) {
+                final json35 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/vulfpeck.json');
+    final data35 = JsonDecoder().convert(await json35);
+    if (data35 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data35.keys.forEach((key) {
+      final List<Show> songStuff35 =
+          data35[key].map<Show>((dynamic data35) => Show.fromJson(data35)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff35,
+        
+      );
+      for (var counter = 0; counter < songStuff35.length; counter++) {
+        if (songStuff35[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (theOtherOnes == true) {
+                final json36 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/theotherones.json');
+    final data36 = JsonDecoder().convert(await json36);
+    if (data36 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data36.keys.forEach((key) {
+      final List<Show> songStuff36 =
+          data36[key].map<Show>((dynamic data36) => Show.fromJson(data36)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff36,
+        
+      );
+      for (var counter = 0; counter < songStuff36.length; counter++) {
+        if (songStuff36[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (jeffAustinBand == true) {
+                final json37 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/jeffaustinband.json');
+    final data37 = JsonDecoder().convert(await json37);
+    if (data37 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data37.keys.forEach((key) {
+      final List<Show> songStuff37 =
+          data37[key].map<Show>((dynamic data37) => Show.fromJson(data37)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff37,
+        
+      );
+      for (var counter = 0; counter < songStuff37.length; counter++) {
+        if (songStuff37[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
