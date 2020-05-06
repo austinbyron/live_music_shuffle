@@ -95,6 +95,7 @@ flutter:
     - assets/data/vulfpeck.json
     - assets/data/theotherones.json
     - assets/data/jeffaustinband.json
+    - assets/data/roberthunter.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

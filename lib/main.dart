@@ -127,7 +127,7 @@ var theDead = false; //
 var vulfpeckBand = false; //
 var theOtherOnes = false; //
 var jeffAustinBand = false; //
-var robertHunter = false;
+var robertHunter = false; //
 var psychedelicBreakfast = false;
 var furthurBand = false;
 var gratefulShred = false;
@@ -201,6 +201,7 @@ class _CheckBandsState extends State<CheckBands> {
                   vulfpeckBand = false;
                   theOtherOnes = false;
                   jeffAustinBand = false;
+                  robertHunter = false;
                   countSelected = 0;
                 });
               }
@@ -245,7 +246,8 @@ class _CheckBandsState extends State<CheckBands> {
                   vulfpeckBand = true;
                   theOtherOnes = true;
                   jeffAustinBand = true;
-                  countSelected = 38;
+                  robertHunter = true;
+                  countSelected = 39;
                 });
               }
               
@@ -1509,9 +1511,55 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
 
-        //robert hunter
+        Container(
 
-        //smashing pumpkins
+          height: 50,
+          child: Material(
+            color: robertHunter ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: robertHunter ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Robert Hunter",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: robertHunter ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (robertHunter == false) {
+                  setState(() {
+                    robertHunter = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    robertHunter = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
+
+        
         Container(
 
           height: 50,
@@ -3354,6 +3402,41 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff37.length; counter++) {
         if (songStuff37[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+
+    if (robertHunter == true) {
+                final json38 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/roberthunter.json');
+    final data38 = JsonDecoder().convert(await json38);
+    if (data38 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data38.keys.forEach((key) {
+      final List<Show> songStuff38 =
+          data38[key].map<Show>((dynamic data38) => Show.fromJson(data38)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff38,
+        
+      );
+      for (var counter = 0; counter < songStuff38.length; counter++) {
+        if (songStuff38[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
