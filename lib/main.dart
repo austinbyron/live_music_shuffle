@@ -202,6 +202,7 @@ class _CheckBandsState extends State<CheckBands> {
                   theOtherOnes = false;
                   jeffAustinBand = false;
                   robertHunter = false;
+                  psychedelicBreakfast = false;
                   countSelected = 0;
                 });
               }
@@ -247,7 +248,8 @@ class _CheckBandsState extends State<CheckBands> {
                   theOtherOnes = true;
                   jeffAustinBand = true;
                   robertHunter = true;
-                  countSelected = 39;
+                  psychedelicBreakfast = true;
+                  countSelected = 40;
                 });
               }
               
@@ -1461,7 +1463,53 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //psychedelic breakfast
+        Container(
+
+          height: 50,
+          child: Material(
+            color: psychedelicBreakfast ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: psychedelicBreakfast ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Psychedelic Breakfast",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: psychedelicBreakfast ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (psychedelicBreakfast == false) {
+                  setState(() {
+                    psychedelicBreakfast = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    psychedelicBreakfast = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
 
@@ -3437,6 +3485,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff38.length; counter++) {
         if (songStuff38[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (psychedelicBreakfast == true) {
+                final json39 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/psychedelicbreakfast.json');
+    final data39 = JsonDecoder().convert(await json39);
+    if (data39 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data39.keys.forEach((key) {
+      final List<Show> songStuff39 =
+          data39[key].map<Show>((dynamic data39) => Show.fromJson(data39)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff39,
+        
+      );
+      for (var counter = 0; counter < songStuff39.length; counter++) {
+        if (songStuff39[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");

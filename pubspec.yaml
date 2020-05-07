@@ -96,6 +96,7 @@ flutter:
     - assets/data/theotherones.json
     - assets/data/jeffaustinband.json
     - assets/data/roberthunter.json
+    - assets/data/psychedelicbreakfast.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
