@@ -128,8 +128,8 @@ var vulfpeckBand = false; //
 var theOtherOnes = false; //
 var jeffAustinBand = false; //
 var robertHunter = false; //
-var psychedelicBreakfast = false;
-var furthurBand = false;
+var psychedelicBreakfast = false; //
+var furthurBand = false; //
 var gratefulShred = false;
 var garciaPeoples = false;
 var hotButteredRum = false;
@@ -203,6 +203,7 @@ class _CheckBandsState extends State<CheckBands> {
                   jeffAustinBand = false;
                   robertHunter = false;
                   psychedelicBreakfast = false;
+                  furthurBand = false;
                   countSelected = 0;
                 });
               }
@@ -249,7 +250,8 @@ class _CheckBandsState extends State<CheckBands> {
                   jeffAustinBand = true;
                   robertHunter = true;
                   psychedelicBreakfast = true;
-                  countSelected = 40;
+                  furthurBand = true;
+                  countSelected = 41;
                 });
               }
               
@@ -730,7 +732,53 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
 
-        //furthur 
+        Container(
+
+          height: 50,
+          child: Material(
+            color: furthurBand ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: furthurBand? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Furthur",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: furthurBand ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (furthurBand == false) {
+                  setState(() {
+                    furthurBand = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    furthurBand = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ), 
 
         //garcia peoples
 
@@ -3519,6 +3567,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff39.length; counter++) {
         if (songStuff39[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (furthurBand == true) {
+                final json40 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/furthur.json');
+    final data40 = JsonDecoder().convert(await json40);
+    if (data40 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data40.keys.forEach((key) {
+      final List<Show> songStuff40 =
+          data40[key].map<Show>((dynamic data40) => Show.fromJson(data40)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff40,
+        
+      );
+      for (var counter = 0; counter < songStuff40.length; counter++) {
+        if (songStuff40[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
