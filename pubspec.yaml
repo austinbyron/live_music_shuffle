@@ -98,6 +98,7 @@ flutter:
     - assets/data/roberthunter.json
     - assets/data/psychedelicbreakfast.json
     - assets/data/furthur.json
+    - assets/data/gratefulShred.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -136,6 +136,7 @@ var hotButteredRum = false;
 var jeffersonStarship = false;
 var gracePotter = false;
 var travelinMcCourys = false;
+var bobWeir = false;
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -204,6 +205,7 @@ class _CheckBandsState extends State<CheckBands> {
                   robertHunter = false;
                   psychedelicBreakfast = false;
                   furthurBand = false;
+                  gratefulShred = false;
                   countSelected = 0;
                 });
               }
@@ -251,7 +253,8 @@ class _CheckBandsState extends State<CheckBands> {
                   robertHunter = true;
                   psychedelicBreakfast = true;
                   furthurBand = true;
-                  countSelected = 41;
+                  gratefulShred = true;
+                  countSelected = 42;
                 });
               }
               
@@ -826,7 +829,49 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
 
-        //grateful shred
+        Container(
+          height: 50,
+          child: Material(
+            color: gratefulShred ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: gratefulShred ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Grateful Shred",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: gratefulShred ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (gratefulShred == false) {
+                  setState(() {
+                    gratefulShred= true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    gratefulShred = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
 
@@ -3601,6 +3646,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff40.length; counter++) {
         if (songStuff40[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (gratefulShred == true) {
+                final json41 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/gratefulshred.json');
+    final data41 = JsonDecoder().convert(await json41);
+    if (data41 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data41.keys.forEach((key) {
+      final List<Show> songStuff41 =
+          data41[key].map<Show>((dynamic data41) => Show.fromJson(data41)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff41,
+        
+      );
+      for (var counter = 0; counter < songStuff41.length; counter++) {
+        if (songStuff41[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
