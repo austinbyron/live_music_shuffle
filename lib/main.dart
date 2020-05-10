@@ -45,6 +45,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/src/foundation/constants.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
     .then((_) {
       runApp(MyApp());
@@ -134,7 +135,7 @@ var jeffAustinBand = false; //
 var robertHunter = false; //
 var psychedelicBreakfast = false; //
 var furthurBand = false; //
-var gratefulShred = false;
+var gratefulShred = false; //
 var garciaPeoples = false;
 var hotButteredRum = false;
 var jeffersonStarship = false;
@@ -872,6 +873,7 @@ class _CheckBandsState extends State<CheckBands> {
                     countSelected--;
                   });
                 }
+                print(countSelected);
               },
             ),
           ),
