@@ -21,7 +21,7 @@ import 'package:web_scraper/web_scraper.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:audio_service/audio_service.dart';
-
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
@@ -45,7 +45,11 @@ import 'package:provider/provider.dart';
 import 'package:flutter/src/foundation/constants.dart';
 
 Future<void> main() async {
-  runApp(MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+    .then((_) {
+      runApp(MyApp());
+    });
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -1030,7 +1034,7 @@ class _CheckBandsState extends State<CheckBands> {
                 SizedBox(height: 10, width: 10),
                 AutoSizeText(
                   "Joe Russo's Presents: Hooteroll? + Plus",
-                  minFontSize: 20.0,
+                  minFontSize: 17.0,
                   maxFontSize: 22,
                   maxLines: 1,
                   style: TextStyle(
