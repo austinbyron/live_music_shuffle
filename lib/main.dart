@@ -136,7 +136,7 @@ var robertHunter = false; //
 var psychedelicBreakfast = false; //
 var furthurBand = false; //
 var gratefulShred = false; //
-var garciaPeoples = false;
+var garciaPeoples = false; //
 var hotButteredRum = false;
 var jeffersonStarship = false;
 var gracePotter = false;
@@ -211,6 +211,8 @@ class _CheckBandsState extends State<CheckBands> {
                   psychedelicBreakfast = false;
                   furthurBand = false;
                   gratefulShred = false;
+                  garciaPeoples = false;
+                  hotButteredRum = false;
                   countSelected = 0;
                 });
               }
@@ -259,7 +261,9 @@ class _CheckBandsState extends State<CheckBands> {
                   psychedelicBreakfast = true;
                   furthurBand = true;
                   gratefulShred = true;
-                  countSelected = 42;
+                  garciaPeoples = true;
+                  hotButteredRum = true;
+                  countSelected = 44;
                 });
               }
               
@@ -788,7 +792,49 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ), 
 
-        //garcia peoples
+        Container(
+          height: 50,
+          child: Material(
+            color: garciaPeoples ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: garciaPeoples ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Garcia Peoples",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: garciaPeoples ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (garciaPeoples == false) {
+                  setState(() {
+                    garciaPeoples = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    garciaPeoples = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
           height: 50,
@@ -863,7 +909,7 @@ class _CheckBandsState extends State<CheckBands> {
               onTap: () {
                 if (gratefulShred == false) {
                   setState(() {
-                    gratefulShred= true;
+                    gratefulShred = true;
                     countSelected++;
                   });
                 }
@@ -926,7 +972,53 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        //hot buttered rum
+        Container(
+
+          height: 50,
+          child: Material(
+            color: hotButteredRum ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(height: 10, width: 10),  
+                Icon(
+                  Icons.favorite,
+                  color: hotButteredRum ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Hot Buttered Rum",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: hotButteredRum ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (hotButteredRum == false) {
+                  setState(() {
+                    hotButteredRum = true;
+                    countSelected++;
+                    
+                  });
+                  print(countSelected);
+                }
+                else {
+                  setState(() {
+                    hotButteredRum = false;
+                    countSelected--;
+                  });
+                  print(countSelected);
+                }
+              },
+            ),
+          ),
+        ),
 
         Container(
           height: 50,
@@ -3686,6 +3778,74 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff41.length; counter++) {
         if (songStuff41[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (garciaPeoples == true) {
+                final json42 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/garciapeoples.json');
+    final data42 = JsonDecoder().convert(await json42);
+    if (data42 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data42.keys.forEach((key) {
+      final List<Show> songStuff42 =
+          data42[key].map<Show>((dynamic data42) => Show.fromJson(data42)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff42,
+        
+      );
+      for (var counter = 0; counter < songStuff42.length; counter++) {
+        if (songStuff42[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (hotButteredRum == true) {
+                final json43 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/hotbutteredrum.json');
+    final data43 = JsonDecoder().convert(await json43);
+    if (data43 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data43.keys.forEach((key) {
+      final List<Show> songStuff43 =
+          data43[key].map<Show>((dynamic data43) => Show.fromJson(data43)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff43,
+        
+      );
+      for (var counter = 0; counter < songStuff43.length; counter++) {
+        if (songStuff43[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
