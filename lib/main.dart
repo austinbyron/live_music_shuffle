@@ -137,8 +137,8 @@ var psychedelicBreakfast = false; //
 var furthurBand = false; //
 var gratefulShred = false; //
 var garciaPeoples = false; //
-var hotButteredRum = false;
-var jeffersonStarship = false;
+var hotButteredRum = false; //
+var jeffersonStarship = false; //
 var gracePotter = false;
 var travelinMcCourys = false;
 var bobWeir = false;
@@ -213,6 +213,7 @@ class _CheckBandsState extends State<CheckBands> {
                   gratefulShred = false;
                   garciaPeoples = false;
                   hotButteredRum = false;
+                  jeffersonStarship = false;
                   countSelected = 0;
                 });
               }
@@ -263,7 +264,8 @@ class _CheckBandsState extends State<CheckBands> {
                   gratefulShred = true;
                   garciaPeoples = true;
                   hotButteredRum = true;
-                  countSelected = 44;
+                  jeffersonStarship = true;
+                  countSelected = 45;
                 });
               }
               
@@ -1064,7 +1066,49 @@ class _CheckBandsState extends State<CheckBands> {
           ),
         ),
 
-        //jefferson starship
+        Container(
+          height: 50,
+          child: Material(
+            color: jeffersonStarship ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: jeffersonStarship ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Jefferson Starship",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: jeffersonStarship? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (jeffersonStarship == false) {
+                  setState(() {
+                    jeffersonStarship = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    jeffersonStarship = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
 
 
         Container(
@@ -3846,6 +3890,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff43.length; counter++) {
         if (songStuff43[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (jeffersonStarship == true) {
+                final json44 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/jeffersonstarship.json');
+    final data44 = JsonDecoder().convert(await json44);
+    if (data44 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data44.keys.forEach((key) {
+      final List<Show> songStuff44 =
+          data44[key].map<Show>((dynamic data44) => Show.fromJson(data44)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff44,
+        
+      );
+      for (var counter = 0; counter < songStuff44.length; counter++) {
+        if (songStuff44[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
