@@ -101,6 +101,7 @@ flutter:
     - assets/data/gratefulshred.json
     - assets/data/garciapeoples.json
     - assets/data/hotbutteredrum.json
+    - assets/data/jeffersonstarship.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
