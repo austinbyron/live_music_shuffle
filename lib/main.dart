@@ -139,7 +139,7 @@ var gratefulShred = false; //
 var garciaPeoples = false; //
 var hotButteredRum = false; //
 var jeffersonStarship = false; //
-var gracePotter = false;
+var gracePotter = false; //
 var travelinMcCourys = false;
 var bobWeir = false;
 
@@ -214,6 +214,7 @@ class _CheckBandsState extends State<CheckBands> {
                   garciaPeoples = false;
                   hotButteredRum = false;
                   jeffersonStarship = false;
+                  gracePotter = false;
                   countSelected = 0;
                 });
               }
@@ -265,7 +266,8 @@ class _CheckBandsState extends State<CheckBands> {
                   garciaPeoples = true;
                   hotButteredRum = true;
                   jeffersonStarship = true;
-                  countSelected = 45;
+                  gracePotter = true;
+                  countSelected = 46;
                 });
               }
               
@@ -881,7 +883,49 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-
+        Container(
+          height: 50,
+          child: Material(
+            color: gracePotter ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: gracePotter ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Grace Potter and the Nocturnals",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: gracePotter ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (gracePotter== false) {
+                  setState(() {
+                    gracePotter = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    gracePotter = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
         Container(
           height: 50,
           child: Material(
@@ -3924,6 +3968,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff44.length; counter++) {
         if (songStuff44[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (gracePotter == true) {
+                final json45 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/gracepotter.json');
+    final data45 = JsonDecoder().convert(await json45);
+    if (data45 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data45.keys.forEach((key) {
+      final List<Show> songStuff45 =
+          data45[key].map<Show>((dynamic data45) => Show.fromJson(data45)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff45,
+        
+      );
+      for (var counter = 0; counter < songStuff45.length; counter++) {
+        if (songStuff45[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
