@@ -215,6 +215,7 @@ class _CheckBandsState extends State<CheckBands> {
                   hotButteredRum = false;
                   jeffersonStarship = false;
                   gracePotter = false;
+                  travelinMcCourys = false;
                   countSelected = 0;
                 });
               }
@@ -267,7 +268,8 @@ class _CheckBandsState extends State<CheckBands> {
                   hotButteredRum = true;
                   jeffersonStarship = true;
                   gracePotter = true;
-                  countSelected = 46;
+                  travelinMcCourys = true;
+                  countSelected = 47;
                 });
               }
               
@@ -2160,7 +2162,49 @@ class _CheckBandsState extends State<CheckBands> {
             ),
           ),
         ),
-        
+        Container(
+          height: 50,
+          child: Material(
+            color: travelinMcCourys ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: travelinMcCourys ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "The Travelin' McCourys",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: travelinMcCourys ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (travelinMcCourys == false) {
+                  setState(() {
+                    travelinMcCourys = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    travelinMcCourys = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
         Container(
 
           height: 50,
@@ -4002,6 +4046,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff45.length; counter++) {
         if (songStuff45[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (travelinMcCourys == true) {
+                final json46 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/travelinmccourys.json');
+    final data46 = JsonDecoder().convert(await json46);
+    if (data46 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data46.keys.forEach((key) {
+      final List<Show> songStuff46 =
+          data46[key].map<Show>((dynamic data46) => Show.fromJson(data46)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff46,
+        
+      );
+      for (var counter = 0; counter < songStuff46.length; counter++) {
+        if (songStuff46[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");
