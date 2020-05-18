@@ -140,8 +140,8 @@ var garciaPeoples = false; //
 var hotButteredRum = false; //
 var jeffersonStarship = false; //
 var gracePotter = false; //
-var travelinMcCourys = false;
-var bobWeir = false;
+var travelinMcCourys = false; //
+var bobWeir = false; //
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
@@ -216,6 +216,7 @@ class _CheckBandsState extends State<CheckBands> {
                   jeffersonStarship = false;
                   gracePotter = false;
                   travelinMcCourys = false;
+                  bobWeir = false;
                   countSelected = 0;
                 });
               }
@@ -269,7 +270,8 @@ class _CheckBandsState extends State<CheckBands> {
                   jeffersonStarship = true;
                   gracePotter = true;
                   travelinMcCourys = true;
-                  countSelected = 47;
+                  bobWeir = true;
+                  countSelected = 48;
                 });
               }
               
@@ -474,6 +476,49 @@ class _CheckBandsState extends State<CheckBands> {
                 else {
                   setState(() {
                     bluesTraveler = false;
+                    countSelected--;
+                  });
+                }
+              },
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          child: Material(
+            color: bobWeir ? Colors.blue[300] : Colors.white,
+            child: InkWell(
+              splashColor: Colors.blue[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10, width: 10),
+                Icon(
+                  Icons.favorite,
+                  color: bobWeir ? Colors.red : Colors.white,
+                ),
+                SizedBox(height: 10, width: 10),
+                Text(
+                  "Bob Weir",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: bobWeir ? Colors.white : Colors.black,
+                  ),
+                ),
+                ],
+              ),
+              onTap: () {
+                if (bobWeir == false) {
+                  setState(() {
+                    bobWeir = true;
+                    countSelected++;
+                  });
+                }
+                else {
+                  setState(() {
+                    bobWeir = false;
                     countSelected--;
                   });
                 }
@@ -4080,6 +4125,40 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       for (var counter = 0; counter < songStuff46.length; counter++) {
         if (songStuff46[counter].format == "VBR MP3") {
+          songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+          songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+          poweredBy.add("Archive.org");
+        }
+        
+      }
+
+      
+     
+    });
+    tracker++;
+    print(songList.length);
+    }
+    if (bobWeir == true) {
+                final json47 = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/bobweir.json');
+    final data47 = JsonDecoder().convert(await json47);
+    if (data47 is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+
+    //Show stuff = Show();
+    //var categoryIndex = 0;
+    data47.keys.forEach((key) {
+      final List<Show> songStuff47 =
+          data47[key].map<Show>((dynamic data47) => Show.fromJson(data47)).toList();
+      var _songUrl = SongUrl(
+        showName: key,
+        files: songStuff47,
+        
+      );
+      for (var counter = 0; counter < songStuff47.length; counter++) {
+        if (songStuff47[counter].format == "VBR MP3") {
           songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
           songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
           poweredBy.add("Archive.org");

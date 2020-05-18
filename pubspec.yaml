@@ -104,6 +104,7 @@ flutter:
     - assets/data/jeffersonstarship.json
     - assets/data/gracepotter.json
     - assets/data/travelinmccourys.json
+    - assets/data/bobweir.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
