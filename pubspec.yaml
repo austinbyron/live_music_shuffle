@@ -105,6 +105,7 @@ flutter:
     - assets/data/gracepotter.json
     - assets/data/travelinmccourys.json
     - assets/data/bobweir.json
+    - assets/data/thewerks.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

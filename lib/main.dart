@@ -88,6 +88,280 @@ class CheckBands extends StatefulWidget {
 
 }
 
+class BandMaker {
+
+  String bandName;
+  String search;
+  bool selected;
+  Color colorSelected;
+  Color colorUnselected;
+  IconData iconSelected;
+  IconData iconUnselected;
+  String jsonFile;
+
+  BandMaker({@required String bandName, @required String search,
+              @required bool selected, @required Color colorSelected, 
+              @required Color colorUnselected, @required IconData iconSelected, 
+              @required IconData iconUnselected, @required String jsonFile}) {
+    this.bandName = bandName;
+    this.search = search;
+    this.selected = selected;
+    this.colorSelected = colorSelected;
+    this.colorUnselected = colorUnselected;
+    this.iconSelected = iconSelected;
+    this.iconUnselected = iconUnselected;
+    this.jsonFile = jsonFile;
+  }
+}
+
+List<BandMaker> myBands = [
+  new BandMaker(bandName: "Grateful Dead", search: "gratefuldead", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.black, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite_border, 
+                jsonFile: 'assets/data/gratefuldeadsoundboards.json'),
+  new BandMaker(bandName: "Phish", search: "phish", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.black, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite_border, 
+                jsonFile: 'assets/data/phish.json'),
+  new BandMaker(bandName: "Billy Strings", search: "billystrings", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/billystrings.json'),
+  new BandMaker(bandName: "Blues Traveler", search: "bluestraveler", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/bluestraveler.json'),
+  new BandMaker(bandName: "Bob Weir", search: "bobweir", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/bobweir.json'),
+  new BandMaker(bandName: "Cracker", search: "cracker", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/cracker.json'),
+  new BandMaker(bandName: "Dark Star Orchestra", search: "darkstarorchestra", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/darkstarorchestra.json'),
+  new BandMaker(bandName: "The Dead", search: "thedead", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/thedead.json'),
+  new BandMaker(bandName: "Dead and Co", search: "deadandco", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/deadandco.json'),
+  new BandMaker(bandName: "Derek Trucks Band", search: "derektrucksband", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/derektrucksband.json'),
+  new BandMaker(bandName: "Disco Biscuits", search: "discobiscuits", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/discobiscuits.json'),
+  new BandMaker(bandName: "Furthur", search: "furthur", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/furthur.json'),
+  new BandMaker(bandName: "Garcia Peoples", search: "garciapeoples", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/garciapeoples.json'),
+  new BandMaker(bandName: "Goose", search: "goose", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/goose.json'),
+  new BandMaker(bandName: "Grace Potter and the Nocturnals", search: "gracepotter", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/gracepotter.json'),
+  new BandMaker(bandName: "Grateful Shred", search: "gratefulshred", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/gratefulshred.json'),
+  new BandMaker(bandName: "Greensky Bluegrass", search: "greenskybluegrass", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/greenskybluegrass.json'),
+  new BandMaker(bandName: "Hot Buttered Rum", search: "hotbutteredrum", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/hotbutteredrum.json'),
+  new BandMaker(bandName: "Jeff Austin Band", search: "jeffaustinband", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/jeffaustinband.json'),
+  new BandMaker(bandName: "Jefferson Starship", search: "jeffersonstarship", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/jeffersonstarship.json'),
+  new BandMaker(bandName: "Joe Russo's Almost Dead", search: "joerusso", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/joerusso.json'),
+  new BandMaker(bandName: "Joe Russo Presents: Hooteroll? + Plus", search: "joerussohooteroll", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/joerussohooteoroll.json'),
+  new BandMaker(bandName: "John Butler Trio", search: "johnbutlertrio", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/johnbutlertrio.json'),
+  new BandMaker(bandName: "John Mayer", search: "johnmayer", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/johnmayer.json'),
+  new BandMaker(bandName: "Keller Williams", search: "kellerwilliams", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/kellerwilliams.json'),
+  new BandMaker(bandName: "Little Feat", search: "littlefeat", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/littlefeat.json'),
+  new BandMaker(bandName: "Lotus", search: "lotus", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/lotus.json'),
+  new BandMaker(bandName: "moe.", search: "moe", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/moe.json'),
+  new BandMaker(bandName: "My Morning Jacket", search: "mymorningjacket", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/mymorningjacket.json'),
+  new BandMaker(bandName: "The Other Ones", search: "theotherones", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/theotherones.json'),
+  new BandMaker(bandName: "Perpetual Groove", search: "perpetualgroove", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/perpetualgroove.json'),
+  new BandMaker(bandName: "Phil Lesh and Friends", search: "philleshandfriends", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/philleshandfriends.json'),
+  new BandMaker(bandName: "Pigeons Playing Ping Pong", search: "pigeonsplayingpingpong", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/pigeonsplayingpingpong.json'),
+  new BandMaker(bandName: "Psychedelic Breakfast", search: "psychedelicbreakfast", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/psychedelicbreakfast.json'),
+  new BandMaker(bandName: "Ratdog", search: "ratdog", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/ratdog.json'),
+  new BandMaker(bandName: "Robert Hunter", search: "roberthunter", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/roberthunter.json'),
+  new BandMaker(bandName: "Smashing Pumpkins", search: "smashingpumpkins", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/smashingpumpkins.json'),
+  new BandMaker(bandName: "Soulive", search: "soulive", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/soulive.json'),
+  new BandMaker(bandName: "Sound Tribe Sector 9", search: "soundtribesector9", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/sts9.json'),
+  new BandMaker(bandName: "Spafford", search: "spafford", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/spafford.json'),
+  new BandMaker(bandName: "String Cheese Incident", search: "stringcheeseincident", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/sci.json'),  
+  new BandMaker(bandName: "Tedeschi Trucks Band", search: "tedeschitrucksband", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/tedeschitrucksband.json'),
+  new BandMaker(bandName: "The Travelin' McCourys", search: "thetravelinmccourys", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/travelinmccourys.json'),
+  new BandMaker(bandName: "Twiddle", search: "twiddle", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/twiddle.json'),
+  new BandMaker(bandName: "Umphreys McGee", search: "umphreysmcgee", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/umphreys.json'),
+  new BandMaker(bandName: "Vulfpeck", search: "vulfpeck", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/vulfpeck.json'),
+  new BandMaker(bandName: "Ween", search: "ween", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/ween.json'),
+  new BandMaker(bandName: "the werks", search: "thewerks", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/thewerks.json'),
+  new BandMaker(bandName: "Yonder Mountain String Band", search: "yondermountainstringband", 
+                selected: false, colorSelected: Colors.red, 
+                colorUnselected: Colors.white, iconSelected: Icons.favorite, 
+                iconUnselected: Icons.favorite, 
+                jsonFile: 'assets/data/yondermountainstringband.json'),
+];
+
 var gratefulDead = false;
 var deadAndCo = false;
 var phishBand = false;
@@ -142,9 +416,104 @@ var jeffersonStarship = false; //
 var gracePotter = false; //
 var travelinMcCourys = false; //
 var bobWeir = false; //
+var theWerks = false;
+
 
 var countSelected = 0;
 class _CheckBandsState extends State<CheckBands> {
+
+  double _itemHeight = 50.0;
+
+  Widget _buildBandList(BuildContext context, BandMaker band, int index) {
+
+    return Container(
+      height: _itemHeight,
+      child: Material(
+        color: band.selected ? Colors.blue[300] : Colors.white,
+        child: InkWell(
+          splashColor: Colors.blue[200],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 10, width: 10),  
+              Icon(
+                band.selected ? band.iconSelected : band.iconUnselected,
+                color: band.selected ? band.colorSelected : band.colorUnselected,
+              ),
+              SizedBox(height: 10, width: 10),
+              Text(
+                band.bandName,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                  color: band.selected ? Colors.white : Colors.black,
+                ),
+              ),
+            ],
+          ),
+          onTap: () {
+            if (!band.selected) {
+              setState(() {
+                band.selected = !band.selected;
+                countSelected++;            
+              });
+              print(countSelected);
+            }
+            else {
+              setState(() {
+                band.selected = !band.selected;
+                countSelected--;
+              });
+              print(countSelected);
+            }
+          },
+        ),
+      ),
+    );
+    /*Container(
+      color: band.selected ? Colors.blue : Colors.white,
+      child: ListTile(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //SizedBox(height: 10, width: 10),  
+            Icon(
+              band.selected ? band.iconSelected : band.iconUnselected,
+              color: band.selected ? band.colorSelected : band.colorUnselected,
+            ),
+            SizedBox(height: 10, width: 10),
+            Text(
+              band.bandName,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w300,
+                color: band.selected ? Colors.white : Colors.black,
+              ),
+            ),
+          ],
+        ),
+        onTap: () {
+          if (band.selected) {
+            setState(() {
+              band.selected = !band.selected;
+              countSelected++;            
+            });
+          }
+          else {
+            setState(() {
+              band.selected = !band.selected;
+              countSelected--;
+            });
+          }
+        },
+        selected: band.selected,
+        enabled: true,
+      )
+    );
+    */
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,9 +535,13 @@ class _CheckBandsState extends State<CheckBands> {
             ), 
             onPressed: () {
               if (countSelected > 0) {
-                
+                for (int i = 0; i < myBands.length; i++) {
+                  setState(() {
+                    myBands[i].selected = false;
+                  });
+                }
                 setState(() {
-                
+                  /*
                   gratefulDead = false;
                   deadAndCo = false;
                   phishBand = false;
@@ -217,12 +590,19 @@ class _CheckBandsState extends State<CheckBands> {
                   gracePotter = false;
                   travelinMcCourys = false;
                   bobWeir = false;
+                  theWerks = false;
+                  */
                   countSelected = 0;
                 });
               }
-              else {
+              else if (countSelected == 0) {
+                for (int i = 0; i < myBands.length; i++) {
+                  setState(() {
+                    myBands[i].selected = true;
+                  });
+                }
                 setState(() {
-                
+                  /*
                   gratefulDead = true;
                   deadAndCo = true;
                   phishBand = true;
@@ -271,7 +651,9 @@ class _CheckBandsState extends State<CheckBands> {
                   gracePotter = true;
                   travelinMcCourys = true;
                   bobWeir = true;
-                  countSelected = 48;
+                  theWerks = true;
+                  */
+                  countSelected = myBands.length;
                 });
               }
               
@@ -299,7 +681,14 @@ class _CheckBandsState extends State<CheckBands> {
           }
         },
       ),
-      body: ListView(
+      body: ListView.builder(
+        itemCount: myBands.length,
+        itemExtent: _itemHeight,
+        itemBuilder: (context, index) {
+          return _buildBandList(context, myBands[index], index);
+        }
+      ),
+      /*ListView(
       //padding: const EdgeInsets.all(8.0),
       children: <Widget>[
         
@@ -2483,6 +2872,7 @@ class _CheckBandsState extends State<CheckBands> {
         ),
       ],
       ),
+      */
     );
   }
 }
@@ -2509,9 +2899,38 @@ var tracker = 0;
 class _MyHomePageState extends State<MyHomePage> {
 
     Future<void> _retrieveLocalSongInfo() async {
+      for (int i = 0; i < myBands.length; i++) {
+        if (myBands[i].selected) {
+          final json = DefaultAssetBundle
+                .of(context)
+                .loadString(myBands[i].jsonFile);
+          final data = JsonDecoder().convert(await json);
+          if (data is! Map) {
+            throw ('Data retrieved from API is not a Map');
+          }
+
+          data.keys.forEach((key) {
+            final List<Show> songStuff = 
+              data[key].map<Show>((dynamic data) => Show.fromJson(data)).toList();
+            var _songUrl = SongUrl(
+              showName: key,
+              files: songStuff,
+            );
+            for (var counter = 0; counter < songStuff.length; counter++) {
+              if (songStuff[counter].format == "VBR MP3") {
+                songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+                songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+              }
+            }
+          });
+          
+        }
+        
+      }
 
     // Consider omitting the types for local variables. For more details on Effective
     // Dart Usage, see https://www.dartlang.org/guides/language/effective-dart/usage
+    /*
     if (deadAndCo == true) {
     final json = DefaultAssetBundle
         .of(context)
@@ -4172,6 +4591,7 @@ class _MyHomePageState extends State<MyHomePage> {
     tracker++;
     print(songList.length);
     }
+    */
   }
  
   @override
