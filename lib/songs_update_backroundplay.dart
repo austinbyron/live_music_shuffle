@@ -374,7 +374,8 @@ class musicPlayerState extends State<MusicPlayer> {
           ),
         ),
         SizedBox(width: 10, height: 10),
-        RichText(
+        
+        /*RichText(
           text: new TextSpan(
 
             //TODO FIX POWERED BY MESSAGE
@@ -386,7 +387,7 @@ class musicPlayerState extends State<MusicPlayer> {
                 //launch('https://archive.org/details/${songList[tempInt]}');
               //},
           ),
-        ),
+        ),*/
         RichText(
           text: new TextSpan(
             text: "Inspired by Relisten.net",
