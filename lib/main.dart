@@ -56,6 +56,12 @@ Future<void> main() async {
 
 }
 
+List<String> songURL = new List();
+List<String> songTitle = new List();
+List<String> songArtist = new List();
+List<String> songAlbumDate = new List();
+List<String> songSource = new List();
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -732,6 +738,11 @@ class _CheckBandsState extends State<CheckBands> {
             songList.clear();
             songInfo.clear();
             poweredBy.clear();
+            songURL.clear();
+            songArtist.clear();
+            songTitle.clear();
+            songAlbumDate.clear();
+            songSource.clear();
             Navigator.push(context, MaterialPageRoute(builder: (context) => 
                                 MyHomePage()));
           }
@@ -2974,8 +2985,23 @@ class _MyHomePageState extends State<MyHomePage> {
             );
             for (var counter = 0; counter < songStuff.length; counter++) {
               if (songStuff[counter].format == "VBR MP3") {
-                songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
-                songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
+                //if (myBands[i].bandName == "Phish") {
+                  //songURL.add(_songUrl.files[counter].name);
+                  //songArtist.add(_songUrl.files[counter].creator);
+                  //songTitle.add(_songUrl.files[counter].title);
+                  //songAlbumDate.add(_songUrl.files[counter].album);
+                  //songSource.add("Powered by phish.in");
+                //}
+                //else {
+                  songURL.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+                  //print(songURL[counter]);
+                  songArtist.add("${_songUrl.files[counter].creator}");
+                  songTitle.add("${_songUrl.files[counter].title}");
+                  songAlbumDate.add("${_songUrl.files[counter].album}");
+                  songSource.add("Powered by archive.org");
+                //}
+                //songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
+                //songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
               }
             }
           });
@@ -4684,7 +4710,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 
               ),
               onTap: () async {
-                if (songList[0] == null) {
+                if (songURL[0] == null) {
                   _retrieveLocalSongInfo();
                 }
                 if (tracker != count) {

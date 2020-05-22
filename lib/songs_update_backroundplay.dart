@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 //import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
+import 'package:music_player/main.dart';
 import 'package:music_player/songs.dart';
 
 import 'package:web_scraper/web_scraper.dart';
@@ -85,12 +86,14 @@ MediaControl stopControl = MediaControl(
 final lengthOfList = songList.length;
 String _getUrl() {
     //_retrieveLocalSongInfo();
+  print("songURL.length = ${songURL.length}");
   var rng = new Random();
-  var temp = rng.nextInt(songList.length); //size of songList
+  var temp = rng.nextInt(songURL.length); //size of songList
   tempInt = temp;
   number = temp;
   //print(temp);
-  return songList[temp];
+  //changed from songList[temp]
+  return songURL[temp];
 }
 var number;
 void myBackgroundTaskEntrypoint(musicPlayerState _musicPlayer) {
@@ -201,7 +204,7 @@ class _songUI extends State<SongUI> {
         ),
       ),
       backgroundColor: Colors.grey[200],
-      body: Column(
+      body: SingleChildScrollView(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
@@ -237,6 +240,7 @@ class _songUI extends State<SongUI> {
 
           
         ],
+      ),
       ),
     );
   }
@@ -409,7 +413,10 @@ class musicPlayerState extends State<MusicPlayer> {
     _player.play();
     //
     //AudioServiceBackground.setMediaItem()
-    return songInfo[tempInt];
+     
+    var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n";
+    return tempString;
+    //songInfo[tempInt];
   }
 
   Future<void> playit() async {
@@ -451,7 +458,10 @@ class _seekBarState extends State<SeekBar> {
     }
     
     widget.player.play();
-    return songInfo[tempInt];
+    var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n"; 
+
+    return tempString;
+    //songInfo[tempInt];
   }
 
   @override
@@ -466,7 +476,7 @@ class _seekBarState extends State<SeekBar> {
             width: MediaQuery.of(context).size.width * 7/8,
             child: Center(
               child: AutoSizeText(
-                "${songInfo[tempInt] ??''}",
+                "${songTitle[tempInt]}\n${songArtist[tempInt]}\n${songAlbumDate[tempInt]}\n${songSource[tempInt]}",
                 textAlign: TextAlign.center,
                 maxLines: 5,
                 minFontSize: 17,
