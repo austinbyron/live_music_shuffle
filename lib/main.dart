@@ -2985,21 +2985,21 @@ class _MyHomePageState extends State<MyHomePage> {
             );
             for (var counter = 0; counter < songStuff.length; counter++) {
               if (songStuff[counter].format == "VBR MP3") {
-                //if (myBands[i].bandName == "Phish") {
-                  //songURL.add(_songUrl.files[counter].name);
-                  //songArtist.add(_songUrl.files[counter].creator);
-                  //songTitle.add(_songUrl.files[counter].title);
-                  //songAlbumDate.add(_songUrl.files[counter].album);
-                  //songSource.add("Powered by phish.in");
-                //}
-                //else {
+                if (myBands[i].bandName == "Phish") {
+                  songURL.add("${_songUrl.files[counter].name}");
+                  songArtist.add("${_songUrl.files[counter].creator}");
+                  songTitle.add("${_songUrl.files[counter].title}");
+                  songAlbumDate.add("${_songUrl.files[counter].album}");
+                  songSource.add("Powered by phish.in");
+                }
+                else {
                   songURL.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
                   //print(songURL[counter]);
                   songArtist.add("${_songUrl.files[counter].creator}");
                   songTitle.add("${_songUrl.files[counter].title}");
                   songAlbumDate.add("${_songUrl.files[counter].album}");
                   songSource.add("Powered by archive.org");
-                //}
+                }
                 //songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
                 //songInfo.add("${_songUrl.files[counter].title}\n${_songUrl.files[counter].creator}\n${_songUrl.files[counter].album}\n${_songUrl.files[counter].name}");
               }
@@ -4736,5 +4736,5 @@ class _MyHomePageState extends State<MyHomePage> {
 
 List<String> tuneList = [
   "Listen to some tunes?",
-  
+
 ];
