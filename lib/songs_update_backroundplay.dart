@@ -432,6 +432,11 @@ class _seekBarState extends State<SeekBar> {
   get _durationText => widget.duration?.toString()?.split('.')?.first ?? '';
   get _positionText => widget.position?.toString()?.split('.')?.first ?? '';
 
+  double max() => (widget.duration.inMilliseconds ?? 0.0).toDouble();
+  double progress() => max() > (widget.position?.inMilliseconds ?? 0).toDouble()
+                        ? (widget.position?.inMilliseconds ?? 0).toDouble()
+                        : 0.0;
+
   String newSong() {
     var temporaryURL = _getUrl();
     widget.player.setUrl(temporaryURL);
@@ -477,8 +482,8 @@ class _seekBarState extends State<SeekBar> {
         //Text("Track position"),
         Slider(
           min: 0.0,
-          max: widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
-          value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
+          max: max(), //widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
+          value: progress(), //widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
           
           onChanged: (value) {
             setState(() {
