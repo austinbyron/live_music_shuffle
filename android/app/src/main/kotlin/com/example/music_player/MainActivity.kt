@@ -1,4 +1,4 @@
-package com.example.music_player
+package com.austinbyron.liveShuffle
 
 import io.flutter.embedding.android.FlutterActivity
 
