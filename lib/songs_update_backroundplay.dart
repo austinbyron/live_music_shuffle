@@ -564,6 +564,13 @@ class _seekBarState extends State<SeekBar> {
                             
                 ),
                 (state == AudioPlaybackState.connecting || buffering == true) ?
+                 
+                Container(
+                    margin: EdgeInsets.all(8.0),
+                    width: 64.0,
+                    height: 64.0,
+                    child: CircularProgressIndicator()
+                ) :
                 IconButton(
                   icon: Icon(Icons.skip_next),
                   iconSize: 64.0,
@@ -577,13 +584,8 @@ class _seekBarState extends State<SeekBar> {
                     newSong();
                     
                   }
-                ) :
-                Container(
-                    margin: EdgeInsets.all(8.0),
-                    width: 64.0,
-                    height: 64.0,
-                    child: CircularProgressIndicator(),
                 ),
+                
                 
               ],
             );
