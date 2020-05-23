@@ -427,7 +427,7 @@ class SeekBar extends StatefulWidget {
 }
 
 class _seekBarState extends State<SeekBar> {
-  double _dragValue = 0.0;
+  double _dragValue = null;
 
   get _durationText => widget.duration?.toString()?.split('.')?.first ?? '';
   get _positionText => widget.position?.toString()?.split('.')?.first ?? '';
