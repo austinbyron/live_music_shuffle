@@ -99,54 +99,9 @@ String _getUrl() {
   return songURL[temp];
 }
 var number;
-void myBackgroundTaskEntrypoint(musicPlayerState _musicPlayer) {
 
-  AudioServiceBackground.run(() => myBackgroundTask(musicPlayerState: _musicPlayer));
 
-}
 
-class myBackgroundTask extends BackgroundAudioTask {
-  final musicPlayerState;
-  myBackgroundTask({@required this.musicPlayerState});
-  //_musicPlayerState _musicPlayer;
-  final _completer = Completer();
-  @override
-  Future<void> onStart() async {
-    
-    AudioServiceBackground.setState(
-      controls: [pauseControl, stopControl], 
-      basicState: BasicPlaybackState.playing);
-
-    await musicPlayerState._player.setUrl(_getUrl());
-    musicPlayerState._player.play();
-    await _completer.future;
-    AudioServiceBackground.setState(
-      controls: [], basicState: BasicPlaybackState.playing);
-  }
-
-  @override
-  void onStop() {
-    musicPlayerState._player.stop();
-    _completer.complete();
-  }
-
-  @override
-  void onPlay() {
-    AudioServiceBackground.setState(
-      controls: [pauseControl, stopControl], 
-      basicState: BasicPlaybackState.playing);
-    musicPlayerState._player.play();
-  
-  }
-
-  @override
-  void onPause() {
-    AudioServiceBackground.setState(
-      controls: [playControl, stopControl], 
-      basicState: BasicPlaybackState.playing);
-    musicPlayerState._player.play();
-  }
-}
 
 class SongUI extends StatefulWidget {
 
@@ -301,12 +256,14 @@ class MusicPlayer extends StatefulWidget {
   
 }
 
+AudioPlayer audioPlayer = new AudioPlayer();
+
 class musicPlayerState extends State<MusicPlayer> {
   //String url;
   //PlayerMode mode;
   final _volumeSubject = BehaviorSubject.seeded(1.0);
   final _speedSubject = BehaviorSubject.seeded(1.0);
-  AudioPlayer _player;
+  
   //AudioPlayerState _audioPlayerState;
   Duration _duration;
   Duration _position;
@@ -321,15 +278,15 @@ class musicPlayerState extends State<MusicPlayer> {
   @override
   void initState() {
     super.initState();
-    _player = AudioPlayer();
+    audioPlayer = AudioPlayer();
     var temp = _getUrl();
-    _player.setUrl(temp);
+    audioPlayer.setUrl(temp);
     
   }
 
   @override
   void dispose() {
-    _player.dispose();
+    audioPlayer.dispose();
     super.dispose();
   }
 
@@ -347,13 +304,13 @@ class musicPlayerState extends State<MusicPlayer> {
         
         
         StreamBuilder<Duration>(
-          stream: _player.durationStream,
+          stream: audioPlayer.durationStream,
           builder: (context, snapshot) {
             final duration = snapshot.data ?? Duration.zero;
             //final fullState = snapshot.data;
             
             return StreamBuilder<Duration>(
-              stream: _player.getPositionStream(),
+              stream: audioPlayer.getPositionStream(),
               builder: (context, snapshot) {
                 var position = snapshot.data ?? Duration.zero;
                 if (position > duration) {
@@ -365,11 +322,11 @@ class musicPlayerState extends State<MusicPlayer> {
                 }
                 
                 return SeekBar(
-                  player: _player,
+                  player: audioPlayer,
                   duration: duration,
                   position: position,
                   onChangeEnd: (newPosition) {
-                    _player.seek(newPosition);
+                    audioPlayer.seek(newPosition);
                   },
                 );
               },
@@ -388,7 +345,7 @@ class musicPlayerState extends State<MusicPlayer> {
             value: snapshot.data ?? 1.0,
             onChanged: (value) {
               _volumeSubject.add(value);
-              _player.setVolume(value);
+              audioPlayer.setVolume(value);
             },
           ),
         ),
@@ -402,7 +359,7 @@ class musicPlayerState extends State<MusicPlayer> {
             value: snapshot.data ?? 1.0,
             onChanged: (value) {
               _speedSubject.add(value);
-              _player.setSpeed(value);
+              audioPlayer.setSpeed(value);
             },
           ),
         ),
@@ -430,12 +387,12 @@ class musicPlayerState extends State<MusicPlayer> {
 
   String newSong() {
     var temporaryURL = _getUrl();
-    _player.setUrl(temporaryURL);
-    while (_player.buffering == true) {
+    audioPlayer.setUrl(temporaryURL);
+    while (audioPlayer.buffering == true) {
       //do nothing
     }
     //_player.pause();
-    _player.play();
+    audioPlayer.play();
     //
     //AudioServiceBackground.setMediaItem()
      
@@ -445,7 +402,7 @@ class musicPlayerState extends State<MusicPlayer> {
   }
 
   Future<void> playit() async {
-    await _player.play();
+    await audioPlayer.play();
   }
   
 }
@@ -575,7 +532,7 @@ class _seekBarState extends State<SeekBar> {
                     icon: Icon(Icons.pause),
                     iconSize: 64.0,
                     onPressed: () {
-                      pause();
+                      //pause();
                       widget.player.pause();
                     }
                   )
@@ -584,7 +541,7 @@ class _seekBarState extends State<SeekBar> {
                     icon: Icon(Icons.play_arrow),
                     iconSize: 64.0,
                     onPressed: () {
-                      play();
+                      //play();
                       widget.player.play();
                     },
                   ),
@@ -595,7 +552,7 @@ class _seekBarState extends State<SeekBar> {
                               state == AudioPlaybackState.none
                               ? null
                               : () {
-                                stop();
+                                //stop();
                                 widget.player.stop();
                               },
                             
@@ -622,22 +579,116 @@ class _seekBarState extends State<SeekBar> {
     ),
     );
   }
-  play() async {
-    if (await AudioService.running) {
-      AudioService.play();
-    }
-    else {
-      AudioService.start(
-        backgroundTaskEntrypoint: myBackgroundTaskEntrypoint);
-    }
-  }
+  //play() async {
+    //if (await AudioService.running) {
+    //  AudioService.play();
+    //}
+    //else {
+      //AudioService.start(
+        //backgroundTaskEntrypoint: myBackgroundTaskEntrypoint);
+    //}
+  //}
 
-  pause() => AudioService.pause();
+  //pause() => AudioService.pause();
 
-  stop() => AudioService.stop();
+  //stop() => AudioService.stop();
 }
 
 /// so there needs to be a background task class
 /// that is basically the same as the normal audio player class i use 
 /// to play music that allows the use of background controls and background
 /// play of music
+/// 
+
+void myBackgroundTaskEntrypoint() {
+  AudioServiceBackground.run(() => MyBackgroundTask());
+}
+
+class MyBackgroundTask extends BackgroundAudioTask {
+  AudioPlayer _audioPlayer = AudioPlayer();
+  Completer _completer = Completer();
+  bool _playing;
+
+  List<MediaControl> _playControls = [
+    skipToPreviousControl,
+        pauseControl,
+        stopControl,
+        skipToNextControl
+  ];
+
+  List<MediaControl> _pauseControls = [
+    skipToPreviousControl,
+        playControl,
+        stopControl,
+        skipToNextControl
+  ];
+
+  List<MediaControl> getControls(BasicPlaybackState state) {
+    if (_playing) {
+      return [
+        skipToPreviousControl,
+        pauseControl,
+        stopControl,
+        skipToNextControl
+      ];
+    } else {
+      return [
+        skipToPreviousControl,
+        playControl,
+        stopControl,
+        skipToNextControl
+      ];
+    }
+  }
+  
+  @override
+  Future<void> onStart() async {
+    // Your custom dart code to start audio playback.
+    // NOTE: The background audio task will shut down
+    // as soon as this async function completes.
+    return _completer.future;
+  }
+  @override
+  void onStop() {
+    // Your custom dart code to stop audio playback. e.g.:
+    _audioPlayer.stop();
+    // Cause the audio task to shut down.
+    _completer.complete();
+  }
+  @override
+  void onPlay() {
+    // Your custom dart code to resume audio playback. e.g.:
+    _audioPlayer.play();
+    // Broadcast the state change to all user interfaces:
+    AudioServiceBackground.setState(
+      basicState: BasicPlaybackState.playing,
+      controls: _playControls
+    );
+  }
+  @override
+  void onPause() {
+    // Your custom dart code to pause audio playback. e.g.:
+    _audioPlayer.pause();
+    // Broadcast the state change to all user interfaces:
+    AudioServiceBackground.setState(
+      basicState: BasicPlaybackState.paused,
+      controls: _pauseControls,
+    );
+  }
+  @override
+  void onClick(MediaButton button) {
+    // Your custom dart code to handle a click on a headset.
+  }
+  @override
+  void onSkipToNext() {
+    // Your custom dart code to skip to the next queue item.
+  }
+  @override
+  void onSkipToPrevious() {
+    // Your custom dart code to skip to the previous queue item.
+  }
+  @override
+  void onSeekTo(int position) {
+    // Your custom dart code to seek to a position.
+  }
+}

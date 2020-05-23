@@ -35,6 +35,8 @@ void addToQueue() {
   }
 }
 
+/*
+
 class MainScreen extends StatelessWidget {
   /// Tracks the position while the user drags the seek bar.
   final BehaviorSubject<double> _dragPositionSubject =
@@ -211,6 +213,8 @@ class MainScreen extends StatelessWidget {
   }
 }
 
+*/
+
 //class AudioPlayerTask extends BackgroundAudioTask {
 
 
@@ -276,6 +280,8 @@ class MainScreen extends StatelessWidget {
   ///said queue
   ///
 //}
+
+/*
 
 class AudioPlayerTask extends BackgroundAudioTask {
 
@@ -462,3 +468,4 @@ class ScreenState {
 void _audioPlayerTaskEntrypoint() async {
   AudioServiceBackground.run(() => AudioPlayerTask());
 }
+*/
