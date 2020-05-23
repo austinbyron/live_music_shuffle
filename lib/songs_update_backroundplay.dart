@@ -413,7 +413,7 @@ class SeekBar extends StatefulWidget {
   final ValueChanged<Duration> onChanged;
   final ValueChanged<Duration> onChangeEnd;
   final AudioPlayer player;
-
+  
   SeekBar({
     @required this.duration,
     @required this.position,
@@ -484,6 +484,9 @@ class _seekBarState extends State<SeekBar> {
               if (value > widget.duration.inMilliseconds.toDouble()) {
                 value = widget.duration.inMilliseconds.toDouble();
               }
+              else if (value < 0.0) {
+                value = 0.0;
+              }
               _dragValue = value;
             });
             if (widget.onChanged != null) {
@@ -495,6 +498,9 @@ class _seekBarState extends State<SeekBar> {
             setState(() {
               if (value > widget.duration.inMilliseconds.toDouble()) {
                 value = widget.duration.inMilliseconds.toDouble();
+              }
+              else if (value < 0.0) {
+                value = 0.0;
               }
             });
             if (widget.onChangeEnd != null) {
@@ -557,6 +563,7 @@ class _seekBarState extends State<SeekBar> {
                               },
                             
                 ),
+                (state == AudioPlaybackState.connecting || buffering == true) ?
                 IconButton(
                   icon: Icon(Icons.skip_next),
                   iconSize: 64.0,
@@ -570,7 +577,14 @@ class _seekBarState extends State<SeekBar> {
                     newSong();
                     
                   }
+                ) :
+                Container(
+                    margin: EdgeInsets.all(8.0),
+                    width: 64.0,
+                    height: 64.0,
+                    child: CircularProgressIndicator(),
                 ),
+                
               ],
             );
           },
@@ -682,6 +696,7 @@ class MyBackgroundTask extends BackgroundAudioTask {
   @override
   void onSkipToNext() {
     // Your custom dart code to skip to the next queue item.
+    AudioServiceBackground.setQueue(queue);
   }
   @override
   void onSkipToPrevious() {
