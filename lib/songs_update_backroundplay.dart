@@ -478,7 +478,7 @@ class _seekBarState extends State<SeekBar> {
         Slider(
           min: 0.0,
           max: widget.duration.inMilliseconds.toDouble() > 0?widget.duration.inMilliseconds.toDouble():0,
-          value: widget.position.inMilliseconds.toDouble() > _dragValue?_dragValue:widget.duration.inMilliseconds.toDouble(),
+          value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ?_dragValue:widget.duration.inMilliseconds.toDouble(),
           
           onChanged: (value) {
             setState(() {
