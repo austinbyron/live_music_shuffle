@@ -427,7 +427,7 @@ class SeekBar extends StatefulWidget {
 }
 
 class _seekBarState extends State<SeekBar> {
-  double _dragValue;
+  double _dragValue = 0.0;
 
   get _durationText => widget.duration?.toString()?.split('.')?.first ?? '';
   get _positionText => widget.position?.toString()?.split('.')?.first ?? '';
@@ -479,6 +479,7 @@ class _seekBarState extends State<SeekBar> {
           min: 0.0,
           max: widget.duration.inMilliseconds.toDouble(),
           value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
+          
           onChanged: (value) {
             setState(() {
               if (value > widget.duration.inMilliseconds.toDouble()) {
@@ -575,13 +576,14 @@ class _seekBarState extends State<SeekBar> {
                   icon: Icon(Icons.skip_next),
                   iconSize: 64.0,
                   onPressed: () {
+                    newSong();
                     setState(() {
                       //initState();
                       state = AudioPlaybackState.playing;
                       //max = widget.player.durationFuture;
                       
                     });
-                    newSong();
+                    //newSong() was here
                     
                   }
                 ),
