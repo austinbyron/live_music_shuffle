@@ -745,6 +745,7 @@ class _CheckBandsState extends State<CheckBands> {
             songTitle.clear();
             songAlbumDate.clear();
             songSource.clear();
+            queue.clear();
             Navigator.push(context, MaterialPageRoute(builder: (context) => 
                                 MyHomePage()));
           }
