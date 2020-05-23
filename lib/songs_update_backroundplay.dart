@@ -636,3 +636,8 @@ class _seekBarState extends State<SeekBar> {
 
   stop() => AudioService.stop();
 }
+
+/// so there needs to be a background task class
+/// that is basically the same as the normal audio player class i use 
+/// to play music that allows the use of background controls and background
+/// play of music
