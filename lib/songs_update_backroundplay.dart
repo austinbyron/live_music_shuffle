@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 //import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
-import 'package:music_player/main.dart';
-import 'package:music_player/songs.dart';
+import 'songs.dart';
 
 import 'package:web_scraper/web_scraper.dart';
 import 'package:audio_service/audio_service.dart';
@@ -41,7 +40,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/src/foundation/constants.dart';
 
-
+import 'main.dart';
 //const testurl = 'https://archive.org/details/gd72-05-03.sbd.masse.142.sbeok.shnf/gd72-5-3d2t05.shn';
 
 typedef void OnError(Exception exception);
