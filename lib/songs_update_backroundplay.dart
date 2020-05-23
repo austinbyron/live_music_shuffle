@@ -14,7 +14,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import 'dart:async';
 import 'dart:io';
-
+import 'mediaitemmaker.dart';
 //import 'package:audioplayers/audio_cache.dart';
 //import 'package:audioplayers/audioplayers.dart';
 import 'package:just_audio/just_audio.dart';
@@ -91,6 +91,10 @@ String _getUrl() {
   var temp = rng.nextInt(songURL.length); //size of songList
   tempInt = temp;
   number = temp;
+  addToQueue();
+  //queue.add(new MediaItem(id: songURL[temp], title: songTitle[temp], album: songAlbumDate[temp]));
+  for (int i = 0; i < queue.length; i++)
+    print("${queue[i].id}");
   //print(temp);
   //changed from songList[temp]
   return songURL[temp];
@@ -176,9 +180,39 @@ class _songUI extends State<SongUI> {
     //musicPlayerList.add(MusicPlayer(url: _tempUrl));
     return Scaffold(
       resizeToAvoidBottomPadding: false,
+      bottomNavigationBar: Container(
+        height: 50,
+
+        child: BottomAppBar(
+        color: Colors.blue[400],
+        child: Center(
+          child: Text(
+          "Inspired by Relisten.net",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              
+            ),
+          ),
+        )
+          
+          
+        ),
+        /*
+        RichText(
+          text: new TextSpan(
+            text: 
+            //recognizer: new TapGestureRecognizer()
+              //..onTap = () {
+                //launch('relisten.net');
+              //},
+          ),
+        ),*/
+      ),
       appBar: AppBar(
         titleSpacing: 0.0,
         //automaticallyImplyLeading: false,
+        backgroundColor: Colors.blue[400],
         leading: IconButton(
           icon: Icon(Icons.arrow_back), 
           onPressed: () {
@@ -388,16 +422,7 @@ class musicPlayerState extends State<MusicPlayer> {
               //},
           ),
         ),*/
-        RichText(
-          text: new TextSpan(
-            text: "Inspired by Relisten.net",
-            style: TextStyle(color: Colors.black),
-            //recognizer: new TapGestureRecognizer()
-              //..onTap = () {
-                //launch('relisten.net');
-              //},
-          ),
-        ),
+        
         
         
       ],

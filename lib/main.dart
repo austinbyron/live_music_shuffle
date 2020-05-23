@@ -9,6 +9,7 @@ import 'package:web_scraper/web_scraper.dart';
 import 'songs_update_backroundplay.dart';
 import 'song_url.dart';
 import 'song_decode.dart';
+import 'mediaitemmaker.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -258,7 +259,7 @@ List<BandMaker> myBands = [
                 selected: false, colorSelected: Colors.red, 
                 colorUnselected: Colors.white, iconSelected: Icons.favorite, 
                 iconUnselected: Icons.favorite, 
-                jsonFile: 'assets/data/joerussohooteoroll.json',
+                jsonFile: 'assets/data/joerussohooteroll.json',
                 order: "Joe Russo Presents: Hooteroll? + Plus"),
   new BandMaker(bandName: "John Butler Trio", search: "johnbutlertrio", 
                 selected: false, colorSelected: Colors.red, 
@@ -735,6 +736,7 @@ class _CheckBandsState extends State<CheckBands> {
 
           }
           else {
+            generateRandomTuneList();
             songList.clear();
             songInfo.clear();
             poweredBy.clear();
@@ -2975,7 +2977,8 @@ class _MyHomePageState extends State<MyHomePage> {
           if (data is! Map) {
             throw ('Data retrieved from API is not a Map');
           }
-
+          var _bandName = myBands[i].bandName;
+          var _song;
           data.keys.forEach((key) {
             final List<Show> songStuff = 
               data[key].map<Show>((dynamic data) => Show.fromJson(data)).toList();
@@ -2995,9 +2998,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 else {
                   songURL.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
                   //print(songURL[counter]);
-                  songArtist.add("${_songUrl.files[counter].creator}");
-                  songTitle.add("${_songUrl.files[counter].title}");
-                  songAlbumDate.add("${_songUrl.files[counter].album}");
+                  if (_songUrl.files[counter].creator == null) {
+                    songArtist.add("$_bandName");
+                  }
+                  else {
+                    songArtist.add("${_songUrl.files[counter].creator}");
+                  }
+                  if (_songUrl.files[counter].title == null) {
+                    songTitle.add("${_songUrl.files[counter].name}");
+                  }
+                  else {
+                    songTitle.add("${_songUrl.files[counter].title}");
+                  }
+                  if (_songUrl.files[counter].album == null) {
+                    songAlbumDate.add("${_songUrl.showName}");
+                  }
+                  else {
+                    songAlbumDate.add("${_songUrl.files[counter].album}");
+                  }
+                  
                   songSource.add("Powered by archive.org");
                 }
                 //songList.add("https://archive.org/download/${_songUrl.showName}/${_songUrl.files[counter].name}");
@@ -4685,6 +4704,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     _retrieveLocalSongInfo();
+    
+    
     return Scaffold(
       
       body: Center(
@@ -4699,7 +4720,7 @@ class _MyHomePageState extends State<MyHomePage> {
               splashColor: Colors.grey[400],
               child: Center(
                 child: Text(
-                    "Listen to some tunes?",
+                    "${tuneList[tuneInt].translation}\n(${tuneList[tuneInt].language})",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[600],
@@ -4712,10 +4733,14 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () async {
                 if (songURL[0] == null) {
                   _retrieveLocalSongInfo();
+                  
+                  
                 }
                 if (tracker != count) {
 
                 }
+                
+                //change back to SongUI()
                 Navigator.push(context, MaterialPageRoute(builder: (context) => 
                                 SongUI()));
               },
@@ -4734,7 +4759,35 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-List<String> tuneList = [
-  "Listen to some tunes?",
+class Tunes {
+  String translation;
+  String language;
 
+  Tunes({@required String translation, @required String language}) {
+    this.translation = translation;
+    this.language = language;
+  }
+}
+
+int tuneInt;
+
+int generateRandomTuneList() {
+  var rngtl = new Random();
+  var temptl = rngtl.nextInt(tuneList.length);
+  tuneInt = temptl;
+  return temptl;
+}
+
+List<Tunes> tuneList = [
+  new Tunes(translation: "Listen to some tunes?", language: "English"),
+  new Tunes(translation: "¿Escuchar algunas canciones?", language: "Spanish"),
+  new Tunes(translation: "Ecouter de la musique?", language: "French"),
+  new Tunes(translation: "Ouvir algumas músicas?", language: "Portuguese"),
+  new Tunes(translation: "Ascoltate qualche brano?", language: "Italian"),
+  new Tunes(translation: "Luister je naar wat deuntjes?", language: "Dutch"),
+  new Tunes(translation: "Słucham? Jakieś piosenki?", language: "Polish"),
+  new Tunes(translation: "Слушаешь какие-нибудь мелодии?", language: "Russian"),
+  new Tunes(translation: "曲を聴いてみないか？", language: "Japanese"),
+  new Tunes(translation: "听点曲子？", language: "Chinese (simplified)"),
+  new Tunes(translation: "Hören Sie sich einige Melodien an?", language: "German"),
 ];
