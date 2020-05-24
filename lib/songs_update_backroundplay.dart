@@ -313,10 +313,10 @@ class MusicPlayerState extends State<MusicPlayer> {
                   
                   //setState(() {
                   position = duration;
-                  //newSong();            
+                  newSong();            
                     
                 }
-                if (position == duration && duration != Duration.zero) newSong();
+                else if (position == duration && duration != Duration.zero) newSong();
                 
                 return SeekBar(
                   player: audioPlayer,
