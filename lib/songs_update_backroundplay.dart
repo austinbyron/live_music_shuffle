@@ -510,6 +510,7 @@ class _seekBarState extends State<SeekBar> {
             if (widget.onChangeEnd != null) {
               widget.onChangeEnd(Duration(milliseconds: value.round()));
             }
+            
           },
         ),
         Text(
@@ -629,6 +630,17 @@ class MyBackgroundTask extends BackgroundAudioTask {
   AudioPlayer _audioPlayer = AudioPlayer();
   Completer _completer = Completer();
   bool _playing;
+    //int _queueIndex = -1;
+  //AudioPlayer _audioPlayer = new AudioPlayer();
+  //Completer _completer = Completer();
+  BasicPlaybackState _skipState;
+  //bool _playing;
+
+  bool get hasNext => queueIndex + 1 < queue.length;
+
+  bool get hasPrevious => queueIndex > 0;
+
+  MediaItem get mediaItem => queue[queueIndex];
 
   List<MediaControl> _playControls = [
     skipToPreviousControl,
@@ -661,14 +673,116 @@ class MyBackgroundTask extends BackgroundAudioTask {
       ];
     }
   }
+
+    BasicPlaybackState _eventToBasicState(AudioPlaybackEvent event) {
+    if (event.buffering) {
+      return BasicPlaybackState.buffering;
+    } else {
+      switch (event.state) {
+        case AudioPlaybackState.none:
+          return BasicPlaybackState.none;
+        case AudioPlaybackState.stopped:
+          return BasicPlaybackState.stopped;
+        case AudioPlaybackState.paused:
+          return BasicPlaybackState.paused;
+        case AudioPlaybackState.playing:
+          return BasicPlaybackState.playing;
+        case AudioPlaybackState.connecting:
+          return _skipState ?? BasicPlaybackState.connecting;
+        case AudioPlaybackState.completed:
+          return BasicPlaybackState.stopped;
+        default:
+          throw Exception("Illegal state");
+      }
+    }
+  }
   
   @override
   Future<void> onStart() async {
     // Your custom dart code to start audio playback.
     // NOTE: The background audio task will shut down
     // as soon as this async function completes.
-    return _completer.future;
+    var playerStateSubscription = _audioPlayer.playbackStateStream
+        .where((state) => state == AudioPlaybackState.completed)
+        .listen((state) {
+      _handlePlaybackCompleted();
+    });
+    var eventSubscription = _audioPlayer.playbackEventStream.listen((event) {
+      final state = _eventToBasicState(event);
+      if (state != BasicPlaybackState.stopped) {
+        _setState(
+          state: state,
+          position: event.position.inMilliseconds,
+        );
+      }
+    });
+
+    AudioServiceBackground.setQueue(queue);
+    await onSkipToNext();
+    await _completer.future;
+    playerStateSubscription.cancel();
+    eventSubscription.cancel();
   }
+
+    void _handlePlaybackCompleted() {
+    if (hasNext) {
+      onSkipToNext();
+    } else {
+      onStop();
+    }
+  }
+
+   void playPause() {
+    if (AudioServiceBackground.state.basicState == BasicPlaybackState.playing)
+      onPause();
+    else
+      onPlay();
+  }
+
+    @override
+  Future<void> onSkipToNext() => _skip(1);
+
+  @override
+  Future<void> onSkipToPrevious() => _skip(-1);
+
+    Future<void> _skip(int offset) async {
+    final newPos = queueIndex + offset;
+    if (!(newPos >= 0 && newPos < queue.length)) return;
+    if (_playing == null) {
+      // First time, we want to start playing
+      _playing = true;
+    } else if (_playing) {
+      // Stop current item
+      await _audioPlayer.stop();
+    }
+    // Load next item
+    queueIndex = newPos;
+    AudioServiceBackground.setMediaItem(mediaItem);
+    _skipState = offset > 0
+        ? BasicPlaybackState.skippingToNext
+        : BasicPlaybackState.skippingToPrevious;
+    await _audioPlayer.setUrl(mediaItem.id);
+    _skipState = null;
+    // Resume playback if we were playing
+    if (_playing) {
+      onPlay();
+    } else {
+      _setState(state: BasicPlaybackState.paused);
+    }
+  }
+
+  void _setState({@required BasicPlaybackState state, int position}) {
+    if (position == null) {
+      position = _audioPlayer.playbackEvent.position.inMilliseconds;
+    }
+    AudioServiceBackground.setState(
+      controls: getControls(state),
+      systemActions: [MediaAction.seekTo],
+      basicState: state,
+      position: position,
+    );
+  }
+
   @override
   void onStop() {
     // Your custom dart code to stop audio playback. e.g.:
@@ -700,15 +814,7 @@ class MyBackgroundTask extends BackgroundAudioTask {
   void onClick(MediaButton button) {
     // Your custom dart code to handle a click on a headset.
   }
-  @override
-  void onSkipToNext() {
-    // Your custom dart code to skip to the next queue item.
-    AudioServiceBackground.setQueue(queue);
-  }
-  @override
-  void onSkipToPrevious() {
-    // Your custom dart code to skip to the previous queue item.
-  }
+
   @override
   void onSeekTo(int position) {
     // Your custom dart code to seek to a position.
