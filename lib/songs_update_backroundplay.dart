@@ -509,9 +509,9 @@ class _seekBarState extends State<SeekBar> {
                 value = 0.0;
               }
             });
-            if (value == widget.duration.inMilliseconds.toDouble()) {
-              newSong();
-            }
+            //if (value == widget.duration.inMilliseconds.toDouble()) {
+              //newSong();
+            //}
             if (widget.onChangeEnd != null) {
               widget.onChangeEnd(Duration(milliseconds: value.round()));
             }
