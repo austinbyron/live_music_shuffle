@@ -312,7 +312,7 @@ class MusicPlayerState extends State<MusicPlayer> {
                 if (position > duration) {
                   
                   //setState(() {
-                  position = duration;
+                  //position = duration;
                   newSong();            
                     
                 }
