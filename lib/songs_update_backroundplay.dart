@@ -235,11 +235,6 @@ class _songUI extends State<SongUI> {
 }
 
 
-
-
-enum PlayerState { stopped, playing, paused }
-enum PlayingRouteState { speakers, earpiece }
-
 class MusicPlayer extends StatefulWidget {
   //String url;
   //final PlayerMode mode;
@@ -251,14 +246,14 @@ class MusicPlayer extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     //url = _getUrl();
-    return musicPlayerState();
+    return MusicPlayerState();
   }
   
 }
 
 AudioPlayer audioPlayer = new AudioPlayer();
 
-class musicPlayerState extends State<MusicPlayer> {
+class MusicPlayerState extends State<MusicPlayer> {
   //String url;
   //PlayerMode mode;
   final _volumeSubject = BehaviorSubject.seeded(1.0);
@@ -269,11 +264,7 @@ class musicPlayerState extends State<MusicPlayer> {
   Duration _position;
 
   
-
-
-//var temp123 = "https://archive.org/download/gd95-07-06.sbd.9119.sbeok.shnf/gd95-07-06d2t03.mp3";
-  
-  musicPlayerState();
+  MusicPlayerState();
 
   @override
   void initState() {
@@ -314,20 +305,17 @@ class musicPlayerState extends State<MusicPlayer> {
               builder: (context, snapshot) {
                 var position = snapshot.data ?? Duration.zero;
                 if (position > duration) {
+                  //newSong();
                   setState(() {
                     position = duration;
-                  });
-                  
-                  newSong();
-                  //_player.
-                  
+                  });               
                     
                 }
                 
                 return SeekBar(
                   player: audioPlayer,
                   duration: duration,
-                  position: position,
+                  position: duration >= position ? position : Duration.zero,
                   onChangeEnd: (newPosition) {
                     audioPlayer.seek(newPosition);
                   },
@@ -366,21 +354,9 @@ class musicPlayerState extends State<MusicPlayer> {
             },
           ),
         ),
-        SizedBox(width: 10, height: 10),
         
-        /*RichText(
-          text: new TextSpan(
-
-            //TODO FIX POWERED BY MESSAGE
-
-            text: "\nPowered by Archive.org and Phish.in",
-            style: TextStyle(color: Colors.black),
-            //recognizer: new TapGestureRecognizer()
-              //..onTap = () {
-                //launch('https://archive.org/details/${songList[tempInt]}');
-              //},
-          ),
-        ),*/
+        
+        
         
         
         
@@ -396,6 +372,7 @@ class musicPlayerState extends State<MusicPlayer> {
     }
     //_player.pause();
     audioPlayer.play();
+    
     //
     //AudioServiceBackground.setMediaItem()
      
@@ -485,8 +462,8 @@ class _seekBarState extends State<SeekBar> {
         //Text("Track position"),
         Slider(
           min: 0.0,
-          max: widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
-          value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
+          max: widget.duration.inMilliseconds.toDouble(), //widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
+          value: _dragValue ?? widget.position.inMilliseconds.toDouble(),//widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
           
           onChanged: (value) {
             setState(() {
