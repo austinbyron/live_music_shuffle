@@ -305,10 +305,10 @@ class MusicPlayerState extends State<MusicPlayer> {
               builder: (context, snapshot) {
                 var position = snapshot.data ?? Duration.zero;
                 if (position > duration) {
-                  //newSong();
-                  setState(() {
+                  
+                  //setState(() {
                     position = duration;
-                  });               
+                              
                     
                 }
                 
@@ -417,12 +417,10 @@ class _seekBarState extends State<SeekBar> {
                         ? (widget.position?.inMilliseconds ?? 0).toDouble()
                         : 0.0;
 
-  String newSong() {
+  Future<String> newSong() async {
     var temporaryURL = _getUrl();
-    widget.player.setUrl(temporaryURL);
-    while (widget.player.buffering == true) {
-      //do nothing
-    }
+    await widget.player.setUrl(temporaryURL);
+    
     
     widget.player.play();
     var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n"; 
@@ -462,10 +460,29 @@ class _seekBarState extends State<SeekBar> {
         //Text("Track position"),
         Slider(
           min: 0.0,
-          max: widget.duration.inMilliseconds.toDouble(), //widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
-          value: _dragValue ?? widget.position.inMilliseconds.toDouble(),//widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
+          max: widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
+          value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
           
-          onChanged: (value) {
+          onChanged: (value) async {
+            if (value > widget.duration.inMilliseconds.toDouble()) {
+              setState(() {
+                value = widget.duration.inMilliseconds.toDouble();
+                _dragValue = value;
+              });
+              await newSong();
+            }
+            else if (value < 0.0) {
+              setState(() {
+                value = 0.0;
+                _dragValue = value;
+              });
+            }
+            else {
+              setState(() {
+                _dragValue = value;
+              });
+            }
+            /*
             setState(() {
               if (value > widget.duration.inMilliseconds.toDouble()) {
                 value = widget.duration.inMilliseconds.toDouble();
@@ -475,6 +492,7 @@ class _seekBarState extends State<SeekBar> {
               }
               _dragValue = value;
             });
+            */
             if (widget.onChanged != null) {
               widget.onChanged(Duration(milliseconds: value.round()));
             }
