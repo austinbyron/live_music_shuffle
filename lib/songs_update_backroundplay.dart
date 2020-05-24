@@ -326,8 +326,8 @@ class musicPlayerState extends State<MusicPlayer> {
                 
                 return SeekBar(
                   player: audioPlayer,
-                  duration: duration ?? 0.0,
-                  position: position ?? 0.0,
+                  duration: duration,
+                  position: position,
                   onChangeEnd: (newPosition) {
                     audioPlayer.seek(newPosition);
                   },
@@ -486,8 +486,7 @@ class _seekBarState extends State<SeekBar> {
         Slider(
           min: 0.0,
           max: widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
-          //need to fix this value somehow
-          value: widget.duration.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0) : 0.0,
+          value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
           
           onChanged: (value) {
             setState(() {
