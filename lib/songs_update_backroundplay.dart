@@ -307,10 +307,11 @@ class MusicPlayerState extends State<MusicPlayer> {
                 if (position > duration) {
                   
                   //setState(() {
-                    position = duration;
-                              
+                  position = duration;
+                  newSong();            
                     
                 }
+                else if (position == duration) newSong();
                 
                 return SeekBar(
                   player: audioPlayer,
@@ -502,11 +503,15 @@ class _seekBarState extends State<SeekBar> {
             setState(() {
               if (value > widget.duration.inMilliseconds.toDouble()) {
                 value = widget.duration.inMilliseconds.toDouble();
+                
               }
               else if (value < 0.0) {
                 value = 0.0;
               }
             });
+            if (value == widget.duration.inMilliseconds.toDouble()) {
+              newSong();
+            }
             if (widget.onChangeEnd != null) {
               widget.onChangeEnd(Duration(milliseconds: value.round()));
             }
