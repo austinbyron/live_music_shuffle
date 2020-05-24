@@ -253,6 +253,11 @@ class MusicPlayer extends StatefulWidget {
 
 AudioPlayer audioPlayer = new AudioPlayer();
 
+/// TODO make the UI separate from the audio task,
+/// such that the audio task is in the background player
+/// while the user retains control wherever they choose
+/// to control the audio player from
+
 class MusicPlayerState extends State<MusicPlayer> {
   //String url;
   //PlayerMode mode;
