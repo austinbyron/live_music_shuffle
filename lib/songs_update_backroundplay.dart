@@ -140,11 +140,11 @@ class SongUI extends StatelessWidget {
         alignment: Alignment.center,
         child: BottomAppBar(
         color: Colors.blue[400],
-        child: SizedBox(
-          height: AppBar().preferredSize.height,
-          width: MediaQuery.of(context).size.width,
-
-          child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
           child: Text(
           "Inspired by Relisten.net",
             textAlign: TextAlign.center,
@@ -154,6 +154,7 @@ class SongUI extends StatelessWidget {
             ),
           ),
         ),
+          ],
         ),
           
         ),
