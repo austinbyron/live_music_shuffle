@@ -144,15 +144,14 @@ class SongUI extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.all(3.0),
-              child: Center(
+            
+              Center(
           child: Text(
           "Inspired by Relisten.net",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
-            ),
+            
             ),
           ),
         ),
