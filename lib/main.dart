@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: AudioServiceWidget(child: CheckBands()),
+      home: CheckBands(),
       
         
       
@@ -739,7 +739,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 
                 
                 Navigator.push(context, MaterialPageRoute(builder: (context) => 
-                                SongUI()));
+                                AudioServiceWidget(child: SongUI())));
               },
             ),
           ),
