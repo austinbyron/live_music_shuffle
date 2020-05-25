@@ -102,7 +102,7 @@ var number;
 
 
 
-
+/*
 class SongUI extends StatefulWidget {
 
   const SongUI();
@@ -114,12 +114,13 @@ class SongUI extends StatefulWidget {
 void stopToGoBack() {
 
 }
+*/
 
-class _songUI extends State<SongUI> {
+class SongUI extends StatelessWidget {
 
   //AudioCache audioCache = AudioCache();
-  AudioPlayer advancedPlayer = AudioPlayer();
-  String localFilePath;
+  //AudioPlayer advancedPlayer = AudioPlayer();
+  //String localFilePath;
  
 
   @override
@@ -135,11 +136,15 @@ class _songUI extends State<SongUI> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       bottomNavigationBar: Container(
-        height: 50,
+        height: AppBar().preferredSize.height,
 
         child: BottomAppBar(
         color: Colors.blue[400],
-        child: Center(
+        child: SizedBox(
+          height: AppBar().preferredSize.height,
+          width: MediaQuery.of(context).size.width,
+
+          child: Center(
           child: Text(
           "Inspired by Relisten.net",
             textAlign: TextAlign.center,
@@ -148,8 +153,8 @@ class _songUI extends State<SongUI> {
               
             ),
           ),
-        )
-          
+        ),
+        ),
           
         ),
         /*
