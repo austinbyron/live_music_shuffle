@@ -170,14 +170,15 @@ class _songUI extends State<SongUI> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back), 
           onPressed: () {
-
+            Navigator.popUntil(context, (route) => route.isFirst);
+            /*
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             }
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             }
-            
+            */
           }
         ),
         centerTitle: false,
