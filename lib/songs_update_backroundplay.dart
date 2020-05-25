@@ -140,10 +140,7 @@ class SongUI extends StatelessWidget {
         alignment: Alignment.center,
         child: BottomAppBar(
         color: Colors.blue[400],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+        child: 
             
               Center(
           child: Text(
@@ -154,8 +151,6 @@ class SongUI extends StatelessWidget {
             
             ),
           ),
-        ),
-          ],
         ),
           
         ),
