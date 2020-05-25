@@ -137,7 +137,7 @@ class SongUI extends StatelessWidget {
       resizeToAvoidBottomPadding: false,
       bottomNavigationBar: Container(
         height: AppBar().preferredSize.height,
-
+        alignment: Alignment.center,
         child: BottomAppBar(
         color: Colors.blue[400],
         child: SizedBox(
