@@ -412,10 +412,10 @@ class SeekBar extends StatefulWidget {
   });
 
   @override
-  _seekBarState createState() => _seekBarState();
+  SeekBarState createState() => SeekBarState();
 }
 
-class _seekBarState extends State<SeekBar> {
+class SeekBarState extends State<SeekBar> {
   double _dragValue = null;
 
   get _durationText => widget.duration?.toString()?.split('.')?.first ?? '';
