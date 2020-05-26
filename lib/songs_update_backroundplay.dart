@@ -614,19 +614,7 @@ class SeekBarState extends State<SeekBar> {
     ),
     );
   }
-  //play() async {
-    //if (await AudioService.running) {
-    //  AudioService.play();
-    //}
-    //else {
-      //AudioService.start(
-        //backgroundTaskEntrypoint: myBackgroundTaskEntrypoint);
-    //}
-  //}
 
-  //pause() => AudioService.pause();
-
-  //stop() => AudioService.stop();
 }
 
 /// so there needs to be a background task class
