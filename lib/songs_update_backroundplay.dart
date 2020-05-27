@@ -142,7 +142,8 @@ class SongUI extends StatelessWidget {
         color: Colors.blue[400],
         child: 
             
-              Center(
+              Align(
+                alignment: Alignment.bottomCenter,
           child: Text(
           "Inspired by Relisten.net",
             textAlign: TextAlign.center,
