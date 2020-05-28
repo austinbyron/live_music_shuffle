@@ -705,7 +705,19 @@ class _MyHomePageState extends State<MyHomePage> {
     
     
     return Scaffold(
-      
+      appBar: AppBar(
+        backgroundColor: Colors.grey[200],
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title: Text(
+          "Listen to some tunes?",
+          style: TextStyle(
+            fontWeight: FontWeight.w200,
+            color: Colors.grey[600]
+          ),
+        ),
+
+      ),
       body: Center(
         
         child: Container(
@@ -772,7 +784,7 @@ int generateRandomTuneList() {
 }
 
 List<Tunes> tuneList = [
-  new Tunes(translation: "Listen to some tunes?", language: "English"),
+  //new Tunes(translation: "Listen to some tunes?", language: "English"),
   new Tunes(translation: "¿Escuchar algunas canciones?", language: "Spanish"),
   new Tunes(translation: "Ecouter de la musique?", language: "French"),
   new Tunes(translation: "Ouvir algumas músicas?", language: "Portuguese"),
@@ -781,6 +793,6 @@ List<Tunes> tuneList = [
   new Tunes(translation: "Słucham? Jakieś piosenki?", language: "Polish"),
   new Tunes(translation: "Слушаешь какие-нибудь мелодии?", language: "Russian"),
   new Tunes(translation: "曲を聴いてみないか？", language: "Japanese"),
-  new Tunes(translation: "听点曲子？", language: "Chinese (simplified)"),
+  new Tunes(translation: "听点曲子？", language: "Chinese simplified"),
   new Tunes(translation: "Hören Sie sich einige Melodien an?", language: "German"),
 ];
