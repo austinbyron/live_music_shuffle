@@ -829,3 +829,9 @@ class MyBackgroundTask extends BackgroundAudioTask {
     // Your custom dart code to seek to a position.
   }
 }
+
+/////
+///
+/// need to figure out displaying controls
+/// 
+/// 
