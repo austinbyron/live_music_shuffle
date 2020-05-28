@@ -115,6 +115,7 @@ void stopToGoBack() {
 
 }
 */
+var loading = false;
 
 class SongUI extends StatelessWidget {
 
@@ -317,10 +318,10 @@ class MusicPlayerState extends State<MusicPlayer> {
                   
                   //setState(() {
                   position = duration;
-                  newSong();            
+                  //newSong();            
                     
                 }
-                else if (position == duration && duration != Duration.zero) newSong();
+                //else if (position == duration && duration != Duration.zero) newSong();
                 
                 return SeekBar(
                   player: audioPlayer,
@@ -374,12 +375,15 @@ class MusicPlayerState extends State<MusicPlayer> {
     );
   }
 
-  String newSong() {
+  Future<String> newSong() async {
     var temporaryURL = _getUrl();
-    audioPlayer.setUrl(temporaryURL);
-    while (audioPlayer.buffering == true) {
-      //do nothing
-    }
+    setState(() {
+      loading = true;
+    });
+    await audioPlayer.setUrl(temporaryURL);
+      setState(() {
+        loading = false;
+      });
     //_player.pause();
     audioPlayer.play();
     
@@ -479,7 +483,7 @@ class SeekBarState extends State<SeekBar> {
                 value = widget.duration.inMilliseconds.toDouble();
                 _dragValue = value;
               });
-              await newSong();
+              //await newSong();
             }
             else if (value < 0.0) {
               setState(() {
@@ -520,6 +524,9 @@ class SeekBarState extends State<SeekBar> {
             });
             if (value == widget.duration.inMilliseconds.toDouble()) {
               newSong();
+              setState(() {
+                value = 0.0;
+              });
             }
             if (widget.onChangeEnd != null) {
               widget.onChangeEnd(Duration(milliseconds: value.round()));
