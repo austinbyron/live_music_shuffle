@@ -602,12 +602,12 @@ class SeekBarState extends State<SeekBar> {
                   iconSize: 64.0,
                   onPressed: () {
                     newSong();
-                    setState(() {
+                    //setState(() {
                       //initState();
-                      state = AudioPlaybackState.playing;
+                      //state = AudioPlaybackState.playing;
                       //max = widget.player.durationFuture;
                       
-                    });
+                    //});
                     //newSong() was here
                     
                   }
