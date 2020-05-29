@@ -300,7 +300,7 @@ class MusicPlayerState extends State<MusicPlayer> {
         Text("\nVolume"),
         StreamBuilder<double>(
           stream: _volumeSubject.stream,
-          builder: (context, snapshot) => Slider(
+          builder: (context, snapshot) => Slider.adaptive(
             divisions: 20,
             min: 0.0,
             max: 2.0,
@@ -314,7 +314,7 @@ class MusicPlayerState extends State<MusicPlayer> {
         Text("Speed"),
         StreamBuilder<double>(
           stream: _speedSubject.stream,
-          builder: (context, snapshot) => Slider(
+          builder: (context, snapshot) => Slider.adaptive(
             divisions: 10,
             min: 0.5,
             max: 1.5,
@@ -434,7 +434,7 @@ class SeekBarState extends State<SeekBar> {
           
         ),
         //Text("Track position"),
-        Slider(
+        Slider.adaptive(
           min: 0.0,
           max: widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
           value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
