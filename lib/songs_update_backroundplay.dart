@@ -241,8 +241,7 @@ class SongUI extends StatelessWidget {
 
 
 class MusicPlayer extends StatefulWidget {
-  //String url;
-  //final PlayerMode mode;
+  
 
   MusicPlayer(
     {Key key})
@@ -250,7 +249,7 @@ class MusicPlayer extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    //url = _getUrl();
+    
     return MusicPlayerState();
   }
   
@@ -264,8 +263,7 @@ AudioPlayer audioPlayer = new AudioPlayer();
 /// to control the audio player from
 
 class MusicPlayerState extends State<MusicPlayer> {
-  //String url;
-  //PlayerMode mode;
+  
   final _volumeSubject = BehaviorSubject.seeded(1.0);
   final _speedSubject = BehaviorSubject.seeded(1.0);
   
@@ -295,7 +293,7 @@ class MusicPlayerState extends State<MusicPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    //bool hasSkipped = false;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -308,7 +306,7 @@ class MusicPlayerState extends State<MusicPlayer> {
           stream: audioPlayer.durationStream,
           builder: (context, snapshot) {
             final duration = snapshot.data ?? Duration.zero;
-            //final fullState = snapshot.data;
+            
             
             return StreamBuilder<Duration>(
               stream: audioPlayer.getPositionStream(),
@@ -316,15 +314,17 @@ class MusicPlayerState extends State<MusicPlayer> {
                 var position = snapshot.data ?? Duration.zero;
                 if (position > duration) {
                   
-                  //setState(() {
+                 
                   position = duration;
-                  //newSong();            
+                              
                     
                 }
+
+                ///this solved the problem of getting new song and background getting
                 audioPlayer.getPositionStream().listen((event) {
                   if (event == duration && duration != Duration.zero) newSong();
                 });
-                //else if (position == duration && duration != Duration.zero) newSong();
+                
                 
                 return SeekBar(
                   player: audioPlayer,
@@ -387,15 +387,12 @@ class MusicPlayerState extends State<MusicPlayer> {
       setState(() {
         loading = false;
       });
-    //_player.pause();
-    audioPlayer.play();
     
-    //
-    //AudioServiceBackground.setMediaItem()
+    audioPlayer.play();
      
     var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n";
     return tempString;
-    //songInfo[tempInt];
+    
   }
 
   Future<void> playit() async {
@@ -448,7 +445,7 @@ class SeekBarState extends State<SeekBar> {
     var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n"; 
 
     return tempString;
-    //songInfo[tempInt];
+    
   }
 
   @override
@@ -491,7 +488,7 @@ class SeekBarState extends State<SeekBar> {
                 value = widget.duration.inMilliseconds.toDouble();
                 _dragValue = value;
               });
-              //await newSong();
+              
             }
             else if (value < 0.0) {
               setState(() {
@@ -504,17 +501,7 @@ class SeekBarState extends State<SeekBar> {
                 _dragValue = value;
               });
             }
-            /*
-            setState(() {
-              if (value > widget.duration.inMilliseconds.toDouble()) {
-                value = widget.duration.inMilliseconds.toDouble();
-              }
-              else if (value < 0.0) {
-                value = 0.0;
-              }
-              _dragValue = value;
-            });
-            */
+            
             if (widget.onChanged != null) {
               widget.onChanged(Duration(milliseconds: value.round()));
             }
@@ -530,6 +517,9 @@ class SeekBarState extends State<SeekBar> {
                 value = 0.0;
               }
             });
+
+            //get a new song if the song duration is pushed past the end
+            //set the value of the song back to start
             if (value == widget.duration.inMilliseconds.toDouble()) {
               newSong();
               setState(() {
@@ -572,7 +562,7 @@ class SeekBarState extends State<SeekBar> {
                     icon: Icon(Icons.pause),
                     iconSize: 64.0,
                     onPressed: () {
-                      //pause();
+                      
                       widget.player.pause();
                     }
                   )
@@ -581,7 +571,7 @@ class SeekBarState extends State<SeekBar> {
                     icon: Icon(Icons.play_arrow),
                     iconSize: 64.0,
                     onPressed: () {
-                      //play();
+                      
                       widget.player.play();
                     },
                   ),
@@ -592,11 +582,12 @@ class SeekBarState extends State<SeekBar> {
                               state == AudioPlaybackState.none
                               ? null
                               : () {
-                                //stop();
+                                
                                 widget.player.stop();
                               },
                             
                 ),
+                /*
                 (state == AudioPlaybackState.connecting || buffering == true) ?
                  
                 Container(
@@ -604,20 +595,17 @@ class SeekBarState extends State<SeekBar> {
                     width: 64.0,
                     height: 64.0,
                     child: CircularProgressIndicator()
-                ) :
+                ) :*/
                 IconButton(
                   icon: Icon(Icons.skip_next),
                   iconSize: 64.0,
-                  onPressed: () {
-                    newSong();
-                    //setState(() {
-                      //initState();
-                      //state = AudioPlaybackState.playing;
-                      //max = widget.player.durationFuture;
-                      
-                    //});
-                    //newSong() was here
+                  onPressed: state == AudioPlaybackState.connecting || buffering == true ? null : () {
                     
+                    
+                    newSong();
+                    
+                    
+                 
                   }
                 ),
                 
