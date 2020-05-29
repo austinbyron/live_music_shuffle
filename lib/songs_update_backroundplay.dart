@@ -84,7 +84,7 @@ MediaControl stopControl = MediaControl(
 
 final lengthOfList = songList.length;
 String _getUrl() {
-    //_retrieveLocalSongInfo();
+    
   print("songURL.length = ${songURL.length}");
   var rng = new Random();
   var temp = rng.nextInt(songURL.length); //size of songList
@@ -94,46 +94,23 @@ String _getUrl() {
   //queue.add(new MediaItem(id: songURL[temp], title: songTitle[temp], album: songAlbumDate[temp]));
   for (int i = 0; i < queue.length; i++)
     print("${queue[i].id}");
-  //print(temp);
-  //changed from songList[temp]
+  
   return songURL[temp];
 }
 var number;
 
 
-
-/*
-class SongUI extends StatefulWidget {
-
-  const SongUI();
-
-  @override
-  _songUI createState() => _songUI();
-}
-
-void stopToGoBack() {
-
-}
-*/
 var loading = false;
 
 class SongUI extends StatelessWidget {
 
-  //AudioCache audioCache = AudioCache();
-  //AudioPlayer advancedPlayer = AudioPlayer();
-  //String localFilePath;
+  
  
 
   @override
   Widget build(BuildContext context) {
     
-    //AudioService.start(backgroundTaskEntrypoint: myBackgroundTaskEntrypoint);
-    //_retrieveLocalSongInfo();
-    //setState(() {
-      //_retrieveLocalSongInfo();
-    //});
-    //String _tempUrl = _getUrl();
-    //musicPlayerList.add(MusicPlayer(url: _tempUrl));
+    
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       bottomNavigationBar: Container(
@@ -156,33 +133,17 @@ class SongUI extends StatelessWidget {
         ),
           
         ),
-        /*
-        RichText(
-          text: new TextSpan(
-            text: 
-            //recognizer: new TapGestureRecognizer()
-              //..onTap = () {
-                //launch('relisten.net');
-              //},
-          ),
-        ),*/
+       
       ),
       appBar: AppBar(
         titleSpacing: 0.0,
-        //automaticallyImplyLeading: false,
+        
         backgroundColor: Colors.blue[400],
         leading: IconButton(
           icon: Icon(Icons.arrow_back), 
           onPressed: () {
             Navigator.popUntil(context, (route) => route.isFirst);
-            /*
-            if (Navigator.canPop(context)) {
-              Navigator.pop(context);
-            }
-            if (Navigator.canPop(context)) {
-              Navigator.pop(context);
-            }
-            */
+            
           }
         ),
         centerTitle: false,
@@ -202,8 +163,7 @@ class SongUI extends StatelessWidget {
         children: [
           Center(
             child: Expanded(
-              //height: MediaQuery.of(context).size.height,
-              //width: MediaQuery.of(context).size.height,
+              
           
               child: new ClipRRect(
                 borderRadius: BorderRadius.circular(30.0),
@@ -211,13 +171,10 @@ class SongUI extends StatelessWidget {
                   
                   color: Colors.grey[200],
                   child: Column(
-                     //mainAxisAlignment: MainAxisAlignment.center,
+                     
                      children: [
                        MusicPlayer(),
-                       //Text(
-                         //songInfo[tempInt],
-                         //textAlign: TextAlign.center,
-                        //),
+                       
                      ],
                    
                     
@@ -587,25 +544,14 @@ class SeekBarState extends State<SeekBar> {
                               },
                             
                 ),
-                /*
-                (state == AudioPlaybackState.connecting || buffering == true) ?
-                 
-                Container(
-                    margin: EdgeInsets.all(8.0),
-                    width: 64.0,
-                    height: 64.0,
-                    child: CircularProgressIndicator()
-                ) :*/
+                
                 IconButton(
                   icon: Icon(Icons.skip_next),
                   iconSize: 64.0,
                   onPressed: state == AudioPlaybackState.connecting || buffering == true ? null : () {
-                    
-                    
+                                      
                     newSong();
-                    
-                    
-                 
+
                   }
                 ),
                 
