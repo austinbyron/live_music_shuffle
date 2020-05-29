@@ -144,7 +144,7 @@ class SongUI extends StatelessWidget {
         child: 
             
               Align(
-                alignment: Alignment.bottomCenter,
+                alignment: Platform.isIOS ? Alignment.bottomCenter : Alignment.center, //alignment issues with ios
           child: Text(
           "Inspired by Relisten.net",
             textAlign: TextAlign.center,
