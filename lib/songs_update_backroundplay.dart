@@ -321,6 +321,9 @@ class MusicPlayerState extends State<MusicPlayer> {
                   //newSong();            
                     
                 }
+                audioPlayer.getPositionStream().listen((event) {
+                  if (event == duration && duration != Duration.zero) newSong();
+                });
                 //else if (position == duration && duration != Duration.zero) newSong();
                 
                 return SeekBar(
@@ -433,8 +436,13 @@ class SeekBarState extends State<SeekBar> {
 
   Future<String> newSong() async {
     var temporaryURL = _getUrl();
+    setState(() {
+      loading = true;
+    });
     await widget.player.setUrl(temporaryURL);
-    
+    setState(() {
+      loading = false;
+    });
     
     widget.player.play();
     var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n"; 
