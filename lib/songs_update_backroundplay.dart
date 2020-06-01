@@ -40,6 +40,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/src/foundation/constants.dart';
 
+///TODO move database to redis
+
 import 'main.dart';
 //const testurl = 'https://archive.org/details/gd72-05-03.sbd.masse.142.sbeok.shnf/gd72-5-3d2t05.shn';
 
@@ -212,6 +214,8 @@ class MusicPlayer extends StatefulWidget {
   
 }
 
+
+
 AudioPlayer audioPlayer = new AudioPlayer();
 
 /// TODO make the UI separate from the audio task,
@@ -279,7 +283,7 @@ class MusicPlayerState extends State<MusicPlayer> {
 
                 ///this solved the problem of getting new song and background getting
                 audioPlayer.getPositionStream().listen((event) {
-                  if (event == duration && duration != Duration.zero) newSong();
+                  if ((event == duration) && duration != Duration.zero) newSong();
                 });
                 
                 
