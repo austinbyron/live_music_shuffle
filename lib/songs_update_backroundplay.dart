@@ -92,10 +92,10 @@ String _getUrl() {
   var temp = rng.nextInt(songURL.length); //size of songList
   tempInt = temp;
   number = temp;
-  addToQueue();
+  //addToQueue();
   //queue.add(new MediaItem(id: songURL[temp], title: songTitle[temp], album: songAlbumDate[temp]));
-  for (int i = 0; i < queue.length; i++)
-    print("${queue[i].id}");
+  //for (int i = 0; i < queue.length; i++)
+    //print("${queue[i].id}");
   
   return songURL[temp];
 }
