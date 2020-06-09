@@ -43,7 +43,7 @@ import 'package:flutter/src/foundation/constants.dart';
 ///TODO move database to redis
 
 import 'main.dart';
-//const testurl = 'https://archive.org/details/gd72-05-03.sbd.masse.142.sbeok.shnf/gd72-5-3d2t05.shn';
+
 
 typedef void OnError(Exception exception);
 
@@ -92,10 +92,10 @@ String _getUrl() {
   var temp = rng.nextInt(songURL.length); //size of songList
   tempInt = temp;
   number = temp;
-  //addToQueue();
-  //queue.add(new MediaItem(id: songURL[temp], title: songTitle[temp], album: songAlbumDate[temp]));
-  //for (int i = 0; i < queue.length; i++)
-    //print("${queue[i].id}");
+  addToQueue();
+  queue.add(new MediaItem(id: songURL[temp], title: songTitle[temp], album: songAlbumDate[temp]));
+  for (int i = 0; i < queue.length; i++)
+    print("${queue[i].id}");
   
   return songURL[temp];
 }
