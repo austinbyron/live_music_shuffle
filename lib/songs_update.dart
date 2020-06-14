@@ -7,7 +7,7 @@ import 'package:html/dom.dart' as dom;
 
 import 'package:web_scraper/web_scraper.dart';
 import 'package:audio_service/audio_service.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+
 
 import 'dart:async';
 import 'dart:io';

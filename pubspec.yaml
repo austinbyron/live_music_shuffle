@@ -33,7 +33,6 @@ dependencies:
   just_audio: ^0.1.5
   audio_service: ^0.8.0
   rxdart: ^0.24.0
-  flutter_tts: ^0.8.5
   url_launcher: ^5.4.5
   auto_size_text: ^2.1.0
   

@@ -9,7 +9,7 @@ import 'songs.dart';
 
 import 'package:web_scraper/web_scraper.dart';
 import 'package:audio_service/audio_service.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+
 
 import 'dart:async';
 import 'dart:io';
@@ -440,9 +440,9 @@ class SeekBarState extends State<SeekBar> {
         //Text("Track position"),
         Slider(
           min: 0.0,
-          max: widget.duration.inMilliseconds.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
+          max: widget?.duration?.inMilliseconds?.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
           value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
-          
+          //value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
           onChanged: (value) async {
             if (value > widget.duration.inMilliseconds.toDouble()) {
               setState(() {
@@ -694,7 +694,7 @@ class MyBackgroundTask extends BackgroundAudioTask {
       onPlay();
   }
 
-    @override
+  @override
   Future<void> onSkipToNext() => _skip(1);
 
   @override

@@ -8,7 +8,6 @@ import 'song_decode.dart';
 import 'dart:math';
 import 'dart:async';
 
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 
