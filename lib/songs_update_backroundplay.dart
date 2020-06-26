@@ -30,6 +30,7 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'song_url.dart';
 import 'dart:math';
+import 'dart:math' as math;
 import 'dart:async';
 import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -289,8 +290,9 @@ class MusicPlayerState extends State<MusicPlayer> {
                 
                 return SeekBar(
                   player: audioPlayer,
+                  
                   duration: duration,
-                  position: duration >= position ? position : Duration.zero,
+                  position: position ?? max(Duration.zero, min(position, duration)),//duration >= position ? position : Duration.zero,
                   onChangeEnd: (newPosition) {
                     audioPlayer.seek(newPosition);
                   },
@@ -441,7 +443,8 @@ class SeekBarState extends State<SeekBar> {
         Slider(
           min: 0.0,
           max: widget?.duration?.inMilliseconds?.toDouble() > 0.0 ? widget.duration.inMilliseconds.toDouble() : 0.0,
-          value: widget.position.inMilliseconds.toDouble() > (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
+          value: _dragValue ?? math.max(0.0, min(widget.position.inMilliseconds.toDouble(), widget.duration.inMilliseconds.toDouble())),
+          //value: widget?.position?.inMilliseconds?.toDouble() ?? (_dragValue ?? 0.0) ? (_dragValue ?? 0.0): 0.0,
           //value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
           onChanged: (value) async {
             if (value > widget.duration.inMilliseconds.toDouble()) {
