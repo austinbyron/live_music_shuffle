@@ -306,8 +306,10 @@ class MusicPlayerState extends State<MusicPlayer> {
         Text("\nVolume"),
         StreamBuilder<double>(
           stream: _volumeSubject.stream,
-          builder: (context, snapshot) => Slider(
-            divisions: 20,
+          builder: (context, snapshot) => Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Slider.adaptive(
+            divisions: 16,
             min: 0.0,
             max: 2.0,
             value: snapshot.data ?? 1.0,
@@ -315,12 +317,15 @@ class MusicPlayerState extends State<MusicPlayer> {
               _volumeSubject.add(value);
               audioPlayer.setVolume(value);
             },
+            ),
           ),
         ),
         Text("Speed"),
         StreamBuilder<double>(
           stream: _speedSubject.stream,
-          builder: (context, snapshot) => Slider(
+          builder: (context, snapshot) => Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Slider.adaptive(
             divisions: 10,
             min: 0.5,
             max: 1.5,
@@ -330,6 +335,7 @@ class MusicPlayerState extends State<MusicPlayer> {
               audioPlayer.setSpeed(value);
             },
           ),
+          )
         ),
         
         
