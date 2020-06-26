@@ -309,7 +309,7 @@ class MusicPlayerState extends State<MusicPlayer> {
           builder: (context, snapshot) => Padding(
             padding: EdgeInsets.all(8.0),
             child: Slider.adaptive(
-            divisions: 16,
+            //divisions: 16,
             min: 0.0,
             max: 2.0,
             value: snapshot.data ?? 1.0,
