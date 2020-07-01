@@ -16,7 +16,14 @@ import 'package:rxdart/rxdart.dart';
 import 'main.dart';
 import 'song_decode.dart';
 import 'song_url.dart';
-import 'mediaitemmaker.dart';
+//import 'mediaitemmaker.dart';
+
+
+List<String> songList = List<String>();
+List<String> songInfo = List<String>();
+List<String> poweredBy = List<String>();
+
+List<MediaItem> queue = new List();
 
 class PlayerUI extends StatefulWidget {
 
@@ -34,14 +41,51 @@ class _PlayerUI extends State<PlayerUI> {
   void initState() {
 
     super.initState();
-
+    AudioService.start(
+      backgroundTaskEntrypoint: myBackgroundTaskEntrypoint,
+      
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("test page"),
+        
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          StreamBuilder(
+            stream: AudioService.queueStream,
+            builder: (context, snapshot) {
+              
+            },
+          )
+        ],
+      ),
+    );
   }
+}
+
+var lengthOfList = songList.length;
+var tempInt;
+
+String getUrl() {
+    
+  //print("songURL.length = ${songURL.length}");
+  var rng = new Random();
+  var temp = rng.nextInt(songURL.length); //size of songList
+  tempInt = temp;
+  //number = temp;
+  //addToQueue();
+  queue.add(new MediaItem(id: songURL[temp], title: songTitle[temp], album: songAlbumDate[temp]));
+  for (int i = 0; i < queue.length; i++)
+    print("${queue[i].id}");
+  
+  return songURL[temp];
 }
 
 void myBackgroundTaskEntrypoint() {
@@ -51,6 +95,21 @@ void myBackgroundTaskEntrypoint() {
 class BackgroundAudioService extends BackgroundAudioTask {
 
   final AudioPlayer _audioPlayer = new AudioPlayer();
+
+  Future<void> newSong() async {
+    var temporaryURL = getUrl();
+    
+    //await widget.player.setUrl(temporaryURL);
+    var rng = new Random();
+    var temp = rng.nextInt(songURL.length); //size of songList
+    //tempInt = temp;
+    _audioPlayer.setUrl(songList[temp]);
+    //widget.player.play();
+    //var tempString = songTitle[tempInt] + "\n" + songArtist[tempInt] + "\n" + songAlbumDate[tempInt] + "\n"; 
+
+    //return tempString;
+    
+  }
 
   @override
   onStart() {

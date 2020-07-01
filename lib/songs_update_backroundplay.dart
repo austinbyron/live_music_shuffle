@@ -232,7 +232,7 @@ class MusicPlayerState extends State<MusicPlayer> {
   //AudioPlayerState _audioPlayerState;
   Duration _duration;
   Duration _position;
-
+  //var playerSubscription;
   
   MusicPlayerState();
 
@@ -242,12 +242,19 @@ class MusicPlayerState extends State<MusicPlayer> {
     audioPlayer = AudioPlayer();
     var temp = _getUrl();
     audioPlayer.setUrl(temp);
+    var playerSubscription = audioPlayer.playbackStateStream.listen((event) { 
+      if (event == AudioPlaybackState.completed) {
+        newSong();
+      }
+    });
+    
     
   }
 
   @override
   void dispose() {
     audioPlayer.dispose();
+    //playerSubscription.cancel();
     super.dispose();
   }
 
@@ -282,10 +289,12 @@ class MusicPlayerState extends State<MusicPlayer> {
                     
                 }
 
+                
+
                 ///this solved the problem of getting new song and background getting
-                audioPlayer.getPositionStream().listen((event) {
-                  if ((event == duration) && duration != Duration.zero) newSong();
-                });
+                //audioPlayer.getPositionStream().listen((event) {
+                  //if ((event == duration) && duration != Duration.zero) newSong();
+                //});
                 
                 
                 return SeekBar(
